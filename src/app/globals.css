@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme {
+  --color-teal-brand: #3E7A78;
+  --color-teal-dark: #285351;
+  --color-teal-deep: #193332;
+  --color-teal-light: #539795;
+  --color-teal-subtle: #EBF3F2;
+
+  --color-coral-brand: #EE8B6C;
+  --color-coral-hover: #DF7654;
+  --color-coral-light: #FEF3EF;
+  --color-coral-dark: #C95E3E;
+
+  --color-cream-bg: #F7F2EC;
+  --color-cream-surface: #FCFAF7;
+  --color-cream-border: #E8E1D5;
+  
+  --color-brand-dark: #122221;
+  --color-brand-slate: #233938;
+  --color-brand-muted: #667D7C;
+}
+
+:root {
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #F7F2EC;
+  color: #122221;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #F7F2EC;
+  color: #122221;
+  overflow-x: hidden;
+}
+
+/* Custom selection highlight */
+::selection {
+  background-color: #EE8B6C;
+  color: #FFFFFF;
+}
+
+/* Subtle custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F7F2EC;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3E7A78;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #285351;
+}
+
+/* Section transition curve utility */
+.curve-divider-top {
+  position: relative;
+  overflow: hidden;
+}
+
+.curve-divider-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: radial-gradient(ellipse at center, rgba(238, 139, 108, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Subtle glow badges */
+.badge-glow {
+  box-shadow: 0 0 16px rgba(238, 139, 108, 0.25);
+}

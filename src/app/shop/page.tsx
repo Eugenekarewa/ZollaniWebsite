@@ -1,0 +1,178 @@
+"use client";
+
+import React, { useState } from "react";
+import Image from "next/image";
+import { PRODUCTS, ProductItem } from "@/data/productsData";
+import {
+  ShoppingBag,
+  ShieldCheck,
+  CheckCircle2,
+  MessageCircle,
+  Sparkles,
+  Phone,
+  ArrowRight,
+  Filter,
+} from "lucide-react";
+
+export default function ShopPage() {
+  const [selectedFilter, setSelectedFilter] = useState<string>("all");
+
+  const categories = [
+    { id: "all", label: "All Items" },
+    { id: "refurbished-laptop", label: "Refurbished Laptops" },
+    { id: "gaming-pc", label: "Gaming Towers" },
+    { id: "workstation", label: "Workstation PCs" },
+    { id: "upgrade-kit", label: "Upgrade Bundles" },
+  ];
+
+  const filteredProducts =
+    selectedFilter === "all"
+      ? PRODUCTS
+      : PRODUCTS.filter((p) => p.category === selectedFilter);
+
+  return (
+    <div className="bg-cream-bg min-h-screen py-10 sm:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+          <span className="text-xs uppercase font-extrabold tracking-wider text-teal-brand bg-teal-subtle px-4 py-1.5 rounded-full">
+            Certified Hardware Catalog
+          </span>
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-dark mt-3 tracking-tight">
+            Refurbished Laptops &amp; Custom Builds
+          </h1>
+          <p className="text-sm sm:text-base text-brand-muted mt-3">
+            Every machine is bench-tested, thermal repasted, and protected with our written warranty.
+            Need a custom configuration? We build to your exact budget.
+          </p>
+        </div>
+
+        {/* Filter Pills */}
+        <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setSelectedFilter(cat.id)}
+              className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+                selectedFilter === cat.id
+                  ? "bg-teal-brand text-white shadow-xs"
+                  : "bg-white text-brand-slate hover:bg-cream-border/60 border border-cream-border"
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProducts.map((prod) => {
+            const waText = encodeURIComponent(
+              `Hello Zollani Tech, I am interested in buying/ordering the "${prod.name}" listed at KES ${prod.priceKes.toLocaleString()}. Is this currently in stock or available for build?`
+            );
+
+            return (
+              <div
+                key={prod.id}
+                className="bg-white rounded-3xl overflow-hidden shadow-sm border border-cream-border hover:shadow-xl transition-all flex flex-col justify-between group"
+              >
+                <div>
+                  {/* Image container */}
+                  <div className="relative h-52 w-full bg-cream-surface overflow-hidden">
+                    <Image
+                      src={prod.image}
+                      alt={prod.name}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-3 left-3 bg-teal-deep/90 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-1 rounded-lg uppercase tracking-wider">
+                      {prod.condition}
+                    </div>
+                    {prod.popular && (
+                      <div className="absolute top-3 right-3 bg-coral-brand text-white text-[10px] font-black px-2.5 py-1 rounded-lg uppercase tracking-wider shadow-sm">
+                        Best Value
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Body */}
+                  <div className="p-6">
+                    <div className="flex items-baseline justify-between gap-2 mb-2">
+                      <div className="text-2xl font-black text-brand-dark font-mono">
+                        KES {prod.priceKes.toLocaleString()}
+                      </div>
+                      <div className="flex items-center gap-1 text-[11px] font-bold text-teal-brand">
+                        <ShieldCheck className="w-3.5 h-3.5" />
+                        <span>{prod.warranty}</span>
+                      </div>
+                    </div>
+
+                    <h3 className="text-lg font-black text-brand-dark mb-2 group-hover:text-teal-brand transition-colors">
+                      {prod.name}
+                    </h3>
+
+                    <p className="text-xs text-brand-muted mb-4 leading-relaxed line-clamp-2">
+                      {prod.description}
+                    </p>
+
+                    {/* Specs list */}
+                    <div className="bg-cream-surface rounded-2xl p-3.5 border border-cream-border space-y-1.5 mb-2">
+                      {prod.specs.map((spec, sidx) => (
+                        <div
+                          key={sidx}
+                          className="flex items-center gap-2 text-[11px] text-brand-slate"
+                        >
+                          <CheckCircle2 className="w-3.5 h-3.5 text-teal-brand shrink-0" />
+                          <span className="truncate">{spec}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Footer Action */}
+                <div className="p-6 pt-0">
+                  <a
+                    href={`https://wa.me/254768551914?text=${waText}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white py-3 rounded-xl font-bold text-xs shadow-xs transition-all transform active:scale-95 text-center"
+                  >
+                    <MessageCircle className="w-4 h-4 fill-white" />
+                    <span>Inquire / Order on WhatsApp</span>
+                  </a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Custom Build Banner */}
+        <div className="mt-16 bg-gradient-to-r from-teal-deep to-teal-brand text-white rounded-3xl p-8 sm:p-12 shadow-lg flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="space-y-3 max-w-xl">
+            <span className="text-xs uppercase font-extrabold tracking-wider text-coral-brand bg-coral-brand/20 px-3.5 py-1 rounded-full">
+              Custom Commissions
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-black tracking-tight">
+              Need a Custom Machine Built for Your Budget?
+            </h3>
+            <p className="text-xs sm:text-sm text-cream-bg/90 leading-relaxed">
+              We build dedicated rigs for ArchiCAD, Blender 3D, Premiere Pro, machine learning,
+              and esports. You choose the budget and parts, we assemble, test, and warranty it.
+            </p>
+          </div>
+
+          <a
+            href="https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20would%20like%20to%20consult%20on%20a%20custom%20PC%20build."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="shrink-0 inline-flex items-center gap-2 bg-coral-brand hover:bg-coral-hover text-white px-7 py-4 rounded-2xl font-bold text-sm shadow-md transition-all transform hover:scale-105"
+          >
+            <MessageCircle className="w-4 h-4 fill-white" />
+            <span>Consult on Custom PC</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
