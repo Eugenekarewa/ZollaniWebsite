@@ -17,11 +17,12 @@ export function PageHero({ eyebrow, title, description, image, imageAlt, action,
     <section className="relative isolate overflow-hidden bg-teal-deep text-cream-bg">
       <div className="absolute inset-0 -z-10">
         <Image src={image} alt={imageAlt} fill priority className="animate-gentle-drift object-cover object-center opacity-35 mix-blend-luminosity" />
-        <div className="absolute inset-0 bg-gradient-to-r from-teal-deep via-teal-deep/90 to-teal-deep/55" />
+        <div className="absolute inset-0 bg-gradient-to-r from-teal-deep via-teal-deep/95 to-teal-deep/60" />
+        <div className="absolute bottom-0 left-0 h-1.5 w-40 bg-coral-brand" />
       </div>
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[1fr_0.55fr] lg:items-end lg:px-12 lg:py-24">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 sm:py-24 lg:grid-cols-[1fr_0.55fr] lg:items-end lg:px-12 lg:py-28">
         <div>
-          <p className="animate-rise-in mb-5 font-mono text-xs uppercase tracking-[0.2em] text-coral-brand">{eyebrow}</p>
+          <p className="animate-rise-in mb-5 inline-flex w-fit border-l-2 border-coral-brand pl-3 font-mono text-xs uppercase tracking-[0.2em] text-coral-brand">{eyebrow}</p>
           <h1 className="animate-rise-in animate-rise-in-delay-1 max-w-4xl text-balance text-4xl font-black leading-[0.98] tracking-[-0.05em] sm:text-6xl lg:text-7xl">{title}</h1>
           <p className="animate-rise-in animate-rise-in-delay-2 mt-6 max-w-2xl text-sm leading-7 text-cream-bg/75 sm:text-base">{description}</p>
           {(action || secondaryAction) && (

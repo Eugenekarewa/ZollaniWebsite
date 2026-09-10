@@ -70,7 +70,7 @@ export default async function AboutPage() {
       />
 
       {/* Mission & Vision */}
-      <section className="py-16 sm:py-20 bg-cream-bg border-b border-cream-border">
+      <section className="py-20 sm:py-24 bg-cream-bg border-b border-cream-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white rounded-3xl p-8 sm:p-10 shadow-sm border border-cream-border">
@@ -105,7 +105,7 @@ export default async function AboutPage() {
       </section>
 
       {/* Leadership Profile */}
-      <section className="py-16 sm:py-24 bg-cream-surface border-b border-cream-border">
+      <section className="py-20 sm:py-28 bg-cream-surface border-b border-cream-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Photo */}
@@ -224,10 +224,10 @@ export default async function AboutPage() {
       )}
 
       {/* Core Company Values */}
-      <section className="py-16 sm:py-24 bg-cream-bg">
+      <section className="py-20 sm:py-28 bg-cream-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="text-xs uppercase font-extrabold tracking-wider text-teal-brand bg-teal-subtle px-3.5 py-1 rounded-full">
+            <span className="section-kicker">
               Core Principles
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-brand-dark mt-3 tracking-tight">
