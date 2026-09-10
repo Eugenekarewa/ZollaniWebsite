@@ -1,4 +1,4 @@
-import { boolean, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { boolean, integer, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 
 export const user = pgTable("user", { id: text("id").primaryKey(), name: text("name").notNull(), email: text("email").notNull().unique(), emailVerified: boolean("emailVerified").notNull().default(false), image: text("image"), createdAt: timestamp("createdAt").notNull().defaultNow(), updatedAt: timestamp("updatedAt").notNull().defaultNow() });
@@ -9,3 +9,4 @@ export const verification = pgTable("verification", { id: text("id").primaryKey(
 export const userRelations = relations(user, ({ many }) => ({ sessions: many(session), accounts: many(account) }));
 export const accountRelations = relations(account, ({ one }) => ({ user: one(user, { fields: [account.userId], references: [user.id] }) }));
 export const shopProducts = pgTable("shop_products", { id: text("id").primaryKey(), name: text("name").notNull(), description: text("description").notNull(), price: text("price").notNull(), category: text("category").notNull(), imageUrl: text("image_url").notNull(), isActive: boolean("is_active").notNull().default(true), createdAt: timestamp("created_at").notNull().defaultNow(), updatedAt: timestamp("updated_at").notNull().defaultNow() });
+export const aboutProfiles = pgTable("about_profiles", { id: text("id").primaryKey(), name: text("name").notNull(), role: text("role").notNull(), bio: text("bio").notNull(), imageUrl: text("image_url").notNull(), profileType: text("profile_type").notNull().default("team"), sortOrder: integer("sort_order").notNull().default(0), isPublished: boolean("is_published").notNull().default(true), createdAt: timestamp("created_at").notNull().defaultNow(), updatedAt: timestamp("updated_at").notNull().defaultNow() });

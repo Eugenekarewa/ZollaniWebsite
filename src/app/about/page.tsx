@@ -2,6 +2,9 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
+import { db } from "@/lib/db";
+import { aboutProfiles } from "@/lib/db/schema";
+import { and, asc, eq } from "drizzle-orm";
 
 import {
   ShieldCheck,
@@ -18,7 +21,15 @@ import {
   GraduationCap,
 } from "lucide-react";
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  let profiles: typeof aboutProfiles.$inferSelect[] = [];
+  try {
+    profiles = await db.select().from(aboutProfiles).where(eq(aboutProfiles.isPublished, true)).orderBy(asc(aboutProfiles.sortOrder), asc(aboutProfiles.createdAt));
+  } catch {
+    profiles = [];
+  }
+  const owner = profiles.find((profile) => profile.profileType === "owner");
+  const team = profiles.filter((profile) => profile.profileType !== "owner");
   const values = [
     {
       title: "Repair, Don’t Replace",
@@ -201,6 +212,16 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {(owner || team.length > 0) && (
+        <section className="border-b border-cream-border bg-cream-surface py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-10 max-w-2xl"><span className="rounded-full bg-teal-subtle px-3.5 py-1 text-xs font-extrabold uppercase tracking-wider text-teal-brand">The people behind the work</span><h2 className="mt-4 text-3xl font-black tracking-tight text-brand-dark sm:text-4xl">A team you can trust with your technology.</h2><p className="mt-3 text-sm leading-relaxed text-brand-muted">Meet the people who make Zollani Tech practical, responsive, and deeply human.</p></div>
+            {owner && <div className="mb-10 grid gap-8 rounded-3xl border border-cream-border bg-white p-6 shadow-sm sm:p-8 lg:grid-cols-[280px_1fr] lg:items-center"><img src={owner.imageUrl} alt={owner.name} className="aspect-square w-full rounded-2xl object-cover" /><div><p className="text-xs font-extrabold uppercase tracking-wider text-coral-brand">Founder / owner</p><h3 className="mt-2 text-3xl font-black text-brand-dark">{owner.name}</h3><p className="mt-1 font-mono text-xs uppercase tracking-wider text-teal-brand">{owner.role}</p><p className="mt-5 text-sm leading-relaxed text-brand-slate">{owner.bio}</p></div></div>}
+            {team.length > 0 && <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{team.map((member) => <article key={member.id} className="overflow-hidden rounded-3xl border border-cream-border bg-white shadow-sm"><img src={member.imageUrl} alt={member.name} className="aspect-[4/3] w-full object-cover" /><div className="p-6"><p className="font-mono text-[11px] uppercase tracking-wider text-teal-brand">{member.role}</p><h3 className="mt-2 text-xl font-black text-brand-dark">{member.name}</h3><p className="mt-3 text-sm leading-relaxed text-brand-muted">{member.bio}</p></div></article>)}</div>}
+          </div>
+        </section>
+      )}
 
       {/* Core Company Values */}
       <section className="py-16 sm:py-24 bg-cream-bg">
