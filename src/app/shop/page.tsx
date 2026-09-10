@@ -1,4 +1,5 @@
 import ShopCatalog from "@/components/shop/ShopCatalog";
+import type { ProductItem } from "@/data/productsData";
 import { db } from "@/lib/db";
 import { shopProducts } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
@@ -12,7 +13,8 @@ export default async function ShopPage() {
   try {
     const products = await db.select().from(shopProducts).where(eq(shopProducts.isActive, true));
     if (products.length > 0) {
-      return <ShopCatalog products={products.map((product) => ({ id: product.id, name: product.name, description: product.description, priceKes: Number(product.price), category: product.category, image: product.imageUrl, condition: "Available", warranty: "Shop warranty", popular: false, specs: [] }))} />;
+      const catalogProducts: ProductItem[] = products.map((product) => ({ id: product.id, name: product.name, description: product.description, priceKes: Number(product.price), category: product.category as ProductItem["category"], image: product.imageUrl, condition: "Certified Refurbished", warranty: "Shop warranty", popular: false, specs: [] }));
+      return <ShopCatalog products={catalogProducts} />;
     }
   } catch {
     // Keep the public catalog available if the database is temporarily unavailable.
