@@ -8,6 +8,7 @@ export interface ProductItem {
   specs: string[];
   popular?: boolean;
   image: string;
+  images?: string[];
   description: string;
 }
 
