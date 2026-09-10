@@ -16,7 +16,10 @@ export default async function ShopPage() {
   try {
     const products = await db.select().from(shopProducts).where(eq(shopProducts.isActive, true));
     if (products.length > 0) {
-      const catalogProducts: ProductItem[] = products.map((product) => ({ id: product.id, name: product.name, description: product.description, priceKes: Number(product.price), category: product.category as ProductItem["category"], image: product.imageUrl, condition: "Certified Refurbished", warranty: "Shop warranty", popular: false, specs: [] }));
+      const catalogProducts: ProductItem[] = products.map((product) => {
+        const priceKes = Number(product.price.replace(/[^\d.]/g, ""));
+        return { id: product.id, name: product.name, description: product.description, priceKes: Number.isFinite(priceKes) ? priceKes : 0, category: product.category as ProductItem["category"], image: product.imageUrl, condition: "Certified Refurbished", warranty: "Shop warranty", popular: false, specs: [] };
+      });
       return <ShopCatalog products={catalogProducts} />;
     }
   } catch {
