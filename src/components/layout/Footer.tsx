@@ -14,13 +14,13 @@ import {
 
 export const Footer = () => {
   return (
-    <footer className="bg-brand-dark text-cream-bg pt-20 pb-12 border-t-2 border-coral-brand relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 pb-12 border-b border-teal-brand/30">
+    <footer className="bg-brand-dark text-cream-bg border-t-2 border-coral-brand relative">
+      <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
+        <div className="grid grid-cols-1 gap-12 border-b border-teal-brand/30 pb-14 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.1fr] lg:gap-14">
           {/* Column 1: Brand & Promise */}
-          <div className="space-y-4">
+          <div className="max-w-sm space-y-5">
             <Logo variant="white" size="lg" />
-            <p className="text-sm text-cream-bg/85 leading-relaxed pt-2">
+            <p className="pt-2 text-[15px] leading-7 text-cream-bg/85">
               Zollani Tech Limited is a Nairobi-based electronics repair and IT company.
               We restore the devices people depend on every day with honest diagnostics,
               quality components, and board-level precision.
@@ -34,11 +34,11 @@ export const Footer = () => {
           </div>
 
           {/* Column 2: Quick Links */}
-          <div className="space-y-3">
-            <h3 className="text-sm font-bold tracking-wider uppercase text-coral-brand">
+          <div className="space-y-5">
+            <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-coral-brand">
               Services & Solutions
             </h3>
-            <ul className="space-y-2 text-sm text-cream-bg/80">
+            <ul className="space-y-3 text-sm leading-6 text-cream-bg/80">
               <li>
                 <Link href="/services#hardware" className="hover:text-white transition-colors">
                   Hardware & Screen Replacement
@@ -78,11 +78,11 @@ export const Footer = () => {
           </div>
 
           {/* Column 3: M-Pesa & Payment Methods */}
-          <div className="space-y-3">
-            <h3 className="text-sm font-bold tracking-wider uppercase text-coral-brand">
+          <div className="space-y-5">
+            <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-coral-brand">
               Verified Payment Methods
             </h3>
-            <div className="bg-teal-brand/30 p-4 rounded-xl border border-teal-brand/40 space-y-2">
+            <div className="space-y-4 rounded-2xl border border-teal-brand/40 bg-teal-brand/30 p-5">
               <div className="flex items-center gap-2 text-white font-bold text-sm">
                 <CreditCard className="w-4 h-4 text-coral-brand" />
                 <span>M-PESA Lipa Na M-Pesa</span>
@@ -108,11 +108,11 @@ export const Footer = () => {
           </div>
 
           {/* Column 4: Contact & Locations */}
-          <div className="space-y-3">
-            <h3 className="text-sm font-bold tracking-wider uppercase text-coral-brand">
+          <div className="space-y-5">
+            <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-coral-brand">
               Get in Touch
             </h3>
-            <ul className="space-y-2.5 text-sm text-cream-bg/85">
+            <ul className="space-y-4 text-sm leading-6 text-cream-bg/85">
               <li className="flex items-start gap-2.5">
                 <Phone className="w-4 h-4 text-coral-brand shrink-0 mt-0.5" />
                 <div>
@@ -171,11 +171,11 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Strip */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-cream-bg/60 gap-4">
+        <div className="flex flex-col gap-5 pt-8 text-xs leading-5 text-cream-bg/60 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} Zollani Tech Limited. All rights reserved. Nairobi, Kenya.
           </p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 sm:justify-end">
             <span className="flex items-center gap-1">
               <CheckCircle2 className="w-3.5 h-3.5 text-coral-brand" />
               Cisco Certified Ethical Hacker Led
