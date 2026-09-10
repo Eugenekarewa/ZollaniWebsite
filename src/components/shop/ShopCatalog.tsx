@@ -19,7 +19,7 @@ import {
 export default function ShopPage({ products = PRODUCTS }: { products?: ProductItem[] }) {
   if (products.length === 0) {
     return (
-      <div className="surface-grid bg-cream-bg min-h-screen py-10 sm:py-16">
+      <div className="surface-grid bg-cream-bg min-h-screen pb-10 sm:pb-16">
         <PageHero
           eyebrow="Shop / Coming soon"
           title="Our shelves are being restocked."
@@ -59,7 +59,7 @@ export default function ShopPage({ products = PRODUCTS }: { products?: ProductIt
       : products.filter((p) => p.category === selectedFilter);
 
   return (
-    <div className="surface-grid bg-cream-bg min-h-screen py-10 sm:py-16">
+    <div className="surface-grid bg-cream-bg min-h-screen pb-10 sm:pb-16">
       <PageHero
         eyebrow="Shop / Tested hardware"
         title="Good machines. Ready to work."
