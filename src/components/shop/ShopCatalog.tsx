@@ -55,6 +55,7 @@ export default function ShopPage({ products = PRODUCTS }: { products?: ProductIt
     { id: "smart-home-camera", label: "Smart Home Cameras" },
     { id: "mouse", label: "Mice" },
     { id: "desktop-cpu", label: "Desktop CPUs" },
+    { id: "mini-pc", label: "Mini PCs" },
   ];
 
   const filteredProducts =
