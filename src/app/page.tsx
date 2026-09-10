@@ -6,7 +6,6 @@ import {
   MessageCircle,
   MoveRight,
   ShieldCheck,
-  Sparkles,
   Wrench,
 } from "lucide-react";
 import { SERVICE_CATEGORIES } from "@/data/servicesData";
@@ -26,7 +25,7 @@ export default function HomePage() {
             alt="Zollani Tech repair workspace"
             fill
             priority
-            className="object-cover object-center opacity-25 mix-blend-luminosity"
+            className="animate-gentle-drift object-cover object-center opacity-25 mix-blend-luminosity"
           />
           <div className="absolute inset-0 bg-teal-deep/80" />
         </div>
@@ -37,9 +36,9 @@ export default function HomePage() {
           </div>
 
           <div className="grid items-end gap-12 lg:grid-cols-[1.2fr_0.8fr]">
-            <div>
+            <div className="animate-rise-in">
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-coral-brand/50 bg-coral-brand/10 px-3 py-1.5 text-xs font-bold text-coral-brand">
-                <Sparkles className="h-3.5 w-3.5" />
+                <Wrench className="h-3.5 w-3.5" />
                 The repair lab that goes deeper
               </div>
               <h1 className="max-w-4xl text-balance text-5xl font-black leading-[0.95] tracking-[-0.06em] sm:text-7xl lg:text-[7.25rem]">
@@ -60,7 +59,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="lg:justify-self-end">
+            <div className="animate-rise-in animate-rise-in-delay-2 lg:justify-self-end">
               <div className="max-w-sm border-l border-coral-brand pl-5 text-sm leading-6 text-cream-bg/80">
                 <p className="mb-5 font-mono text-xs uppercase tracking-[0.18em] text-coral-brand">Today at the lab</p>
                 <div className="space-y-4">
