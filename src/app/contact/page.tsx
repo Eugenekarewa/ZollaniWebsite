@@ -20,7 +20,7 @@ export default function ContactPage() {
         eyebrow="Contact / Nairobi"
         title="Tell us what’s wrong."
         description="Drop off your machine, request an on-site office visit, or get an instant quote from a real technician."
-        image="/images/technician-workshop.jpg"
+        image="/images/pc-repair-workbench.jpg"
         imageAlt="Technician working in the Zollani Tech workshop"
         action={{ label: "Chat on WhatsApp", href: "https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20need%20help." }}
         secondaryAction={{ label: "Call +254 768 551914", href: "tel:+254768551914" }}
