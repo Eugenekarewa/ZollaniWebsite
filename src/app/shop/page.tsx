@@ -19,5 +19,5 @@ export default async function ShopPage() {
   } catch {
     // Keep the public catalog available if the database is temporarily unavailable.
   }
-  return <ShopCatalog />;
+  return <ShopCatalog products={[]} />;
 }
