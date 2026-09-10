@@ -129,7 +129,7 @@ export default function ShopPage({ products = PRODUCTS }: { products?: ProductIt
                   <div className="p-6">
                     <div className="flex items-baseline justify-between gap-2 mb-2">
                       <div className="text-2xl font-black text-brand-dark font-mono">
-                        KES {prod.priceKes.toLocaleString()}
+                        {prod.priceKes > 0 ? `KES ${prod.priceKes.toLocaleString()}` : "Price on request"}
                       </div>
                       <div className="flex items-center gap-1 text-[11px] font-bold text-teal-brand">
                         <ShieldCheck className="w-3.5 h-3.5" />
