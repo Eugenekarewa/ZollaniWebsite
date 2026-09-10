@@ -69,7 +69,7 @@ export default function ServicesPage() {
   }, [selectedCategory, searchQuery]);
 
   return (
-    <div className="surface-grid bg-cream-bg min-h-screen py-12 sm:py-20">
+    <div className="surface-grid bg-cream-bg min-h-screen pb-12 sm:pb-20">
       <section className="relative overflow-hidden bg-teal-deep text-cream-bg">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:px-12 lg:py-28">
           <div>
