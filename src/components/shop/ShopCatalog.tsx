@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { PRODUCTS, ProductItem } from "@/data/productsData";
+import { PRODUCTS } from "@/data/productsData";
+import type { ProductItem } from "@/data/productsData";
 import { PageHero } from "@/components/ui/PageHero";
-import { ShopImageManager } from "@/components/shop/ShopImageManager";
 import {
   ShoppingBag,
   ShieldCheck,
@@ -16,7 +16,7 @@ import {
   Filter,
 } from "lucide-react";
 
-export default function ShopPage({ imageOverrides }: { imageOverrides: Record<string, string> }) {
+export default function ShopPage({ products = PRODUCTS }: { products?: ProductItem[] }) {
   const [selectedFilter, setSelectedFilter] = useState<string>("all");
 
   const categories = [
@@ -29,8 +29,8 @@ export default function ShopPage({ imageOverrides }: { imageOverrides: Record<st
 
   const filteredProducts =
     selectedFilter === "all"
-      ? PRODUCTS
-      : PRODUCTS.filter((p) => p.category === selectedFilter);
+      ? products
+      : products.filter((p) => p.category === selectedFilter);
 
   return (
     <div className="surface-grid bg-cream-bg min-h-screen py-10 sm:py-16">
@@ -45,8 +45,6 @@ export default function ShopPage({ imageOverrides }: { imageOverrides: Record<st
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <ShopImageManager products={PRODUCTS} />
 
         {/* Filter Pills */}
         <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
@@ -81,7 +79,7 @@ export default function ShopPage({ imageOverrides }: { imageOverrides: Record<st
                   {/* Image container */}
                   <div className="relative h-52 w-full bg-cream-surface overflow-hidden">
                     <Image
-                      src={imageOverrides[prod.id] ?? prod.image}
+                      src={prod.image}
                       alt={prod.name}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"

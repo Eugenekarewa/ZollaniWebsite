@@ -1,5 +1,7 @@
-import { list } from "@vercel/blob";
 import ShopCatalog from "@/components/shop/ShopCatalog";
+import { db } from "@/lib/db";
+import { shopProducts } from "@/lib/db/schema";
+import { eq } from "drizzle-orm";
 
 export const metadata = {
   title: "Shop Tested Laptops & Custom PCs | Zollani Tech Nairobi",
@@ -7,15 +9,13 @@ export const metadata = {
 };
 
 export default async function ShopPage() {
-  let imageOverrides: Record<string, string> = {};
   try {
-    const { blobs } = await list({ prefix: "shop/" });
-    imageOverrides = Object.fromEntries(
-      blobs.map((blob) => [blob.pathname.replace("shop/", "").replace(/\.[^.]+$/, ""), blob.url]),
-    );
+    const products = await db.select().from(shopProducts).where(eq(shopProducts.isActive, true));
+    if (products.length > 0) {
+      return <ShopCatalog products={products.map((product) => ({ id: product.id, name: product.name, description: product.description, priceKes: Number(product.price), category: product.category, image: product.imageUrl, condition: "Available", warranty: "Shop warranty", popular: false, specs: [] }))} />;
+    }
   } catch {
-    imageOverrides = {};
+    // Keep the public catalog available if the database is temporarily unavailable.
   }
-
-  return <ShopCatalog imageOverrides={imageOverrides} />;
+  return <ShopCatalog />;
 }
