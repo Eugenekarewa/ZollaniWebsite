@@ -119,9 +119,6 @@ export default function ShopPage({ products = PRODUCTS }: { products?: ProductIt
                   {/* Image container */}
                   <div className="relative h-52 w-full bg-cream-surface overflow-hidden">
                     <ProductCardImage src={prod.image} images={prod.images} alt={prod.name} />
-                    <div className="absolute top-3 left-3 bg-teal-deep/90 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-1 rounded-lg uppercase tracking-wider">
-                      {prod.condition}
-                    </div>
                     {prod.popular && (
                       <div className="absolute top-3 right-3 bg-coral-brand text-white text-[10px] font-black px-2.5 py-1 rounded-lg uppercase tracking-wider shadow-sm">
                         Best Value
