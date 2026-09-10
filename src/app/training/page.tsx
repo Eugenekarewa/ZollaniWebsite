@@ -1,4 +1,11 @@
 import React from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Technology & Electronics Training in Kenya",
+  description: "Practical AI, electronics repair, software, Linux, networking, and cybersecurity training for learners, colleges, TVETs, and teams across Kenya.",
+  keywords: ["electronics repair training Kenya", "cybersecurity training Nairobi", "AI training Kenya", "Linux training", "IT skills training", "TVET technology training"],
+};
 import Image from "next/image";
 import Link from "next/link";
 import { ContactForm } from "@/components/forms/ContactForm";
@@ -81,7 +88,7 @@ export default function TrainingPage() {
       <PageHero
         eyebrow="Training / Community"
         title="Build real technical skills."
-        description="Hands-on AI, electronics, software, Linux, and cybersecurity learning for young people, institutions, and teams across Kenya."
+        description="Hands-on AI, electronics repair, software, Linux, networking, and cybersecurity training for young people, institutions, TVETs, and teams across Kenya."
         image="/images/youth-empowerment-students.jpg"
         imageAlt="Students learning technology together"
         action={{ label: "Partner or enroll", href: "#partner-form" }}

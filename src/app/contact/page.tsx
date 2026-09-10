@@ -1,4 +1,11 @@
 import React from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact Computer Repair & IT Support in Nairobi",
+  description: "Contact Zollani Tech for laptop repair, electronics diagnostics, data recovery, business IT support, networking, and technical training in Nairobi.",
+  keywords: ["contact computer repair Nairobi", "IT support Nairobi", "laptop repair quote", "electronics repair contact Kenya"],
+};
 import { ContactForm } from "@/components/forms/ContactForm";
 import { PageHero } from "@/components/ui/PageHero";
 import {
@@ -19,7 +26,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact / Nairobi"
         title="Tell us what’s wrong."
-        description="Drop off your machine, request an on-site office visit, or get an instant quote from a real technician."
+        description="Drop off your laptop or computer, request an on-site IT visit, or get an instant quote for electronics repair, data recovery, or technical support from a real technician."
         image="/images/pc-repair-workbench.jpg"
         imageAlt="Technician working in the Zollani Tech workshop"
         action={{ label: "Chat on WhatsApp", href: "https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20need%20help." }}

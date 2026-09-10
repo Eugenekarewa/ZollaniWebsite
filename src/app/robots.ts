@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "https://zollanitech.co.ke/sitemap.xml",
+    sitemap: "https://zollani.co.ke/sitemap.xml",
   };
 }

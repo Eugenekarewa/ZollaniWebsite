@@ -1,4 +1,11 @@
 import React from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Zollani Tech | Trusted Technology Company in Kenya",
+  description: "Learn about Zollani Tech, our electronics repair expertise, business IT support, technical training, company history, and growing team in Kenya.",
+  keywords: ["about Zollani Tech", "technology company Kenya", "electronics repair team Nairobi", "IT company Nairobi"],
+};
 import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
@@ -69,7 +76,7 @@ export default async function AboutPage() {
       <PageHero
         eyebrow="Our story / Nairobi"
         title="Honest engineering. Lasting solutions."
-        description="Zollani Tech is a Nairobi technology company built around professional repair, data recovery, business IT, and practical learning. We Fix. You Smile."
+        description="Zollani Tech is a Nairobi technology company providing professional laptop and computer repair, electronics diagnostics, data recovery, business IT support, and practical technical training. We Fix. You Smile."
         image="/images/classroom-workshop.jpg"
         imageAlt="Zollani Tech workshop and training space"
         action={{ label: "Get in touch", href: "/contact" }}
@@ -230,7 +237,7 @@ export default async function AboutPage() {
       {(owner || team.length > 0) && (
         <section className="border-b border-cream-border bg-cream-surface py-16 sm:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-10 max-w-2xl"><span className="rounded-full bg-teal-subtle px-3.5 py-1 text-xs font-extrabold uppercase tracking-wider text-teal-brand">The people behind the work</span><h2 className="mt-4 text-3xl font-black tracking-tight text-brand-dark sm:text-4xl">A team you can trust with your technology.</h2><p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-brand-muted">{companyContent?.teamIntro || "Meet the people who make Zollani Tech practical, responsive, and deeply human."}</p></div>
+            <div className="mb-10 max-w-2xl"><span className="rounded-full bg-teal-subtle px-3.5 py-1 text-xs font-extrabold uppercase tracking-wider text-teal-brand">The people behind the work</span><h2 className="mt-4 text-3xl font-black tracking-tight text-brand-dark sm:text-4xl">A team you can trust with your technology.</h2><p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-brand-muted">{companyContent?.teamIntro || "Meet the people who make Zollani Tech practical, responsive, and deeply human."}</p><p className="mt-4 text-sm text-brand-muted">Need help with a device or business system? <Link href="/services" className="font-bold text-teal-brand underline decoration-coral-brand underline-offset-4">Explore our repair and IT services</Link>.</p></div>
             {owner && <div className="mb-10 grid gap-8 rounded-3xl border border-cream-border bg-white p-6 shadow-sm sm:p-8 lg:grid-cols-[280px_1fr] lg:items-center"><img src={owner.imageUrl} alt={owner.name} className="aspect-square w-full rounded-2xl object-cover" /><div><p className="text-xs font-extrabold uppercase tracking-wider text-coral-brand">Founder / owner</p><h3 className="mt-2 text-3xl font-black text-brand-dark">{owner.name}</h3><p className="mt-1 font-mono text-xs uppercase tracking-wider text-teal-brand">{owner.role}</p><p className="mt-5 text-sm leading-relaxed text-brand-slate">{owner.bio}</p></div></div>}
             {team.length > 0 && <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{team.map((member) => <article key={member.id} className="overflow-hidden rounded-3xl border border-cream-border bg-white shadow-sm"><img src={member.imageUrl} alt={member.name} className="aspect-[4/3] w-full object-cover" /><div className="p-6"><p className="font-mono text-[11px] uppercase tracking-wider text-teal-brand">{member.role}</p><h3 className="mt-2 text-xl font-black text-brand-dark">{member.name}</h3><p className="mt-3 text-sm leading-relaxed text-brand-muted">{member.bio}</p></div></article>)}</div>}
           </div>

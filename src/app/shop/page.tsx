@@ -4,9 +4,12 @@ import { db } from "@/lib/db";
 import { shopProducts } from "@/lib/db/schema";
 import { eq } from "drizzle-orm";
 
-export const metadata = {
-  title: "Shop Tested Laptops & Custom PCs | Zollani Tech Nairobi",
-  description: "Shop tested refurbished laptops, custom gaming PCs, workstations, and upgrade bundles from Zollani Tech in Nairobi.",
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Tested Refurbished Laptops & Custom PCs in Nairobi",
+  description: "Browse tested refurbished laptops, custom PCs, workstations, storage upgrades, and computer accessories from Zollani Tech in Nairobi.",
+  keywords: ["refurbished laptops Nairobi", "used laptops Kenya", "custom PC Nairobi", "computer upgrades Kenya", "laptop accessories Nairobi"],
 };
 
 export default async function ShopPage() {
