@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://zollanitech.co.ke";
+  const baseUrl = "https://zollani.co.ke";
   const lastModified = new Date();
 
   const routes = [

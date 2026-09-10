@@ -1,4 +1,11 @@
 import React from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Managed IT Support for Businesses in Kenya",
+  description: "Keep your business connected with managed IT support, network installation, cloud backups, cybersecurity, server support, and on-site technicians in Nairobi.",
+  keywords: ["managed IT services Kenya", "business IT support Nairobi", "network installation", "cybersecurity services Kenya", "cloud backup", "server support"],
+};
 import Image from "next/image";
 import Link from "next/link";
 import { ContactForm } from "@/components/forms/ContactForm";
@@ -71,7 +78,7 @@ export default function BusinessITPage() {
       <PageHero
         eyebrow="Business IT / Nairobi"
         title="Keep work moving."
-        description="Rapid on-site engineering, dependable networks, secure backups, and a direct line to a real technician — without building a full in-house IT department."
+        description="Managed IT support, rapid on-site engineering, network installation, secure cloud backups, cybersecurity, and a direct line to a real technician — without building a full in-house IT department."
         image="/images/corporate-team-server.jpg"
         imageAlt="Business IT server infrastructure"
         action={{ label: "Request a proposal", href: "#quote-form" }}

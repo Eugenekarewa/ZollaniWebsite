@@ -4,32 +4,46 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
 
+const siteUrl = "https://zollani.co.ke";
+
 export const metadata: Metadata = {
-  title: "Zollani Tech | IT Repair, Business Support & Training — Nairobi, Kenya",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Zollani Tech | Computer Repair & IT Services in Kenya",
+    template: "%s | Zollani Tech",
+  },
   description:
-    "Professional electronics repair, motherboard micro-soldering, data recovery, business IT support contracts, and youth tech training in Nairobi. We Fix. You Smile.",
+    "Trusted laptop and computer repair, electronics repair, data recovery, networking, cybersecurity, managed IT, and technical training in Nairobi and across Kenya.",
   keywords: [
+    "computer repair Kenya",
     "laptop repair Nairobi",
-    "MacBook repair Nairobi",
-    "motherboard repair Kenya",
-    "data recovery Nairobi",
-    "IT support for small business Kenya",
-    "computer repair Westlands Kilimani",
-    "Zollani Tech Limited",
+    "electronics repair Kenya",
     "screen replacement Nairobi",
-    "refurbished laptops Nairobi",
-    "AI Msingi training Kenya",
+    "data recovery Kenya",
+    "IT support Kenya",
+    "network installation Nairobi",
+    "cybersecurity services Kenya",
+    "managed IT services",
+    "computer repair near me",
   ],
   authors: [{ name: "Zollani Tech Limited" }],
+  alternates: { canonical: siteUrl },
   openGraph: {
-    title: "Zollani Tech | Professional IT Repair & Business Support Nairobi",
+    title: "Zollani Tech | Computer Repair & IT Services in Kenya",
     description:
-      "Expert chip-level electronics repair, managed business IT support, and youth empowerment training in Nairobi. Fast turnaround, quality parts.",
-    url: "https://zollanitech.co.ke",
+      "Reliable computer repairs, electronics services, business IT support, and practical tech training from Nairobi, Kenya.",
+    url: siteUrl,
     siteName: "Zollani Tech",
     locale: "en_KE",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zollani Tech | Computer Repair & IT Services in Kenya",
+    description:
+      "Reliable computer repairs, electronics services, business IT support, and practical tech training in Kenya.",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -41,7 +55,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "Zollani Tech Limited",
-    image: "https://zollanitech.co.ke/images/logo-badge.png",
+    image: "https://zollani.co.ke/images/logo-badge.png",
     telephone: "+254768551914",
     email: "info@zollanitech.co.ke",
     address: {
@@ -54,7 +68,7 @@ export default function RootLayout({
       latitude: -1.2921,
       longitude: 36.8219,
     },
-    url: "https://zollanitech.co.ke",
+    url: "https://zollani.co.ke",
     priceRange: "KES 500 - 50,000",
     openingHoursSpecification: [
       {
