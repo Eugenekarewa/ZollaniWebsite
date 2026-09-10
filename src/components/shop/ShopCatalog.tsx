@@ -109,11 +109,10 @@ export default function ShopPage({ products = PRODUCTS }: { products?: ProductIt
                 <div>
                   {/* Image container */}
                   <div className="relative h-52 w-full bg-cream-surface overflow-hidden">
-                    <Image
-                      src={prod.image}
+                    <img
+                      src={prod.image || "/images/pc-repair-workbench.jpg"}
                       alt={prod.name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute top-3 left-3 bg-teal-deep/90 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-1 rounded-lg uppercase tracking-wider">
                       {prod.condition}
