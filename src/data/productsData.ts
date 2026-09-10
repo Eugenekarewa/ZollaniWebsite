@@ -11,7 +11,9 @@ export interface ProductItem {
   description: string;
 }
 
-export const PRODUCTS: ProductItem[] = [
+export const PRODUCTS: ProductItem[] = []; /* Products are managed through the admin shop dashboard. */
+
+/*
   {
     id: "prod-thinkpad-t480",
     name: "Lenovo ThinkPad T480 (Business Tough)",
@@ -124,3 +126,4 @@ export const PRODUCTS: ProductItem[] = [
     description: "Transform your slow, 5-minute boot laptop into a 15-second lightning machine without replacing the laptop.",
   },
 ];
+*/

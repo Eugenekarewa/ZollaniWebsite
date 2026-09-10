@@ -17,6 +17,32 @@ import {
 } from "lucide-react";
 
 export default function ShopPage({ products = PRODUCTS }: { products?: ProductItem[] }) {
+  if (products.length === 0) {
+    return (
+      <div className="surface-grid bg-cream-bg min-h-screen py-10 sm:py-16">
+        <PageHero
+          eyebrow="Shop / Coming soon"
+          title="Our shelves are being restocked."
+          description="We are preparing a new collection of tested laptops, custom PCs, and upgrade bundles. Check back soon or message us for a machine sourced to your needs."
+          image="/images/pc-repair-workbench.jpg"
+          imageAlt="Zollani Tech team preparing computers for customers"
+          action={{ label: "Ask about available stock", href: "https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20would%20like%20to%20ask%20about%20available%20stock." }}
+          secondaryAction={{ label: "Explore our services", href: "/services" }}
+        />
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-3xl border border-cream-border bg-cream-surface p-8 text-center shadow-sm sm:p-12">
+            <ShoppingBag className="mx-auto h-10 w-10 text-teal-brand" aria-hidden="true" />
+            <h2 className="mt-5 text-2xl font-black text-brand-dark">No products listed yet</h2>
+            <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-brand-muted">New items will appear here as soon as they are inspected and ready for sale. For a specific laptop or build, contact our team and we will help you find the right option.</p>
+            <a href="https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20am%20looking%20for%20a%20computer." target="_blank" rel="noopener noreferrer" className="mt-7 inline-flex items-center gap-2 rounded-2xl bg-coral-brand px-6 py-3.5 text-sm font-bold text-white transition-colors hover:bg-coral-hover">
+              <MessageCircle className="h-4 w-4 fill-white" aria-hidden="true" />
+              Tell us what you need
+            </a>
+          </div>
+        </div>
+      </div>
+    );
+  }
   const [selectedFilter, setSelectedFilter] = useState<string>("all");
 
   const categories = [
