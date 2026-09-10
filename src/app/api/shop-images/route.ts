@@ -21,28 +21,33 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  if (!isAuthorized(request)) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  try {
+    if (!isAuthorized(request)) {
+      return NextResponse.json({ error: "Unauthorized. Check the admin key." }, { status: 401 });
+    }
+
+    const formData = await request.formData();
+    const productId = formData.get("productId");
+    const file = formData.get("file");
+
+    if (typeof productId !== "string" || !/^prod-[a-z0-9-]+$/.test(productId) || !(file instanceof File)) {
+      return NextResponse.json({ error: "Product and image are required" }, { status: 400 });
+    }
+    if (!ALLOWED_TYPES.has(file.type) || file.size > MAX_FILE_SIZE) {
+      return NextResponse.json({ error: "Use a JPG, PNG, or WebP image up to 5MB" }, { status: 400 });
+    }
+
+    const extension = file.type === "image/png" ? "png" : file.type === "image/webp" ? "webp" : "jpg";
+    const blob = await put(`shop/${productId}.${extension}`, file, {
+      access: "public",
+      addRandomSuffix: false,
+      allowOverwrite: true,
+      contentType: file.type,
+    });
+
+    return NextResponse.json({ url: blob.url });
+  } catch (error) {
+    console.error("[v0] Shop image upload failed", error);
+    return NextResponse.json({ error: "Image upload failed. Check Blob storage configuration and try again." }, { status: 500 });
   }
-
-  const formData = await request.formData();
-  const productId = formData.get("productId");
-  const file = formData.get("file");
-
-  if (typeof productId !== "string" || !/^prod-[a-z0-9-]+$/.test(productId) || !(file instanceof File)) {
-    return NextResponse.json({ error: "Product and image are required" }, { status: 400 });
-  }
-  if (!ALLOWED_TYPES.has(file.type) || file.size > MAX_FILE_SIZE) {
-    return NextResponse.json({ error: "Use a JPG, PNG, or WebP image up to 5MB" }, { status: 400 });
-  }
-
-  const extension = file.type === "image/png" ? "png" : file.type === "image/webp" ? "webp" : "jpg";
-  const blob = await put(`shop/${productId}.${extension}`, file, {
-    access: "public",
-    addRandomSuffix: false,
-    allowOverwrite: true,
-    contentType: file.type,
-  });
-
-  return NextResponse.json({ url: blob.url });
 }
