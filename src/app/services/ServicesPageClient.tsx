@@ -74,7 +74,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="The lab / What we fix"
         title="Find the right fix. Fast."
-        description="Search laptop repair, screen replacement, motherboard repair, data recovery, cybersecurity, networking, and business IT services — then talk directly to the team that will handle it."
+        description="Search laptop repair, screen replacement, motherboard repair, data recovery, cybersecurity, networking, and business IT services. Then talk directly to the team that will handle it."
         image="/images/hardware-motherboard.jpg"
         imageAlt="Technician repairing a motherboard"
         action={{ label: "Book a repair", href: "https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20need%20help%20with%20a%20repair." }}

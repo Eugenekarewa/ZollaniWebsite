@@ -14,7 +14,7 @@ export const INITIAL_TRAINING_PHOTOS: TrainingPhoto[] = [
   {
     id: "tp-1",
     title: "AI Msingi Youth Cohort in Session",
-    cohort: "AI Msingi — Junior Navigators",
+    cohort: "AI Msingi: Junior Navigators",
     category: "ai-msingi",
     imageUrl: "/images/youth-empowerment-students.jpg",
     date: "August 2026",

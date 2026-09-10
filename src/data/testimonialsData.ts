@@ -40,7 +40,7 @@ export const TESTIMONIALS: Testimonial[] = [
     avatarText: "DO",
     rating: 5,
     quote:
-      "Zollani Tech's AI Msingi and cybersecurity workshops completely transformed our students' enthusiasm for technology. The curriculum wasn't theoretical — it was hands-on, CBC-aligned, and taught real problem-solving.",
+      "Zollani Tech's AI Msingi and cybersecurity workshops completely transformed our students' enthusiasm for technology. The curriculum was practical, CBC-aligned, and focused on real problem-solving.",
     category: "training",
   },
   {
