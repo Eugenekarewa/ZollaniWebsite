@@ -20,12 +20,12 @@ import {
   FileDown,
   ArrowRight,
   HeartHandshake,
+  GraduationCap,
   Recycle,
   Lightbulb,
   CreditCard,
   Phone,
   MessageCircle,
-  GraduationCap,
 } from "lucide-react";
 
 export default async function AboutPage() {
@@ -125,8 +125,8 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {/* Leadership Profile */}
-      <section className="py-20 sm:py-28 bg-cream-surface border-b border-cream-border">
+      {false && (
+      <section className="hidden py-20 sm:py-28 bg-cream-surface border-b border-cream-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Photo */}
@@ -233,6 +233,7 @@ export default async function AboutPage() {
           </div>
         </div>
       </section>
+      )}
 
       {(owner || team.length > 0) && (
         <section className="border-b border-cream-border bg-cream-surface py-16 sm:py-24">
