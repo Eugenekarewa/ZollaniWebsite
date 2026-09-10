@@ -1,5 +1,6 @@
 import React from "react";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { PageHero } from "@/components/ui/PageHero";
 import {
   Phone,
   MessageCircle,
@@ -14,20 +15,17 @@ import {
 
 export default function ContactPage() {
   return (
-    <div className="bg-cream-bg min-h-screen py-12 sm:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <span className="text-xs uppercase font-extrabold tracking-wider text-teal-brand bg-teal-subtle px-4 py-1.5 rounded-full">
-            We Are Ready to Help
-          </span>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-dark mt-3 tracking-tight">
-            Contact Zollani Tech Nairobi
-          </h1>
-          <p className="text-sm sm:text-base text-brand-muted mt-3">
-            Drop off your machine, request an on-site office visit, or get an instant quote on WhatsApp.
-          </p>
-        </div>
+    <div className="bg-cream-bg min-h-screen">
+      <PageHero
+        eyebrow="Contact / Nairobi"
+        title="Tell us what’s wrong."
+        description="Drop off your machine, request an on-site office visit, or get an instant quote from a real technician."
+        image="/images/technician-workshop.jpg"
+        imageAlt="Technician working in the Zollani Tech workshop"
+        action={{ label: "Chat on WhatsApp", href: "https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20need%20help." }}
+        secondaryAction={{ label: "Call +254 768 551914", href: "tel:+254768551914" }}
+      />
+      <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 sm:py-20 lg:px-8">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left Column: Form */}

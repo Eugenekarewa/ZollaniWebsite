@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { TrainingGallery } from "@/components/training/TrainingGallery";
+import { PageHero } from "@/components/ui/PageHero";
 import {
   GraduationCap,
   Sparkles,
@@ -77,57 +78,15 @@ export default function TrainingPage() {
 
   return (
     <div className="bg-cream-bg min-h-screen">
-      {/* Hero Section */}
-      <section className="relative bg-teal-deep text-white py-16 sm:py-24 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/youth-empowerment-students.jpg"
-            alt="Zollani Tech Community Youth Empowerment Program"
-            fill
-            priority
-            className="object-cover object-center opacity-25 mix-blend-luminosity"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-teal-deep via-teal-deep/95 to-teal-dark/85" />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-6">
-            <span className="inline-flex items-center gap-2 bg-coral-brand/20 border border-coral-brand/40 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-coral-brand">
-              <GraduationCap className="w-4 h-4" />
-              Community Youth Empowerment &amp; Institutional Training
-            </span>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
-              Building Real Technical Skills For Kenya&apos;s Next Generation
-            </h1>
-
-            <p className="text-base sm:text-lg text-cream-bg/90 leading-relaxed font-normal">
-              Beyond electronics repair, Zollani Tech invests in people. We close the gap between
-              classroom theory and practical, income-generating tech skills through school partnerships,
-              AI Msingi, and corporate workforce cyber training.
-            </p>
-
-            <div className="pt-2 flex flex-wrap items-center gap-4">
-              <a
-                href="#partner-form"
-                className="inline-flex items-center gap-2 bg-coral-brand hover:bg-coral-hover text-white px-7 py-3.5 rounded-2xl font-bold text-sm shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0"
-              >
-                <span>Partner or Enroll Today</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
-
-              <a
-                href="https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20am%20interested%20in%20your%20training%20programs."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3.5 rounded-2xl font-bold text-sm border border-white/20 transition-all"
-              >
-                <span>Chat on WhatsApp</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Training / Community"
+        title="Build real technical skills."
+        description="Hands-on AI, electronics, software, Linux, and cybersecurity learning for young people, institutions, and teams across Kenya."
+        image="/images/youth-empowerment-students.jpg"
+        imageAlt="Students learning technology together"
+        action={{ label: "Partner or enroll", href: "#partner-form" }}
+        secondaryAction={{ label: "Chat on WhatsApp", href: "https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20am%20interested%20in%20your%20training%20programs." }}
+      />
 
       {/* Proven Track Record Strip */}
       <section className="bg-cream-surface py-8 border-b border-cream-border">

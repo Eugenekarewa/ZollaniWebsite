@@ -98,8 +98,8 @@ export const Navbar = () => {
       {/* Main Navbar */}
       <nav
         className={`w-full transition-all duration-300 ${
-          scrolled
-            ? "bg-cream-surface/95 backdrop-blur-md shadow-md py-3 border-b border-cream-border"
+            scrolled
+            ? "bg-cream-surface/95 backdrop-blur-md shadow-sm py-3 border-b border-cream-border"
             : "bg-cream-bg/90 backdrop-blur-sm py-4 border-b border-cream-border/60"
         }`}
       >
