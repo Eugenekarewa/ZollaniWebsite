@@ -1,8 +1,8 @@
 import ShopCatalog from "@/components/shop/ShopCatalog";
 import type { ProductItem } from "@/data/productsData";
 import { db } from "@/lib/db";
-import { shopProducts } from "@/lib/db/schema";
-import { eq } from "drizzle-orm";
+import { productImages, shopProducts } from "@/lib/db/schema";
+import { asc, eq } from "drizzle-orm";
 
 import type { Metadata } from "next";
 
@@ -16,9 +16,10 @@ export default async function ShopPage() {
   try {
     const products = await db.select().from(shopProducts).where(eq(shopProducts.isActive, true));
     if (products.length > 0) {
-      const catalogProducts: ProductItem[] = products.map((product) => {
+      const galleries = await Promise.all(products.map(async (product) => db.select().from(productImages).where(eq(productImages.productId, product.id)).orderBy(asc(productImages.sortOrder))));
+      const catalogProducts: ProductItem[] = products.map((product, index) => {
         const priceKes = Number(product.price.replace(/[^\d.]/g, ""));
-        return { id: product.id, name: product.name, description: product.description, priceKes: Number.isFinite(priceKes) ? priceKes : 0, category: product.category as ProductItem["category"], image: product.imageUrl?.startsWith("https://ibb.co/") ? `/api/product-image?url=${encodeURIComponent(product.imageUrl)}` : product.imageUrl, condition: "Certified Refurbished", warranty: "Shop warranty", popular: false, specs: [] };
+        return { id: product.id, name: product.name, description: product.description, priceKes: Number.isFinite(priceKes) ? priceKes : 0, category: product.category as ProductItem["category"], image: (galleries[index][0]?.imageUrl || product.imageUrl)?.startsWith("https://ibb.co/") ? `/api/product-image?url=${encodeURIComponent(galleries[index][0]?.imageUrl || product.imageUrl)}` : galleries[index][0]?.imageUrl || product.imageUrl, images: galleries[index].map((image) => image.imageUrl), condition: "Certified Refurbished", warranty: "Shop warranty", popular: false, specs: [] };
       });
       return <ShopCatalog products={catalogProducts} />;
     }

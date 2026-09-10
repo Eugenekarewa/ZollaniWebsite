@@ -17,17 +17,12 @@ import {
 
 const FALLBACK_PRODUCT_IMAGE = "/images/pc-repair-workbench.jpg";
 
-function ProductCardImage({ src, alt }: { src?: string; alt: string }) {
-  const [imageSrc, setImageSrc] = useState(src || FALLBACK_PRODUCT_IMAGE);
+function ProductCardImage({ src, images = [], alt }: { src?: string; images?: string[]; alt: string }) {
+  const gallery = Array.from(new Set([src, ...images].filter(Boolean))) as string[];
+  const [selected, setSelected] = useState(gallery[0] || FALLBACK_PRODUCT_IMAGE);
+  const [imageSrc, setImageSrc] = useState(selected);
 
-  return (
-    <img
-      src={imageSrc}
-      alt={alt}
-      onError={() => setImageSrc(FALLBACK_PRODUCT_IMAGE)}
-      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-    />
-  );
+  return <div className="h-full w-full"><img src={imageSrc} alt={alt} onError={() => setImageSrc(FALLBACK_PRODUCT_IMAGE)} className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />{gallery.length > 1 ? <div className="absolute inset-x-3 bottom-3 flex gap-2 overflow-x-auto">{gallery.map((image, index) => <button key={`${image}-${index}`} type="button" onClick={() => { setSelected(image); setImageSrc(image); }} className={`h-10 w-10 shrink-0 overflow-hidden rounded-lg border-2 ${selected === image ? "border-coral-brand" : "border-white/70"}`} aria-label={`View image ${index + 1}`}><img src={image} alt="" className="h-full w-full object-cover" /></button>)}</div> : null}</div>;
 }
 
 export default function ShopPage({ products = PRODUCTS }: { products?: ProductItem[] }) {
@@ -123,7 +118,7 @@ export default function ShopPage({ products = PRODUCTS }: { products?: ProductIt
                 <div>
                   {/* Image container */}
                   <div className="relative h-52 w-full bg-cream-surface overflow-hidden">
-                    <ProductCardImage src={prod.image} alt={prod.name} />
+                    <ProductCardImage src={prod.image} images={prod.images} alt={prod.name} />
                     <div className="absolute top-3 left-3 bg-teal-deep/90 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-1 rounded-lg uppercase tracking-wider">
                       {prod.condition}
                     </div>
