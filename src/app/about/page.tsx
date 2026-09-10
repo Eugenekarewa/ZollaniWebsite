@@ -101,7 +101,7 @@ export default async function AboutPage() {
                 Our Vision
               </span>
               <h3 className="text-2xl font-black text-brand-dark mt-4 mb-3">
-                {companyContent?.vision || "To Be East Africa&apos;s Most Trusted Electronics Partner"}
+                {companyContent?.vision || "To Be East Africa's Most Trusted Electronics Partner"}
               </h3>
               <p className="text-sm text-brand-slate leading-relaxed">
                 The place people, businesses, and institutions turn to before they ever think
