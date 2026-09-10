@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
 import { db } from "@/lib/db";
-import { aboutProfiles } from "@/lib/db/schema";
+import { aboutCompanyContent, aboutProfiles } from "@/lib/db/schema";
 import { and, asc, eq } from "drizzle-orm";
 
 import {
@@ -23,10 +23,17 @@ import {
 
 export default async function AboutPage() {
   let profiles: typeof aboutProfiles.$inferSelect[] = [];
+  let companyContent: typeof aboutCompanyContent.$inferSelect | null = null;
   try {
-    profiles = await db.select().from(aboutProfiles).where(eq(aboutProfiles.isPublished, true)).orderBy(asc(aboutProfiles.sortOrder), asc(aboutProfiles.createdAt));
+    const [profileRows, contentRows] = await Promise.all([
+      db.select().from(aboutProfiles).where(eq(aboutProfiles.isPublished, true)).orderBy(asc(aboutProfiles.sortOrder), asc(aboutProfiles.createdAt)),
+      db.select().from(aboutCompanyContent).where(eq(aboutCompanyContent.id, "main")),
+    ]);
+    profiles = profileRows;
+    companyContent = contentRows[0] ?? null;
   } catch {
     profiles = [];
+    companyContent = null;
   }
   const owner = profiles.find((profile) => profile.profileType === "owner");
   const team = profiles.filter((profile) => profile.profileType !== "owner");
@@ -69,6 +76,15 @@ export default async function AboutPage() {
         secondaryAction={{ label: "Company profile", href: "/Zollani-Tech-Company-Profile.pdf" }}
       />
 
+      {(companyContent?.story || companyContent?.history) && (
+        <section className="border-b border-cream-border bg-cream-surface py-20 sm:py-28">
+          <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
+            <div><span className="section-kicker">The Zollani story</span><h2 className="mt-4 text-3xl font-black tracking-tight text-brand-dark sm:text-4xl">Built with purpose, growing with our people.</h2><p className="mt-4 text-sm leading-relaxed text-brand-muted">A living story of the company, the work, and the community we are building around technology.</p></div>
+            <div className="space-y-8">{companyContent.story && <div><h3 className="text-lg font-black text-brand-dark">Our story</h3><p className="mt-3 whitespace-pre-line text-sm leading-7 text-brand-slate">{companyContent.story}</p></div>}{companyContent.history && <div className="border-t border-cream-border pt-8"><h3 className="text-lg font-black text-brand-dark">Company history</h3><p className="mt-3 whitespace-pre-line text-sm leading-7 text-brand-slate">{companyContent.history}</p></div>}</div>
+          </div>
+        </section>
+      )}
+
       {/* Mission & Vision */}
       <section className="py-20 sm:py-24 bg-cream-bg border-b border-cream-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -78,7 +94,7 @@ export default async function AboutPage() {
                 Our Vision
               </span>
               <h3 className="text-2xl font-black text-brand-dark mt-4 mb-3">
-                To Be East Africa&apos;s Most Trusted Electronics Partner
+                {companyContent?.vision || "To Be East Africa&apos;s Most Trusted Electronics Partner"}
               </h3>
               <p className="text-sm text-brand-slate leading-relaxed">
                 The place people, businesses, and institutions turn to before they ever think
@@ -95,9 +111,7 @@ export default async function AboutPage() {
                 Extending Device Lifespans &amp; Empowering Community
               </h3>
               <p className="text-sm text-brand-slate leading-relaxed">
-                To extend the life of every device we touch through expert, affordable, and honest
-                repair — saving our customers money, reducing toxic electronic waste, and building
-                high-value technical skills within our Kenyan youth community.
+                {companyContent?.mission || "To extend the life of every device we touch through expert, affordable, and honest repair — saving our customers money, reducing toxic electronic waste, and building high-value technical skills within our Kenyan youth community."}
               </p>
             </div>
           </div>
@@ -216,7 +230,7 @@ export default async function AboutPage() {
       {(owner || team.length > 0) && (
         <section className="border-b border-cream-border bg-cream-surface py-16 sm:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-10 max-w-2xl"><span className="rounded-full bg-teal-subtle px-3.5 py-1 text-xs font-extrabold uppercase tracking-wider text-teal-brand">The people behind the work</span><h2 className="mt-4 text-3xl font-black tracking-tight text-brand-dark sm:text-4xl">A team you can trust with your technology.</h2><p className="mt-3 text-sm leading-relaxed text-brand-muted">Meet the people who make Zollani Tech practical, responsive, and deeply human.</p></div>
+            <div className="mb-10 max-w-2xl"><span className="rounded-full bg-teal-subtle px-3.5 py-1 text-xs font-extrabold uppercase tracking-wider text-teal-brand">The people behind the work</span><h2 className="mt-4 text-3xl font-black tracking-tight text-brand-dark sm:text-4xl">A team you can trust with your technology.</h2><p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-brand-muted">{companyContent?.teamIntro || "Meet the people who make Zollani Tech practical, responsive, and deeply human."}</p></div>
             {owner && <div className="mb-10 grid gap-8 rounded-3xl border border-cream-border bg-white p-6 shadow-sm sm:p-8 lg:grid-cols-[280px_1fr] lg:items-center"><img src={owner.imageUrl} alt={owner.name} className="aspect-square w-full rounded-2xl object-cover" /><div><p className="text-xs font-extrabold uppercase tracking-wider text-coral-brand">Founder / owner</p><h3 className="mt-2 text-3xl font-black text-brand-dark">{owner.name}</h3><p className="mt-1 font-mono text-xs uppercase tracking-wider text-teal-brand">{owner.role}</p><p className="mt-5 text-sm leading-relaxed text-brand-slate">{owner.bio}</p></div></div>}
             {team.length > 0 && <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">{team.map((member) => <article key={member.id} className="overflow-hidden rounded-3xl border border-cream-border bg-white shadow-sm"><img src={member.imageUrl} alt={member.name} className="aspect-[4/3] w-full object-cover" /><div className="p-6"><p className="font-mono text-[11px] uppercase tracking-wider text-teal-brand">{member.role}</p><h3 className="mt-2 text-xl font-black text-brand-dark">{member.name}</h3><p className="mt-3 text-sm leading-relaxed text-brand-muted">{member.bio}</p></div></article>)}</div>}
           </div>

@@ -1,12 +1,12 @@
 import { redirect } from "next/navigation";
 import { getSession } from "@/lib/auth";
-import { getAdminProfiles, saveProfile, deleteProfile } from "./actions";
+import { getAdminProfiles, saveProfile, deleteProfile, getCompanyContent, saveCompanyContent } from "./actions";
 import { ProfilePhotoField } from "@/components/admin/ProfilePhotoField";
 
 export default async function AdminAboutPage() {
   const session = await getSession();
   if (!session?.user || session.user.email.toLowerCase() !== "eugenekarewa223@gmail.com") redirect("/admin/login");
-  const profiles = await getAdminProfiles();
+  const [profiles, content] = await Promise.all([getAdminProfiles(), getCompanyContent()]);
 
   return (
     <main className="surface-grid min-h-screen bg-cream-bg px-4 py-12 sm:px-8">
@@ -15,6 +15,15 @@ export default async function AdminAboutPage() {
           <div><p className="font-mono text-xs uppercase tracking-[0.2em] text-teal-brand">Zollani / Admin</p><h1 className="mt-2 text-4xl font-black text-brand-dark">About profiles</h1><p className="mt-2 text-sm text-brand-muted">Manage the owner and people customers see on the About page.</p></div>
           <a href="/about" className="rounded-xl border border-cream-border bg-white px-4 py-3 text-sm font-bold text-brand-dark">View About page</a>
         </div>
+        <form action={saveCompanyContent} className="mt-8 grid gap-4 rounded-3xl border border-coral-brand/30 bg-white p-6 shadow-sm md:grid-cols-2">
+          <div className="md:col-span-2"><p className="font-mono text-xs uppercase tracking-[0.2em] text-coral-dark">Company story and history</p><h2 className="mt-2 text-xl font-black text-brand-dark">Edit what visitors should know about Zollani</h2><p className="mt-2 text-sm text-brand-muted">These fields appear on the public About page. Add your origin story, key milestones, and the current team introduction here.</p></div>
+          <textarea name="story" defaultValue={content.story} placeholder="Company story" className="min-h-32 rounded-xl border border-cream-border bg-cream-surface px-4 py-3 md:col-span-2" />
+          <textarea name="history" defaultValue={content.history} placeholder="Company history and milestones" className="min-h-32 rounded-xl border border-cream-border bg-cream-surface px-4 py-3 md:col-span-2" />
+          <textarea name="mission" defaultValue={content.mission} placeholder="Mission" className="min-h-24 rounded-xl border border-cream-border bg-cream-surface px-4 py-3" />
+          <textarea name="vision" defaultValue={content.vision} placeholder="Vision" className="min-h-24 rounded-xl border border-cream-border bg-cream-surface px-4 py-3" />
+          <textarea name="teamIntro" defaultValue={content.teamIntro} placeholder="Team section introduction" className="min-h-24 rounded-xl border border-cream-border bg-cream-surface px-4 py-3 md:col-span-2" />
+          <button className="rounded-xl bg-coral-brand px-5 py-3 font-bold text-white md:col-span-2">Save company content</button>
+        </form>
         <form action={saveProfile} className="mt-8 grid gap-4 rounded-3xl border border-teal-brand/20 bg-white p-6 shadow-sm md:grid-cols-2">
           <h2 className="md:col-span-2 text-xl font-black text-brand-dark">Add a profile</h2>
           <input name="name" required placeholder="Full name" className="rounded-xl border border-cream-border bg-cream-surface px-4 py-3" />
