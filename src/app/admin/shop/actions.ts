@@ -17,7 +17,7 @@ async function requireAdmin() {
 export async function saveProduct(formData: FormData) {
   await requireAdmin();
   const id = String(formData.get("id") || crypto.randomUUID());
-  const values = { id, name: String(formData.get("name") || "").trim(), description: String(formData.get("description") || "").trim(), price: String(formData.get("price") || "").trim(), category: String(formData.get("category") || "").trim(), imageUrl: String(formData.get("imageUrl") || "").trim(), isActive: formData.get("isActive") === "on", updatedAt: new Date() };
+  const values = { id, name: String(formData.get("name") || "").trim(), description: String(formData.get("description") || "").trim(), price: String(formData.get("price") || "").trim(), category: String(formData.get("category") || "").trim(), imageUrl: String(formData.get("imageUrl") || "").trim(), isActive: formData.get("isActive") !== "off", updatedAt: new Date() };
   if (!values.name || !values.description || !values.price || !values.category || !values.imageUrl) throw new Error("All product fields are required");
   const { id: _id, ...updateValues } = values;
   await db.insert(shopProducts).values(values).onConflictDoUpdate({ target: shopProducts.id, set: updateValues });
