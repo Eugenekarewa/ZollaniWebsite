@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { PageHero } from "@/components/ui/PageHero";
 import Image from "next/image";
 import {
   SERVICE_CATEGORIES,
@@ -71,20 +70,27 @@ export default function ServicesPage() {
 
   return (
     <div className="surface-grid bg-cream-bg min-h-screen py-12 sm:py-20">
-      <PageHero
-        eyebrow="The lab / What we fix"
-        title="Find the right fix. Fast."
-        description="Search laptop repair, screen replacement, motherboard repair, data recovery, cybersecurity, networking, and business IT services. Then talk directly to the team that will handle it."
-        image="/images/hardware-motherboard.jpg"
-        imageAlt="Technician repairing a motherboard"
-        action={{ label: "Book a repair", href: "https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20need%20help%20with%20a%20repair." }}
-        secondaryAction={{ label: "Contact us", href: "/contact" }}
-      />
+      <section className="relative overflow-hidden bg-teal-deep text-cream-bg">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:px-12 lg:py-28">
+          <div>
+            <p className="section-kicker text-coral-brand">Zollani service desk</p>
+            <h1 className="mt-5 max-w-3xl text-balance text-5xl font-black leading-[0.95] tracking-[-0.06em] sm:text-7xl">Find the fix before you find the bill.</h1>
+            <p className="mt-7 max-w-xl text-pretty text-base leading-7 text-cream-bg/75 sm:text-lg">From a cracked laptop screen to a business network that keeps dropping, start with the problem. We will help you identify the right service, the right next step, and the right technician.</p>
+            <div className="mt-8 flex flex-wrap gap-3"><a href="#service-finder" className="rounded-full bg-coral-brand px-5 py-3 text-sm font-bold text-white hover:bg-coral-hover">Browse services</a><a href="/contact" className="rounded-full border border-cream-bg/30 px-5 py-3 text-sm font-bold text-cream-bg hover:border-coral-brand hover:text-coral-brand">Talk to a technician</a></div>
+            <div className="mt-10 grid max-w-xl grid-cols-3 gap-4 border-t border-cream-bg/15 pt-5 text-sm"><div><p className="font-black text-coral-brand">01</p><p className="mt-1 text-cream-bg/65">Describe the issue</p></div><div><p className="font-black text-coral-brand">02</p><p className="mt-1 text-cream-bg/65">Choose a service</p></div><div><p className="font-black text-coral-brand">03</p><p className="mt-1 text-cream-bg/65">Book a technician</p></div></div>
+          </div>
+          <div className="image-frame relative min-h-[360px] overflow-hidden sm:min-h-[500px]"><Image src="/images/hardware-motherboard.jpg" alt="Technician repairing a motherboard" fill className="object-cover" priority /><div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/20 bg-teal-deep/85 p-5 backdrop-blur"><p className="font-mono text-xs uppercase tracking-[0.18em] text-coral-brand">Diagnostic first</p><p className="mt-2 text-lg font-black text-cream-bg">Clear answers before costly parts.</p></div></div>
+        </div>
+      </section>
+
+      <section id="service-finder" className="surface-grid bg-cream-bg py-14 sm:py-20">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12"><div className="max-w-2xl"><p className="section-kicker">Service finder</p><h2 className="mt-4 text-3xl font-black tracking-tight text-brand-dark sm:text-5xl">What needs attention?</h2><p className="mt-4 text-base leading-7 text-brand-muted">Choose the area closest to your issue. You can narrow the list further or open any service for the details.</p></div></div>
+      </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Search & Filter Bar */}
-        <div className="bg-cream-surface rounded-3xl p-4 sm:p-6 shadow-[0_12px_35px_rgba(16,47,48,0.08)] border border-cream-border mb-10 space-y-4">
+        <div className="relative z-10 -mt-6 bg-cream-surface rounded-3xl p-4 sm:p-6 shadow-[0_18px_45px_rgba(16,47,48,0.12)] border border-cream-border mb-10 space-y-4">
           {/* Live Search Input */}
           <div className="relative">
             <Search className="w-5 h-5 text-brand-muted absolute left-4 top-1/2 -translate-y-1/2" />
@@ -145,6 +151,8 @@ export default function ServicesPage() {
           </div>
         </div>
 
+        <div className="mb-5 flex items-center gap-2 text-xs font-semibold text-brand-muted"><span className="h-2 w-2 rounded-full bg-coral-brand" /> Every service starts with a clear diagnosis and an honest recommendation.</div>
+
         {/* Results Count */}
         <div className="flex items-center justify-between text-xs text-brand-muted mb-6 px-1">
           <span>
@@ -188,7 +196,7 @@ export default function ServicesPage() {
             {filteredServices.map(({ categoryInfo, item }) => (
               <div
                 key={item.id}
-                className="bg-white rounded-3xl p-6 shadow-sm border border-cream-border hover:shadow-md transition-all flex flex-col justify-between group"
+                className="group flex flex-col justify-between rounded-3xl border border-cream-border bg-cream-surface p-6 shadow-[0_8px_25px_rgba(16,47,48,0.05)] transition-all hover:-translate-y-1 hover:border-teal-brand/40 hover:shadow-[0_18px_35px_rgba(16,47,48,0.1)]"
               >
                 <div>
                   <div className="flex items-center justify-between gap-2 mb-3">
@@ -254,6 +262,8 @@ export default function ServicesPage() {
             ))}
           </div>
         )}
+
+        <section className="mt-16 overflow-hidden rounded-3xl bg-brand-dark p-8 text-cream-bg sm:p-12"><div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center"><div><p className="section-kicker text-coral-brand">Still not sure?</p><h2 className="mt-4 max-w-2xl text-3xl font-black tracking-tight sm:text-4xl">Send us the symptoms. We will help you find the right service.</h2><p className="mt-4 max-w-xl text-sm leading-7 text-cream-bg/70">You do not need to know the technical name of the fault. Tell us what the device is doing, and our team will guide you from there.</p></div><a href="https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20need%20help%20identifying%20a%20device%20problem." target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-coral-brand px-6 py-3 text-sm font-bold text-white hover:bg-coral-hover"><MessageCircle className="h-4 w-4" />Ask a technician</a></div></section>
 
         {/* Modal / Detail Drawer for Service Item */}
         {activeModalItem && (
