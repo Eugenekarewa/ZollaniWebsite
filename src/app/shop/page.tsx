@@ -37,7 +37,7 @@ export default function ShopPage() {
         eyebrow="Shop / Tested hardware"
         title="Good machines. Ready to work."
         description="Bench-tested refurbished laptops, custom towers, and upgrade bundles — selected for real work, real budgets, and a longer useful life."
-        image="/images/refurbished-laptop.jpg"
+        image="/images/pc-repair-workbench.jpg"
         imageAlt="Refurbished laptop ready for work"
         action={{ label: "Ask about stock", href: "https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20am%20interested%20in%20your%20available%20hardware." }}
         secondaryAction={{ label: "Need a repair?", href: "/services" }}

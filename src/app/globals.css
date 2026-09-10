@@ -130,3 +130,42 @@ select {
 .badge-glow {
   box-shadow: 0 0 16px rgba(238, 139, 108, 0.25);
 }
+
+@keyframes gentle-drift {
+  0%, 100% { transform: scale(1.04) translate3d(0, 0, 0); }
+  50% { transform: scale(1.08) translate3d(-1%, 1%, 0); }
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hand-drawn-wiggle {
+  0%, 100% { transform: rotate(-1deg); }
+  50% { transform: rotate(1deg) translateY(-2px); }
+}
+
+.animate-gentle-drift {
+  animation: gentle-drift 18s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-rise-in {
+  animation: rise-in 700ms cubic-bezier(.22, .8, .24, 1) both;
+}
+
+.animate-rise-in-delay-1 { animation-delay: 100ms; }
+.animate-rise-in-delay-2 { animation-delay: 220ms; }
+.animate-rise-in-delay-3 { animation-delay: 360ms; }
+.animate-hand-wiggle { animation: hand-drawn-wiggle 4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
