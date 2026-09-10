@@ -118,7 +118,7 @@ export default async function AboutPage() {
                 Extending Device Lifespans &amp; Empowering Community
               </h3>
               <p className="text-sm text-brand-slate leading-relaxed">
-                {companyContent?.mission || "To extend the life of every device we touch through expert, affordable, and honest repair — saving our customers money, reducing toxic electronic waste, and building high-value technical skills within our Kenyan youth community."}
+                {companyContent?.mission || "To extend the life of every device we touch through expert, affordable, and honest repair. This saves our customers money, reduces electronic waste, and builds valuable technical skills within our Kenyan youth community."}
               </p>
             </div>
           </div>
@@ -167,8 +167,8 @@ export default async function AboutPage() {
               <p className="text-sm text-brand-muted leading-relaxed">
                 Eugene combines hands-on technical depth with a track record of community technology
                 leadership across Kenya&apos;s developer ecosystem. His physics foundation shapes a
-                diagnostic style focused on how electrical circuits actually behave at the silicon level,
-                rather than superficial software guessing.
+                diagnostic style focused on how electrical circuits actually behave at the silicon level.
+                This approach is more reliable than superficial software guessing.
               </p>
 
               {/* Badges */}

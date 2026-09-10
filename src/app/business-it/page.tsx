@@ -78,7 +78,7 @@ export default function BusinessITPage() {
       <PageHero
         eyebrow="Business IT / Nairobi"
         title="Keep work moving."
-        description="Managed IT support, rapid on-site engineering, network installation, secure cloud backups, cybersecurity, and a direct line to a real technician — without building a full in-house IT department."
+        description="Managed IT support, rapid on-site engineering, network installation, secure cloud backups, and cybersecurity. Get a direct line to a real technician without building a full in-house IT department."
         image="/images/corporate-team-server.jpg"
         imageAlt="Business IT server infrastructure"
         action={{ label: "Request a proposal", href: "#quote-form" }}
