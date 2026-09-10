@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { PageHero } from "@/components/ui/PageHero";
 import {
   Building2,
   ShieldCheck,
@@ -67,57 +68,15 @@ export default function BusinessITPage() {
 
   return (
     <div className="bg-cream-bg min-h-screen">
-      {/* Hero Section */}
-      <section className="relative bg-teal-deep text-white py-16 sm:py-24 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/corporate-team-server.jpg"
-            alt="Zollani Tech Business IT Infrastructure"
-            fill
-            priority
-            className="object-cover object-center opacity-25 mix-blend-luminosity"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-teal-deep via-teal-deep/95 to-teal-dark/85" />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-6">
-            <span className="inline-flex items-center gap-2 bg-coral-brand/20 border border-coral-brand/40 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-coral-brand">
-              <Building2 className="w-4 h-4" />
-              B2B Managed IT Support &amp; Retainers
-            </span>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
-              Enterprise-Grade IT Support For Nairobi Businesses
-            </h1>
-
-            <p className="text-base sm:text-lg text-cream-bg/90 leading-relaxed font-normal">
-              Eliminate costly office downtime, protect confidential company records, and get
-              rapid on-site engineering without the overhead of hiring an entire in-house IT department.
-            </p>
-
-            <div className="pt-2 flex flex-wrap items-center gap-4">
-              <a
-                href="#quote-form"
-                className="inline-flex items-center gap-2 bg-coral-brand hover:bg-coral-hover text-white px-7 py-3.5 rounded-2xl font-bold text-sm shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0"
-              >
-                <span>Request Corporate Proposal</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
-
-              <a
-                href="/Zollani-Tech-Company-Profile.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3.5 rounded-2xl font-bold text-sm border border-white/20 transition-all"
-              >
-                <FileDown className="w-4 h-4" />
-                <span>Company Profile PDF</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Business IT / Nairobi"
+        title="Keep work moving."
+        description="Rapid on-site engineering, dependable networks, secure backups, and a direct line to a real technician — without building a full in-house IT department."
+        image="/images/corporate-team-server.jpg"
+        imageAlt="Business IT server infrastructure"
+        action={{ label: "Request a proposal", href: "#quote-form" }}
+        secondaryAction={{ label: "Company profile", href: "/Zollani-Tech-Company-Profile.pdf" }}
+      />
 
       {/* 4 Pillars of Business IT */}
       <section className="py-16 sm:py-20 bg-cream-bg">

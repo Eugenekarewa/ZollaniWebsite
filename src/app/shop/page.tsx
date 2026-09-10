@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { PRODUCTS, ProductItem } from "@/data/productsData";
+import { PageHero } from "@/components/ui/PageHero";
 import {
   ShoppingBag,
   ShieldCheck,
@@ -31,21 +32,18 @@ export default function ShopPage() {
       : PRODUCTS.filter((p) => p.category === selectedFilter);
 
   return (
-    <div className="bg-cream-bg min-h-screen py-10 sm:py-16">
+    <div className="surface-grid bg-cream-bg min-h-screen py-10 sm:py-16">
+      <PageHero
+        eyebrow="Shop / Tested hardware"
+        title="Good machines. Ready to work."
+        description="Bench-tested refurbished laptops, custom towers, and upgrade bundles — selected for real work, real budgets, and a longer useful life."
+        image="/images/refurbished-laptop.jpg"
+        imageAlt="Refurbished laptop ready for work"
+        action={{ label: "Ask about stock", href: "https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20am%20interested%20in%20your%20available%20hardware." }}
+        secondaryAction={{ label: "Need a repair?", href: "/services" }}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-          <span className="text-xs uppercase font-extrabold tracking-wider text-teal-brand bg-teal-subtle px-4 py-1.5 rounded-full">
-            Certified Hardware Catalog
-          </span>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-dark mt-3 tracking-tight">
-            Refurbished Laptops &amp; Custom Builds
-          </h1>
-          <p className="text-sm sm:text-base text-brand-muted mt-3">
-            Every machine is bench-tested, thermal repasted, and protected with our written warranty.
-            Need a custom configuration? We build to your exact budget.
-          </p>
-        </div>
 
         {/* Filter Pills */}
         <div className="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">

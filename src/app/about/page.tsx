@@ -1,6 +1,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { PageHero } from "@/components/ui/PageHero";
+
 import {
   ShieldCheck,
   Award,
@@ -46,61 +48,15 @@ export default function AboutPage() {
 
   return (
     <div className="bg-cream-bg min-h-screen">
-      {/* Hero Header */}
-      <section className="relative bg-teal-deep text-white py-16 sm:py-24 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/images/classroom-workshop.jpg"
-            alt="Zollani Tech Team & Lab"
-            fill
-            priority
-            className="object-cover object-center opacity-25 mix-blend-luminosity"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-teal-deep via-teal-deep/95 to-teal-dark/85" />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-6">
-            <span className="inline-flex items-center gap-2 bg-coral-brand/20 border border-coral-brand/40 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-coral-brand">
-              <Award className="w-4 h-4" />
-              Our Story &amp; Ethos
-            </span>
-
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
-              Honest Engineering. <br />
-              <span className="text-coral-brand font-serif italic font-normal">
-                Lasting Solutions.
-              </span>
-            </h1>
-
-            <p className="text-base sm:text-lg text-cream-bg/90 leading-relaxed font-normal">
-              Zollani Tech Limited is a Nairobi-based technology company specialising in
-              professional electronics repair, data recovery, and enterprise IT support.
-              Our promise is in our name: <em>We Fix. You Smile.</em>
-            </p>
-
-            <div className="pt-2 flex flex-wrap items-center gap-4">
-              <a
-                href="/Zollani-Tech-Company-Profile.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-coral-brand hover:bg-coral-hover text-white px-6 py-3.5 rounded-2xl font-bold text-sm shadow-md transition-all"
-              >
-                <FileDown className="w-4 h-4" />
-                <span>Download Company Profile (PDF)</span>
-              </a>
-
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-6 py-3.5 rounded-2xl font-bold text-sm border border-white/20 transition-all"
-              >
-                <span>Get in Touch</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Our story / Nairobi"
+        title="Honest engineering. Lasting solutions."
+        description="Zollani Tech is a Nairobi technology company built around professional repair, data recovery, business IT, and practical learning. We Fix. You Smile."
+        image="/images/classroom-workshop.jpg"
+        imageAlt="Zollani Tech workshop and training space"
+        action={{ label: "Get in touch", href: "/contact" }}
+        secondaryAction={{ label: "Company profile", href: "/Zollani-Tech-Company-Profile.pdf" }}
+      />
 
       {/* Mission & Vision */}
       <section className="py-16 sm:py-20 bg-cream-bg border-b border-cream-border">

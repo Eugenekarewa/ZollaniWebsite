@@ -42,6 +42,48 @@ body {
   overflow-x: hidden;
 }
 
+section {
+  scroll-margin-top: 5rem;
+}
+
+a,
+button,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 3px solid #EE8B6C;
+  outline-offset: 3px;
+}
+
+::placeholder {
+  color: #667D7C;
+  opacity: 0.8;
+}
+
+.surface-grid {
+  background-image: linear-gradient(rgba(62, 122, 120, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(62, 122, 120, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.image-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #193332;
+}
+
+.image-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(25, 51, 50, 0.18), transparent 55%);
+}
+
 /* Custom selection highlight */
 ::selection {
   background-color: #EE8B6C;

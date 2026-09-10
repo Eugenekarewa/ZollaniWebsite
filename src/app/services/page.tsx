@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
+import { PageHero } from "@/components/ui/PageHero";
 import Image from "next/image";
 import {
   SERVICE_CATEGORIES,
@@ -69,21 +70,18 @@ export default function ServicesPage() {
   }, [selectedCategory, searchQuery]);
 
   return (
-    <div className="bg-cream-bg min-h-screen py-10 sm:py-16">
+    <div className="surface-grid bg-cream-bg min-h-screen py-10 sm:py-16">
+      <PageHero
+        eyebrow="The lab / What we fix"
+        title="Find the right fix. Fast."
+        description="Search our repair, recovery, security, networking, and business IT services — then talk directly to the team that will handle it."
+        image="/images/motherboard-repair.jpg"
+        imageAlt="Technician repairing a motherboard"
+        action={{ label: "Book a repair", href: "https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20need%20help%20with%20a%20repair." }}
+        secondaryAction={{ label: "Contact us", href: "/contact" }}
+      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Banner */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-          <span className="text-xs uppercase font-extrabold tracking-wider text-teal-brand bg-teal-subtle px-4 py-1.5 rounded-full">
-            All 9 Service Verticals
-          </span>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-brand-dark mt-3 tracking-tight">
-            Comprehensive Services Directory
-          </h1>
-          <p className="text-sm sm:text-base text-brand-muted mt-3">
-            Search across our complete catalog of electronics repairs, motherboard diagnostics,
-            data recovery, and enterprise IT services.
-          </p>
-        </div>
 
         {/* Search & Filter Bar */}
         <div className="bg-white rounded-3xl p-4 sm:p-6 shadow-md border border-cream-border mb-10 space-y-4">
