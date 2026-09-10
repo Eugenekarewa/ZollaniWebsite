@@ -53,7 +53,7 @@ export const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 w-full transition-all duration-300">
       {/* Top Notification / Emergency Bar */}
-      <div className="bg-teal-deep text-cream-bg text-xs py-1.5 px-4 hidden md:block border-b border-teal-brand/30">
+      <div className="bg-brand-dark text-cream-bg text-xs py-2 px-4 hidden md:block border-b border-coral-brand/40">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5 text-cream-bg/90">
@@ -99,8 +99,8 @@ export const Navbar = () => {
       <nav
         className={`w-full transition-all duration-300 ${
             scrolled
-            ? "bg-cream-surface/95 backdrop-blur-md shadow-sm py-3 border-b border-cream-border"
-            : "bg-cream-bg/90 backdrop-blur-sm py-4 border-b border-cream-border/60"
+            ? "bg-cream-surface/95 backdrop-blur-md shadow-[0_10px_30px_rgba(16,47,48,0.08)] py-3 border-b border-cream-border"
+            : "bg-cream-bg/95 backdrop-blur-sm py-5 border-b border-cream-border/70"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -115,10 +115,10 @@ export const Navbar = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`px-3 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
+                  className={`px-3 py-2 text-sm font-semibold transition-all duration-200 ${
                     isActive
-                      ? "text-teal-brand bg-teal-subtle shadow-xs"
-                      : "text-brand-slate hover:text-teal-brand hover:bg-black/5"
+                      ? "text-teal-brand border-b-2 border-coral-brand"
+                      : "text-brand-slate hover:text-teal-brand"
                   }`}
                 >
                   {link.name}

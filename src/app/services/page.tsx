@@ -70,7 +70,7 @@ export default function ServicesPage() {
   }, [selectedCategory, searchQuery]);
 
   return (
-    <div className="surface-grid bg-cream-bg min-h-screen py-10 sm:py-16">
+    <div className="surface-grid bg-cream-bg min-h-screen py-12 sm:py-20">
       <PageHero
         eyebrow="The lab / What we fix"
         title="Find the right fix. Fast."
@@ -84,7 +84,7 @@ export default function ServicesPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Search & Filter Bar */}
-        <div className="bg-white rounded-3xl p-4 sm:p-6 shadow-md border border-cream-border mb-10 space-y-4">
+        <div className="bg-cream-surface rounded-3xl p-4 sm:p-6 shadow-[0_12px_35px_rgba(16,47,48,0.08)] border border-cream-border mb-10 space-y-4">
           {/* Live Search Input */}
           <div className="relative">
             <Search className="w-5 h-5 text-brand-muted absolute left-4 top-1/2 -translate-y-1/2" />
