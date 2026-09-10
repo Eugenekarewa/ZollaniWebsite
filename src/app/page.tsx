@@ -29,7 +29,6 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-teal-deep/80" />
         </div>
         <div className="relative mx-auto flex min-h-[650px] max-w-7xl flex-col justify-between gap-16 px-5 py-6 sm:px-8 lg:px-12">
-          <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.22em] text-cream-bg/70"><span>Zollani Tech / Nairobi</span><span className="hidden sm:inline">Repair · Support · Training</span></div>
           <div className="grid items-end gap-12 lg:grid-cols-[1.15fr_0.85fr]">
             <div className="animate-rise-in">
                   <h1 className="max-w-4xl text-balance text-5xl font-black leading-[0.95] tracking-[-0.06em] sm:text-7xl lg:text-[7.25rem]">Don&apos;t replace it.<span className="block font-serif font-normal italic text-coral-brand">Revive it.</span></h1>
