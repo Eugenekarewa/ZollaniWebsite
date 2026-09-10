@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { PRODUCTS } from "@/data/productsData";
 import type { ProductItem } from "@/data/productsData";
 import { PageHero } from "@/components/ui/PageHero";
+import { ProductInquiryForm } from "@/components/shop/ProductInquiryForm";
 import {
   ShoppingBag,
   ShieldCheck,
@@ -177,6 +178,8 @@ export default function ShopPage({ products = PRODUCTS }: { products?: ProductIt
             );
           })}
         </div>
+
+        <ProductInquiryForm />
 
         {/* Custom Build Banner */}
         <div className="mt-16 bg-gradient-to-r from-teal-deep to-teal-brand text-white rounded-3xl p-8 sm:p-12 shadow-lg flex flex-col md:flex-row items-center justify-between gap-8">
