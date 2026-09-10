@@ -1,6 +1,6 @@
 "use server";
 
-import { and, eq } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -27,8 +27,9 @@ export async function saveProduct(formData: FormData) {
 
 export async function deleteProduct(formData: FormData) {
   await requireAdmin();
-  const id = String(formData.get("id"));
-  await db.delete(shopProducts).where(and(eq(shopProducts.id, id)));
+  const id = String(formData.get("id") || "").trim();
+  if (!id) throw new Error("Product id is required");
+  await db.delete(shopProducts).where(eq(shopProducts.id, id));
   revalidatePath("/shop");
   revalidatePath("/admin/shop");
 }

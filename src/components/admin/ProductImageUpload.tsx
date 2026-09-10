@@ -23,7 +23,13 @@ export function ProductImageUpload({ initialUrl }: { initialUrl: string }) {
   return (
     <div className="grid gap-2 text-xs font-bold text-brand-dark">
       Image
-      <input type="hidden" name="imageUrl" value={imageUrl} />
+      <input
+        name="imageUrl"
+        value={imageUrl}
+        onChange={(event) => setImageUrl(event.target.value)}
+        placeholder="Paste an ImgBB direct image URL"
+        className="rounded-lg border border-cream-border bg-cream-surface px-3 py-2 text-xs font-normal"
+      />
       <input
         type="file"
         accept="image/jpeg,image/png,image/webp"
