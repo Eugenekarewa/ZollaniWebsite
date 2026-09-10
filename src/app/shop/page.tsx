@@ -19,7 +19,13 @@ export default async function ShopPage() {
       const galleries = await Promise.all(products.map(async (product) => db.select().from(productImages).where(eq(productImages.productId, product.id)).orderBy(asc(productImages.sortOrder))));
       const catalogProducts: ProductItem[] = products.map((product, index) => {
         const priceKes = Number(product.price.replace(/[^\d.]/g, ""));
-        return { id: product.id, name: product.name, description: product.description, priceKes: Number.isFinite(priceKes) ? priceKes : 0, category: product.category as ProductItem["category"], image: (galleries[index][0]?.imageUrl || product.imageUrl)?.startsWith("https://ibb.co/") ? `/api/product-image?url=${encodeURIComponent(galleries[index][0]?.imageUrl || product.imageUrl)}` : galleries[index][0]?.imageUrl || product.imageUrl, images: galleries[index].map((image) => image.imageUrl), condition: "Certified Refurbished", warranty: "Shop warranty", popular: false, specs: [] };
+        const normalizeImageUrl = (url?: string) => {
+          if (!url) return "";
+          return url.startsWith("https://ibb.co/") ? `/api/product-image?url=${encodeURIComponent(url)}` : url;
+        };
+        const galleryImages = galleries[index].map((image) => normalizeImageUrl(image.imageUrl)).filter(Boolean);
+        const primaryImage = galleryImages[0] || normalizeImageUrl(product.imageUrl);
+        return { id: product.id, name: product.name, description: product.description, priceKes: Number.isFinite(priceKes) ? priceKes : 0, category: product.category as ProductItem["category"], image: primaryImage, images: galleryImages, condition: "Certified Refurbished", warranty: "Shop warranty", popular: false, specs: [] };
       });
       return <ShopCatalog products={catalogProducts} />;
     }
