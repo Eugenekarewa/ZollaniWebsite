@@ -27,7 +27,7 @@ export function ProductImageUpload({ initialUrl }: { initialUrl: string }) {
         name="imageUrl"
         value={imageUrl}
         onChange={(event) => setImageUrl(event.target.value)}
-        placeholder="Paste an ImgBB direct image URL"
+        placeholder="Paste an ImgBB link or direct image URL"
         className="rounded-lg border border-cream-border bg-cream-surface px-3 py-2 text-xs font-normal"
       />
       <input
