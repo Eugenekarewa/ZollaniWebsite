@@ -51,6 +51,10 @@ export default function ShopPage({ products = PRODUCTS }: { products?: ProductIt
     { id: "gaming-pc", label: "Gaming Towers" },
     { id: "workstation", label: "Workstation PCs" },
     { id: "upgrade-kit", label: "Upgrade Bundles" },
+    { id: "monitor", label: "Monitors" },
+    { id: "smart-home-camera", label: "Smart Home Cameras" },
+    { id: "mouse", label: "Mice" },
+    { id: "desktop-cpu", label: "Desktop CPUs" },
   ];
 
   const filteredProducts =

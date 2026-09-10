@@ -1,7 +1,7 @@
 export interface ProductItem {
   id: string;
   name: string;
-  category: "refurbished-laptop" | "gaming-pc" | "workstation" | "upgrade-kit";
+  category: "refurbished-laptop" | "gaming-pc" | "workstation" | "upgrade-kit" | "monitor" | "smart-home-camera" | "mouse" | "desktop-cpu";
   priceKes: number;
   condition: "Certified Refurbished" | "Brand New Custom Build" | "Hardware Bundle";
   warranty: string;
