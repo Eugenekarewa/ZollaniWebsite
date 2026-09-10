@@ -4,7 +4,7 @@ import { and, asc, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { getSession } from "@/lib/auth";
 import { db } from "@/lib/db";
-import { aboutProfiles } from "@/lib/db/schema";
+import { aboutCompanyContent, aboutProfiles } from "@/lib/db/schema";
 
 const ADMIN_EMAIL = "eugenekarewa223@gmail.com";
 
@@ -44,4 +44,26 @@ export async function deleteProfile(formData: FormData) {
 export async function getAdminProfiles() {
   await requireAdmin();
   return db.select().from(aboutProfiles).orderBy(asc(aboutProfiles.sortOrder), asc(aboutProfiles.createdAt));
+}
+
+export async function getCompanyContent() {
+  await requireAdmin();
+  const [content] = await db.select().from(aboutCompanyContent).where(eq(aboutCompanyContent.id, "main"));
+  return content ?? { id: "main", story: "", history: "", mission: "", vision: "", teamIntro: "" };
+}
+
+export async function saveCompanyContent(formData: FormData) {
+  await requireAdmin();
+  const values = {
+    id: "main",
+    story: String(formData.get("story") || "").trim(),
+    history: String(formData.get("history") || "").trim(),
+    mission: String(formData.get("mission") || "").trim(),
+    vision: String(formData.get("vision") || "").trim(),
+    teamIntro: String(formData.get("teamIntro") || "").trim(),
+    updatedAt: new Date(),
+  };
+  await db.insert(aboutCompanyContent).values(values).onConflictDoUpdate({ target: aboutCompanyContent.id, set: values });
+  revalidatePath("/about");
+  revalidatePath("/admin/about");
 }
