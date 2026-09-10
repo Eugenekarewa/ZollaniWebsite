@@ -18,7 +18,7 @@ export default async function ShopPage() {
     if (products.length > 0) {
       const catalogProducts: ProductItem[] = products.map((product) => {
         const priceKes = Number(product.price.replace(/[^\d.]/g, ""));
-        return { id: product.id, name: product.name, description: product.description, priceKes: Number.isFinite(priceKes) ? priceKes : 0, category: product.category as ProductItem["category"], image: product.imageUrl, condition: "Certified Refurbished", warranty: "Shop warranty", popular: false, specs: [] };
+        return { id: product.id, name: product.name, description: product.description, priceKes: Number.isFinite(priceKes) ? priceKes : 0, category: product.category as ProductItem["category"], image: product.imageUrl?.startsWith("https://ibb.co/") ? `/api/product-image?url=${encodeURIComponent(product.imageUrl)}` : product.imageUrl, condition: "Certified Refurbished", warranty: "Shop warranty", popular: false, specs: [] };
       });
       return <ShopCatalog products={catalogProducts} />;
     }

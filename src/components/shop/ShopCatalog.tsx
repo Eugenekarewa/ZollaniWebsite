@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import { PRODUCTS } from "@/data/productsData";
 import type { ProductItem } from "@/data/productsData";
 import { PageHero } from "@/components/ui/PageHero";
@@ -15,6 +14,21 @@ import {
   ArrowRight,
   Filter,
 } from "lucide-react";
+
+const FALLBACK_PRODUCT_IMAGE = "/images/pc-repair-workbench.jpg";
+
+function ProductCardImage({ src, alt }: { src?: string; alt: string }) {
+  const [imageSrc, setImageSrc] = useState(src || FALLBACK_PRODUCT_IMAGE);
+
+  return (
+    <img
+      src={imageSrc}
+      alt={alt}
+      onError={() => setImageSrc(FALLBACK_PRODUCT_IMAGE)}
+      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+    />
+  );
+}
 
 export default function ShopPage({ products = PRODUCTS }: { products?: ProductItem[] }) {
   if (products.length === 0) {
@@ -109,11 +123,7 @@ export default function ShopPage({ products = PRODUCTS }: { products?: ProductIt
                 <div>
                   {/* Image container */}
                   <div className="relative h-52 w-full bg-cream-surface overflow-hidden">
-                    <img
-                      src={prod.image || "/images/pc-repair-workbench.jpg"}
-                      alt={prod.name}
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
+                    <ProductCardImage src={prod.image} alt={prod.name} />
                     <div className="absolute top-3 left-3 bg-teal-deep/90 backdrop-blur-xs text-white text-[10px] font-bold px-2.5 py-1 rounded-lg uppercase tracking-wider">
                       {prod.condition}
                     </div>
