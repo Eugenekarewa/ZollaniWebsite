@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/pg": "^8.23.1",
+    "@vercel/analytics": "^2.0.1",
     "@vercel/blob": "^2.8.0",
     "better-auth": "^1.7.3",
     "clsx": "^2.1.1",
