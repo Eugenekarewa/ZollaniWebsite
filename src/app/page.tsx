@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Clock3, MessageCircle, MoveRight, ShieldCheck, Wrench } from "lucide-react";
-import { SERVICE_CATEGORIES } from "@/data/servicesData";
+import { ArrowUpRight, Clock3, Handshake, MessageCircle, MoveRight, ShieldCheck, Wrench } from "lucide-react";
+import { SERVICE_CATEGORIES, TRUST_BRANDS } from "@/data/servicesData";
 
 export const metadata: Metadata = {
-  title: "Laptop & Electronics Repair Nairobi | Zollani Tech",
+  title: "Technology & Business Operations Partner in Kenya | Zollani Tech",
   description:
-    "Laptop repair, motherboard diagnostics, data recovery, business IT support, and practical tech training in Nairobi, Kenya.",
+    "Zollani Tech helps Kenyan businesses operate better through technology, managed IT, technical support, training, and upcoming business software products.",
 };
 
 const whatsappHref = "https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20need%20help%20with%20a%20repair.";
@@ -31,15 +31,24 @@ export default function HomePage() {
         <div className="relative mx-auto flex min-h-[650px] max-w-7xl flex-col justify-between gap-16 px-5 py-6 sm:px-8 lg:px-12">
           <div className="grid items-end gap-12 lg:grid-cols-[1.15fr_0.85fr]">
             <div className="animate-rise-in">
-                  <h1 className="max-w-4xl text-balance text-5xl font-black leading-[0.95] tracking-[-0.06em] sm:text-7xl lg:text-[7.25rem]">Don&apos;t replace it.<span className="block font-serif font-normal italic text-coral-brand">Revive it.</span></h1>
-              <p className="mt-7 max-w-lg text-base leading-7 text-cream-bg/75 sm:text-lg">Board-level laptop and computer repairs, honest diagnostics, data recovery, and managed IT support for Nairobi devices and businesses.</p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row"><a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-coral-brand px-6 py-3.5 text-sm font-bold text-white transition-transform hover:-translate-y-1 hover:bg-coral-hover"><MessageCircle className="h-4 w-4 fill-current" />Start a repair</a><Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full border border-cream-bg/30 px-6 py-3.5 text-sm font-bold text-cream-bg transition-colors hover:bg-cream-bg hover:text-teal-deep">See what we fix <ArrowUpRight className="h-4 w-4" /></Link></div>
+                  <h1 className="max-w-4xl text-balance text-5xl font-black leading-[0.95] tracking-[-0.06em] sm:text-7xl lg:text-[7.25rem]">Make work <span className="font-serif font-normal italic text-coral-brand">work better.</span></h1>
+              <p className="mt-7 max-w-lg text-base leading-7 text-cream-bg/75 sm:text-lg">Technology, business operations, and practical support for organizations that need less friction and more momentum.</p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row"><a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-coral-brand px-6 py-3.5 text-sm font-bold text-white transition-transform hover:-translate-y-1 hover:bg-coral-hover"><MessageCircle className="h-4 w-4 fill-current" />Talk to our team</a><Link href="/services" className="inline-flex items-center justify-center gap-2 rounded-full border border-cream-bg/30 px-6 py-3.5 text-sm font-bold text-cream-bg transition-colors hover:bg-cream-bg hover:text-teal-deep">See what we fix <ArrowUpRight className="h-4 w-4" /></Link></div>
             </div>
             <div className="animate-rise-in animate-rise-in-delay-2 lg:justify-self-end"><div className="max-w-sm border-l border-coral-brand pl-5 text-sm leading-6 text-cream-bg/80"><p className="mb-5 font-mono text-xs uppercase tracking-[0.18em] text-coral-brand">The Zollani standard</p><div className="space-y-4"><div className="flex gap-3"><Clock3 className="mt-1 h-4 w-4 shrink-0 text-coral-brand" /><span>Same-day screens, batteries, and upgrades.</span></div><div className="flex gap-3"><ShieldCheck className="mt-1 h-4 w-4 shrink-0 text-coral-brand" /><span>Clear quotes before work begins.</span></div><div className="flex gap-3"><Wrench className="mt-1 h-4 w-4 shrink-0 text-coral-brand" /><span>Micro-soldering for written-off devices.</span></div></div></div></div>
           </div>
           <div className="flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-cream-bg/15 pt-5 text-xs font-semibold text-cream-bg/60"><span>Mon–Sat · 8:00–19:00</span><span>Westlands + on-site</span><span>6-month repair warranty</span></div>
         </div>
       </section>
+
+      <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+        <div className="grid gap-6 overflow-hidden rounded-3xl bg-brand-dark text-cream-bg lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="p-8 sm:p-12 lg:p-16"><p className="section-kicker mb-4 text-coral-brand">Coming soon</p><h2 className="max-w-xl text-4xl font-black tracking-[-0.04em] sm:text-5xl">A simpler way to run the day-to-day.</h2><p className="mt-5 max-w-lg text-sm leading-7 text-cream-bg/70 sm:text-base">We are building our own POS and business operations products for the clients we already understand: local businesses that need dependable tools, clear information, and support that stays close.</p><div className="mt-8 inline-flex items-center gap-3 rounded-full border border-cream-bg/20 px-5 py-3 text-sm font-bold"><span className="h-2 w-2 rounded-full bg-coral-brand" />Zollani products are on the way</div></div>
+          <div className="flex min-h-[280px] items-end bg-teal-brand/40 p-8 sm:min-h-[340px] sm:p-12"><div><p className="font-mono text-xs uppercase tracking-[0.18em] text-coral-brand">Built for Kenyan businesses</p><p className="mt-4 max-w-xs text-2xl font-black tracking-[-0.03em]">Operations, sales, and customer service in one connected workflow.</p></div></div>
+        </div>
+      </section>
+
+      <section className="bg-cream-surface py-20 sm:py-24"><div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12"><div className="mb-10 flex items-end justify-between gap-6"><div><p className="section-kicker mb-3">Our ecosystem</p><h2 className="text-4xl font-black tracking-[-0.04em] sm:text-5xl">Better work is collaborative.</h2></div><Handshake className="hidden h-10 w-10 text-coral-brand sm:block" /></div><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">{TRUST_BRANDS.map((partner) => <div key={partner.name} className="rounded-2xl border border-cream-border bg-cream-bg p-5"><p className="text-lg font-black tracking-[-0.03em]">{partner.name}</p><p className="mt-2 text-xs leading-5 text-brand-muted">{partner.label}</p></div>)}</div><p className="mt-8 max-w-2xl text-sm leading-6 text-brand-muted">We work alongside technology, infrastructure, education, and business partners to deliver solutions that are more useful in the real world.</p></div></section>
 
       <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end"><div><p className="section-kicker mb-3">Choose your lane</p><h2 className="max-w-xl text-4xl font-black tracking-[-0.04em] sm:text-5xl">Less talking. More useful work.</h2></div><p className="max-w-xs text-sm leading-6 text-brand-muted">Pick the team you need.</p></div>
@@ -50,7 +59,7 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-12 lg:py-24"><div className="grid gap-4 sm:grid-cols-[1.35fr_0.65fr]"><div className="image-frame min-h-[280px] sm:min-h-[380px]"><Image src="/images/pc-repair-workbench.jpg" alt="Technician diagnosing a device at the Zollani Tech workshop" fill className="object-cover" sizes="(max-width: 640px) 100vw, 65vw" /></div><div className="image-frame min-h-[240px] sm:min-h-[380px]"><Image src="/images/data-recovery-hdd.jpg" alt="Data recovery equipment in the Zollani Tech lab" fill className="object-cover" sizes="(max-width: 640px) 100vw, 35vw" /></div></div></section>
 
-      <section className="mx-auto max-w-7xl px-5 pb-20 sm:px-8 lg:px-12 lg:pb-28"><div className="grid items-center gap-8 rounded-3xl bg-coral-brand p-8 text-white shadow-[0_20px_50px_rgba(201,91,62,0.18)] sm:p-12 lg:grid-cols-[1fr_auto]"><div><p className="font-mono text-xs uppercase tracking-[0.2em] text-white/70">Ready when you are</p><h2 className="mt-3 max-w-2xl text-4xl font-black tracking-[-0.04em] sm:text-5xl">Tell us what&apos;s wrong.</h2></div><a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-teal-deep px-6 py-3.5 text-sm font-bold text-white transition-transform hover:-translate-y-1">Chat on WhatsApp <ArrowUpRight className="h-4 w-4" /></a></div></section>
+      <section className="mx-auto max-w-7xl px-5 pb-20 sm:px-8 lg:px-12 lg:pb-28"><div className="grid items-center gap-8 rounded-3xl bg-coral-brand p-8 text-white shadow-[0_20px_50px_rgba(201,91,62,0.18)] sm:p-12 lg:grid-cols-[1fr_auto]"><div><p className="font-mono text-xs uppercase tracking-[0.2em] text-white/70">Ready when you are</p><h2 className="mt-3 max-w-2xl text-4xl font-black tracking-[-0.04em] sm:text-5xl">Tell us what your business needs.</h2></div><a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-teal-deep px-6 py-3.5 text-sm font-bold text-white transition-transform hover:-translate-y-1">Chat on WhatsApp <ArrowUpRight className="h-4 w-4" /></a></div></section>
     </div>
   );
 }
