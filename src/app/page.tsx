@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Clock3, Handshake, MessageCircle, MoveRight, ShieldCheck, Wrench } from "lucide-react";
-import { SERVICE_CATEGORIES, TRUST_BRANDS } from "@/data/servicesData";
+import { SERVICE_CATEGORIES } from "@/data/servicesData";
+import { getPublishedPartners } from "@/app/admin/about/partner-actions";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Technology & Business Operations Partner in Kenya | Zollani Tech",
@@ -18,8 +21,8 @@ const lanes = [
   { kicker: "Training", title: "Practical skills for what is next", image: "/images/youth-empowerment-students.jpg", href: "/training", label: "View training" },
 ];
 
-export default function HomePage() {
-  const featured = SERVICE_CATEGORIES.slice(0, 3);
+export default async function HomePage() {
+  const [featured, partners] = await Promise.all([Promise.resolve(SERVICE_CATEGORIES.slice(0, 3)), getPublishedPartners()]);
 
   return (
     <div className="bg-cream-bg text-brand-dark">
@@ -48,7 +51,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-cream-surface py-20 sm:py-24"><div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12"><div className="mb-10 flex items-end justify-between gap-6"><div><p className="section-kicker mb-3">Our ecosystem</p><h2 className="text-4xl font-black tracking-[-0.04em] sm:text-5xl">Better work is collaborative.</h2></div><Handshake className="hidden h-10 w-10 text-coral-brand sm:block" /></div><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">{TRUST_BRANDS.map((partner) => <div key={partner.name} className="rounded-2xl border border-cream-border bg-cream-bg p-5"><p className="text-lg font-black tracking-[-0.03em]">{partner.name}</p><p className="mt-2 text-xs leading-5 text-brand-muted">{partner.label}</p></div>)}</div><p className="mt-8 max-w-2xl text-sm leading-6 text-brand-muted">We work alongside technology, infrastructure, education, and business partners to deliver solutions that are more useful in the real world.</p></div></section>
+      {partners.length > 0 && <section className="bg-cream-surface py-20 sm:py-24"><div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12"><div className="mb-10 flex items-end justify-between gap-6"><div><p className="section-kicker mb-3">Our ecosystem</p><h2 className="text-4xl font-black tracking-[-0.04em] sm:text-5xl">Better work is collaborative.</h2></div><Handshake className="hidden h-10 w-10 text-coral-brand sm:block" /></div><div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">{partners.map((partner) => <a key={partner.id} href={partner.websiteUrl || undefined} target={partner.websiteUrl ? "_blank" : undefined} rel={partner.websiteUrl ? "noopener noreferrer" : undefined} className="rounded-2xl border border-cream-border bg-cream-bg p-5 transition-transform hover:-translate-y-1"><p className="text-lg font-black tracking-[-0.03em]">{partner.name}</p><p className="mt-2 text-xs leading-5 text-brand-muted">{partner.description}</p></a>)}</div></div></section>}
 
       <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-end"><div><p className="section-kicker mb-3">Choose your lane</p><h2 className="max-w-xl text-4xl font-black tracking-[-0.04em] sm:text-5xl">Less talking. More useful work.</h2></div><p className="max-w-xs text-sm leading-6 text-brand-muted">Pick the team you need.</p></div>
