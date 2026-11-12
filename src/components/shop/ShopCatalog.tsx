@@ -252,12 +252,6 @@ export default function ShopCatalog({ products = [] }: { products?: ProductItem[
 
 
                     {/* Actions */}
-                    <div className="p-6 pt-0 space-y-2">
-                      <div className="flex items-center gap-2 rounded-full bg-teal-deep px-4 py-2 text-sm font-black text-white shadow-md">
-                        <MessageCircle className="h-3.5 w-3.5 fill-white" />
-                        <span>Order / Inquire on WhatsApp</span>
-                      </div>
-                  {/* Actions */}
                   <div className="p-6 pt-0 space-y-2">
                     <a
                       href={`https://wa.me/254768551914?text=${waText}`}

@@ -23,6 +23,8 @@ import {
   AlertTriangle,
   FileText,
   Search,
+  Plus,
+  X,
 } from "lucide-react";
 import type { ParsedWhatsAppProduct } from "@/lib/whatsapp-parser";
 import {
@@ -60,6 +62,71 @@ export default function AdminShopClient({
 
   // Published filter
   const [searchPublished, setSearchPublished] = useState("");
+
+  // Manual upload form
+  const emptyManualForm = {
+    name: "",
+    price: "",
+    category: "refurbished-laptop",
+    description: "",
+    specs: "",
+    condition: "Certified Refurbished",
+    warranty: "6 Months Warranty",
+    imageUrl: "",
+  };
+  const [showManualForm, setShowManualForm] = useState(false);
+  const [manualForm, setManualForm] = useState(emptyManualForm);
+  const [manualLoading, setManualLoading] = useState(false);
+  const [manualAlert, setManualAlert] = useState<{ type: "success" | "error"; text: string } | null>(null);
+
+  const handleManualChange = (field: keyof typeof emptyManualForm, value: string) => {
+    setManualForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleManualSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setManualLoading(true);
+    setManualAlert(null);
+
+    try {
+      const formData = new FormData();
+      formData.append("name", manualForm.name);
+      formData.append("price", manualForm.price);
+      formData.append("category", manualForm.category);
+      formData.append("description", manualForm.description);
+      formData.append("condition", manualForm.condition);
+      formData.append("warranty", manualForm.warranty);
+      formData.append("imageUrl", manualForm.imageUrl);
+      formData.append("isActive", "true");
+      // Specs: one per line, converted to a JSON array
+      const specsArray = manualForm.specs
+        .split("\n")
+        .map((s) => s.trim())
+        .filter(Boolean);
+      formData.append("specs", JSON.stringify(specsArray));
+
+      await saveProduct(formData);
+
+      setManualAlert({ type: "success", text: `"${manualForm.name}" is now live on /shop.` });
+      setManualForm(emptyManualForm);
+      setShowManualForm(false);
+      // Refresh the published list from the server data shown in this session
+      setPublished((prev) => [
+        {
+          id: `local_${Date.now()}`,
+          ...manualForm,
+          specs: specsArray,
+          status: "published",
+          isActive: true,
+        },
+        ...prev,
+      ]);
+    } catch (err: any) {
+      setManualAlert({ type: "error", text: err.message || "Failed to save product" });
+    } finally {
+      setManualLoading(false);
+    }
+  };
 
   const handleCopyWebhookUrl = () => {
     const origin = typeof window !== "undefined" ? window.location.origin : "https://zollani.co.ke";
@@ -520,6 +587,142 @@ export default function AdminShopClient({
                   />
                 </div>
               </div>
+            </div>
+
+
+            <div className="flex flex-col gap-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setShowManualForm((v) => !v);
+                  setManualAlert(null);
+                }}
+                className="inline-flex w-fit items-center gap-2 rounded-xl bg-teal-deep px-4 py-2.5 text-xs font-bold text-white hover:bg-teal-dark shadow-sm transition-colors"
+              >
+                {showManualForm ? <X className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+                {showManualForm ? "Cancel Manual Upload" : "Manually Upload Product"}
+              </button>
+
+              {manualAlert && (
+                <div
+                  className={`rounded-xl border px-4 py-3 text-xs font-bold ${
+                    manualAlert.type === "success"
+                      ? "border-emerald-200 bg-emerald-50 text-emerald-800"
+                      : "border-rose-200 bg-rose-50 text-rose-700"
+                  }`}
+                >
+                  {manualAlert.text}
+                </div>
+              )}
+
+              {showManualForm && (
+                <form
+                  onSubmit={handleManualSubmit}
+                  className="grid gap-4 rounded-2xl border border-cream-border bg-white p-5 shadow-xs md:grid-cols-2"
+                >
+                  <div className="flex flex-col gap-1">
+                    <label className="text-xs font-bold text-brand-slate">Product Name *</label>
+                    <input
+                      required
+                      type="text"
+                      value={manualForm.name}
+                      onChange={(e) => handleManualChange("name", e.target.value)}
+                      placeholder="e.g. Lenovo ThinkPad T480s"
+                      className="rounded-xl border border-cream-border px-3 py-2 text-xs focus:outline-teal-brand"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1">
+                    <label className="text-xs font-bold text-brand-slate">Price *</label>
+                    <input
+                      required
+                      type="text"
+                      value={manualForm.price}
+                      onChange={(e) => handleManualChange("price", e.target.value)}
+                      placeholder="e.g. KES 36,500"
+                      className="rounded-xl border border-cream-border px-3 py-2 text-xs focus:outline-teal-brand"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1">
+                    <label className="text-xs font-bold text-brand-slate">Category</label>
+                    <select
+                      value={manualForm.category}
+                      onChange={(e) => handleManualChange("category", e.target.value)}
+                      className="rounded-xl border border-cream-border bg-white px-3 py-2 text-xs focus:outline-teal-brand"
+                    >
+                      <option value="refurbished-laptop">Refurbished Laptop</option>
+                      <option value="gaming-pc">Gaming PC</option>
+                      <option value="desktop">Desktop</option>
+                      <option value="hardware">Hardware</option>
+                      <option value="accessory">Accessory</option>
+                    </select>
+                  </div>
+
+                  <div className="flex flex-col gap-1">
+                    <label className="text-xs font-bold text-brand-slate">Image URL</label>
+                    <input
+                      type="text"
+                      value={manualForm.imageUrl}
+                      onChange={(e) => handleManualChange("imageUrl", e.target.value)}
+                      placeholder="/images/pc-repair-workbench.jpg"
+                      className="rounded-xl border border-cream-border px-3 py-2 text-xs focus:outline-teal-brand"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1">
+                    <label className="text-xs font-bold text-brand-slate">Condition</label>
+                    <input
+                      type="text"
+                      value={manualForm.condition}
+                      onChange={(e) => handleManualChange("condition", e.target.value)}
+                      className="rounded-xl border border-cream-border px-3 py-2 text-xs focus:outline-teal-brand"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1">
+                    <label className="text-xs font-bold text-brand-slate">Warranty</label>
+                    <input
+                      type="text"
+                      value={manualForm.warranty}
+                      onChange={(e) => handleManualChange("warranty", e.target.value)}
+                      className="rounded-xl border border-cream-border px-3 py-2 text-xs focus:outline-teal-brand"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1 md:col-span-2">
+                    <label className="text-xs font-bold text-brand-slate">Description</label>
+                    <textarea
+                      rows={3}
+                      value={manualForm.description}
+                      onChange={(e) => handleManualChange("description", e.target.value)}
+                      className="rounded-xl border border-cream-border px-3 py-2 text-xs focus:outline-teal-brand"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1 md:col-span-2">
+                    <label className="text-xs font-bold text-brand-slate">Specs (one per line)</label>
+                    <textarea
+                      rows={4}
+                      value={manualForm.specs}
+                      onChange={(e) => handleManualChange("specs", e.target.value)}
+                      placeholder={"Intel Core i7 8th Gen\n16GB RAM\n512GB SSD"}
+                      className="rounded-xl border border-cream-border px-3 py-2 text-xs focus:outline-teal-brand"
+                    />
+                  </div>
+
+                  <div className="md:col-span-2">
+                    <button
+                      type="submit"
+                      disabled={manualLoading}
+                      className="inline-flex items-center gap-2 rounded-xl bg-teal-deep px-5 py-2.5 text-xs font-black text-white hover:bg-teal-dark disabled:opacity-60 transition-colors"
+                    >
+                      <CheckCircle2 className="h-4 w-4 text-emerald-400" />
+                      {manualLoading ? "Publishing..." : "Publish to Website"}
+                    </button>
+                  </div>
+                </form>
+              )}
             </div>
 
             <div className="grid gap-4">
