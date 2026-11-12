@@ -92,7 +92,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/images/logo-badge.png" />
         <script
@@ -126,7 +126,10 @@ window._linkedin_data_partner_ids.push(_linkedin_partner_id);
           />
         </noscript>
       </head>
-      <body className="flex flex-col min-h-screen bg-cream-bg text-brand-dark antialiased">
+      <body
+        className="flex flex-col min-h-screen bg-cream-bg text-brand-dark antialiased"
+        suppressHydrationWarning
+      >
         <Navbar />
         <main className="flex-1 pb-16 md:pb-0">{children}</main>
         <Footer />

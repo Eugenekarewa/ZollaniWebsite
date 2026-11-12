@@ -12,50 +12,48 @@ export interface ProductItem {
   description: string;
 }
 
-export const PRODUCTS: ProductItem[] = []; /* Products are managed through the admin shop dashboard. */
-
-/*
+export const PRODUCTS: ProductItem[] = [
   {
     id: "prod-thinkpad-t480",
-    name: "Lenovo ThinkPad T480 (Business Tough)",
+    name: "Lenovo ThinkPad T480 (Tough Business Ultrabook)",
     category: "refurbished-laptop",
     priceKes: 32000,
     condition: "Certified Refurbished",
     warranty: "6 Months Warranty",
     specs: [
-      "Intel Core i5 8th Gen (Quad-Core)",
+      "Intel Core i5 8th Gen (Quad-Core 3.4GHz)",
       "16GB DDR4 RAM",
       "512GB NVMe High-Speed SSD",
       "14.0\" FHD IPS Anti-Glare Display",
-      "Dual Battery System (Up to 7 hrs)",
-      "Backlit Keyboard + USB-C / Thunderbolt",
+      "Dual Hot-Swap Battery System (Up to 7 hrs)",
+      "Backlit Keyboard + Thunderbolt 3 / USB-C",
     ],
     popular: true,
-    image: "/images/hardware-motherboard.jpg",
-    description: "Legendary ThinkPad reliability. Thoroughly inspected, thermal repasted, and running genuine Windows 11 Pro.",
+    image: "/images/pc-repair-workbench.jpg",
+    description: "Legendary ThinkPad reliability. Thoroughly inspected, thermal repasted, and running licensed Windows 11 Pro with genuine charger.",
   },
   {
     id: "prod-dell-latitude-7490",
-    name: "Dell Latitude 7490 Ultrabook",
+    name: "Dell Latitude 7490 Ultrabook (Core i7 Edition)",
     category: "refurbished-laptop",
     priceKes: 34500,
     condition: "Certified Refurbished",
     warranty: "6 Months Warranty",
     specs: [
       "Intel Core i7 8th Gen vPro",
-      "16GB DDR4 RAM",
-      "512GB M.2 PCIe SSD",
-      "14.0\" FHD Slim Bezel Display",
-      "Magnesium Alloy Body",
+      "16GB DDR4 High-Speed RAM",
+      "512GB M.2 PCIe NVMe SSD",
+      "14.0\" FHD Slim-Bezel Display",
+      "Magnesium Alloy Body & Spill-Resistant Keyboard",
       "Windows 11 Pro Licensed",
     ],
     popular: true,
-    image: "/images/pc-repair-workbench.jpg",
-    description: "Premium executive ultrabook built for productivity, spreadsheets, and seamless video conferencing.",
+    image: "/images/hardware-motherboard.jpg",
+    description: "Premium executive ultrabook built for heavy productivity, spreadsheets, and seamless video conferencing. Pristine Grade A condition.",
   },
   {
     id: "prod-hp-elitebook-840-g6",
-    name: "HP EliteBook 840 G6",
+    name: "HP EliteBook 840 G6 Aluminum Ultrabook",
     category: "refurbished-laptop",
     priceKes: 39000,
     condition: "Certified Refurbished",
@@ -68,8 +66,9 @@ export const PRODUCTS: ProductItem[] = []; /* Products are managed through the a
       "Bang & Olufsen Premium Audio",
       "Full Aluminum Silver Chassis",
     ],
+    popular: true,
     image: "/images/software-engineer.jpg",
-    description: "Sleek all-aluminum business ultrabook with stellar battery health and crystal-clear audio.",
+    description: "Sleek all-aluminum business ultrabook with stellar battery health, crystal-clear audio, and ultra-fast boot time.",
   },
   {
     id: "prod-custom-rig-rtx",
@@ -106,7 +105,7 @@ export const PRODUCTS: ProductItem[] = []; /* Products are managed through the a
       "Quiet Noise-Dampened Chassis",
     ],
     image: "/images/corporate-team-server.jpg",
-    description: "Optimized for ArchiCAD, AutoCAD, Revit, and structural analysis without throttling.",
+    description: "Optimized for ArchiCAD, AutoCAD, Revit, and structural analysis without thermal throttling.",
   },
   {
     id: "prod-laptop-turbo-kit",
@@ -114,9 +113,9 @@ export const PRODUCTS: ProductItem[] = []; /* Products are managed through the a
     category: "upgrade-kit",
     priceKes: 8500,
     condition: "Hardware Bundle",
-    warranty: "3 Years Manufacturer Warranty",
+    warranty: "1 Year Warranty",
     specs: [
-      "512GB High-Speed SATA/NVMe SSD",
+      "512GB High-Speed NVMe / SATA SSD",
       "8GB DDR4 RAM Module",
       "Free Precision Installation Included",
       "Free Operating System & Data Migration",
@@ -124,7 +123,6 @@ export const PRODUCTS: ProductItem[] = []; /* Products are managed through the a
     ],
     popular: true,
     image: "/images/data-recovery-hdd.jpg",
-    description: "Transform your slow, 5-minute boot laptop into a 15-second lightning machine without replacing the laptop.",
+    description: "Transform your slow, 5-minute boot laptop into a 15-second lightning machine without replacing your computer.",
   },
 ];
-*/

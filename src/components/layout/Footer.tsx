@@ -172,7 +172,7 @@ export const Footer = () => {
 
         {/* Bottom Strip */}
         <div className="flex flex-col gap-5 pt-8 text-xs leading-5 text-cream-bg/60 sm:flex-row sm:items-center sm:justify-between">
-          <p>
+          <p suppressHydrationWarning>
             © {new Date().getFullYear()} Zollani Tech Limited. All rights reserved. Nairobi, Kenya.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 sm:justify-end">

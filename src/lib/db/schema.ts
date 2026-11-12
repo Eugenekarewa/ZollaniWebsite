@@ -8,7 +8,25 @@ export const account = pgTable("account", { id: text("id").primaryKey(), account
 export const verification = pgTable("verification", { id: text("id").primaryKey(), identifier: text("identifier").notNull(), value: text("value").notNull(), expiresAt: timestamp("expiresAt").notNull(), createdAt: timestamp("createdAt").notNull().defaultNow(), updatedAt: timestamp("updatedAt").notNull().defaultNow() });
 export const userRelations = relations(user, ({ many }) => ({ sessions: many(session), accounts: many(account) }));
 export const accountRelations = relations(account, ({ one }) => ({ user: one(user, { fields: [account.userId], references: [user.id] }) }));
-export const shopProducts = pgTable("shop_products", { id: text("id").primaryKey(), name: text("name").notNull(), description: text("description").notNull(), price: text("price").notNull(), category: text("category").notNull(), imageUrl: text("image_url").notNull(), isActive: boolean("is_active").notNull().default(true), createdAt: timestamp("created_at").notNull().defaultNow(), updatedAt: timestamp("updated_at").notNull().defaultNow() });
+
+export const shopProducts = pgTable("shop_products", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  description: text("description").notNull(),
+  price: text("price").notNull(),
+  category: text("category").notNull(),
+  imageUrl: text("image_url").notNull(),
+  isActive: boolean("is_active").notNull().default(true),
+  status: text("status").notNull().default("published"), // "draft" | "published" | "archived"
+  senderPhone: text("sender_phone"),
+  rawMessage: text("raw_message"),
+  specs: text("specs"),
+  condition: text("condition").default("Certified Refurbished"),
+  warranty: text("warranty").default("6 Months Warranty"),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+  updatedAt: timestamp("updated_at").notNull().defaultNow(),
+});
+
 export const aboutProfiles = pgTable("about_profiles", { id: text("id").primaryKey(), name: text("name").notNull(), role: text("role").notNull(), bio: text("bio").notNull(), imageUrl: text("image_url").notNull(), profileType: text("profile_type").notNull().default("team"), sortOrder: integer("sort_order").notNull().default(0), isPublished: boolean("is_published").notNull().default(true), createdAt: timestamp("created_at").notNull().defaultNow(), updatedAt: timestamp("updated_at").notNull().defaultNow() });
 export const aboutCompanyContent = pgTable("about_company_content", { id: text("id").primaryKey(), story: text("story").notNull().default(""), history: text("history").notNull().default(""), mission: text("mission").notNull().default(""), vision: text("vision").notNull().default(""), teamIntro: text("team_intro").notNull().default(""), updatedAt: timestamp("updated_at").notNull().defaultNow() });
 export const invoices = pgTable("invoices", { id: text("id").primaryKey(), invoiceNumber: text("invoice_number").notNull().unique(), documentType: text("document_type").notNull().default("invoice"), customerName: text("customer_name").notNull(), customerEmail: text("customer_email"), customerPhone: text("customer_phone"), customerPin: text("customer_pin"), sellerName: text("seller_name").notNull().default("Zollani Tech Limited"), sellerPin: text("seller_pin"), sellerAddress: text("seller_address").notNull().default("Nairobi, Kenya"), currency: text("currency").notNull().default("KES"), subtotal: numeric("subtotal", { precision: 12, scale: 2 }).notNull().default("0"), vatRate: numeric("vat_rate", { precision: 5, scale: 2 }).notNull().default("16"), vatAmount: numeric("vat_amount", { precision: 12, scale: 2 }).notNull().default("0"), total: numeric("total", { precision: 12, scale: 2 }).notNull().default("0"), paymentStatus: text("payment_status").notNull().default("unpaid"), etimsStatus: text("etims_status").notNull().default("pending"), etimsControlNumber: text("etims_control_number"), etimsQrCode: text("etims_qr_code"), notes: text("notes"), issuedAt: timestamp("issued_at").notNull().defaultNow(), updatedAt: timestamp("updated_at").notNull().defaultNow() });
