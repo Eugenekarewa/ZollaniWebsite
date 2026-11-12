@@ -62,8 +62,8 @@ async function downloadWhatsAppMedia(mediaId: string): Promise<string | null> {
     const arrayBuffer = await fileRes.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    // 3. Save locally to public/uploads/whatsapp
-    const uploadDir = path.join(process.cwd(), "public", "uploads", "whatsapp");
+    // 3. Save locally to a writable directory: /tmp/uploads/whatsapp
+    const uploadDir = path.join("/tmp", "uploads", "whatsapp");
     await fs.mkdir(uploadDir, { recursive: true });
 
     const filename = `wa_${Date.now()}_${mediaId.slice(-6)}.jpg`;
