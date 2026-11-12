@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -135,6 +136,7 @@ window._linkedin_data_partner_ids.push(_linkedin_partner_id);
         <Footer />
         <FloatingWhatsApp />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
