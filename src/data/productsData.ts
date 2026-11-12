@@ -29,7 +29,7 @@ export const PRODUCTS: ProductItem[] = [
       "Backlit Keyboard + Thunderbolt 3 / USB-C",
     ],
     popular: true,
-    image: "/images/pc-repair-workbench.jpg",
+    image: "/images/products/thinkpad-t480.jpg",
     description: "Legendary ThinkPad reliability. Thoroughly inspected, thermal repasted, and running licensed Windows 11 Pro with genuine charger.",
   },
   {
@@ -48,7 +48,7 @@ export const PRODUCTS: ProductItem[] = [
       "Windows 11 Pro Licensed",
     ],
     popular: true,
-    image: "/images/hardware-motherboard.jpg",
+    image: "/images/products/dell-latitude.jpg",
     description: "Premium executive ultrabook built for heavy productivity, spreadsheets, and seamless video conferencing. Pristine Grade A condition.",
   },
   {
@@ -67,7 +67,7 @@ export const PRODUCTS: ProductItem[] = [
       "Full Aluminum Silver Chassis",
     ],
     popular: true,
-    image: "/images/software-engineer.jpg",
+    image: "/images/products/hp-elitebook.jpg",
     description: "Sleek all-aluminum business ultrabook with stellar battery health, crystal-clear audio, and ultra-fast boot time.",
   },
   {
@@ -86,7 +86,7 @@ export const PRODUCTS: ProductItem[] = [
       "Tempered Glass Case + 4x ARGB PWM Fans",
     ],
     popular: true,
-    image: "/images/gaming-pc-build.jpg",
+    image: "/images/products/gaming-pc-tower.jpg",
     description: "Built and bench-tested in our Nairobi workshop for 1440p gaming, Premiere Pro video editing, and Blender 3D rendering.",
   },
   {
@@ -104,7 +104,7 @@ export const PRODUCTS: ProductItem[] = [
       "Gold Rated High-Efficiency Power Supply",
       "Quiet Noise-Dampened Chassis",
     ],
-    image: "/images/corporate-team-server.jpg",
+    image: "/images/products/laptop-desk.jpg",
     description: "Optimized for ArchiCAD, AutoCAD, Revit, and structural analysis without thermal throttling.",
   },
   {
@@ -122,7 +122,7 @@ export const PRODUCTS: ProductItem[] = [
       "Free Internal Deep Dust Cleaning & Thermal Repaste",
     ],
     popular: true,
-    image: "/images/data-recovery-hdd.jpg",
+    image: "/images/products/ssd-nvme.jpg",
     description: "Transform your slow, 5-minute boot laptop into a 15-second lightning machine without replacing your computer.",
   },
 ];

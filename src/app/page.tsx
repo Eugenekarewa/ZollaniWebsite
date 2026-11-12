@@ -66,7 +66,7 @@ const pillars = [
     icon: Laptop,
     href: "/services#hardware",
     cta: "Find your repair",
-    image: "/images/pc-repair-workbench.jpg",
+    image: "/images/products/thinkpad-t480.jpg",
   },
   {
     title: "Advanced Electronic Repairs",
@@ -76,7 +76,7 @@ const pillars = [
     icon: Wrench,
     href: "/services#electronics",
     cta: "Explore electronics lab",
-    image: "/images/hardware-motherboard.jpg",
+    image: "/images/products/ssd-nvme.jpg",
   },
   {
     title: "Certified Computer Sales",
@@ -86,7 +86,7 @@ const pillars = [
     icon: Sparkles,
     href: "/shop",
     cta: "Browse available stock",
-    image: "/images/gaming-pc-build.jpg",
+    image: "/images/products/gaming-pc-tower.jpg",
   },
 ];
 
@@ -415,7 +415,7 @@ export default async function HomePage() {
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="relative aspect-[3/4] w-full overflow-hidden rounded-3xl border border-cream-bg/20">
                 <Image
-                  src="/images/hardware-motherboard.jpg"
+                  src="/images/products/ssd-upgrade-kit.jpg"
                   alt="Micro-soldering inspection under digital microscope"
                   fill
                   className="object-cover"
@@ -426,7 +426,7 @@ export default async function HomePage() {
               </div>
               <div className="relative aspect-[3/4] w-full overflow-hidden rounded-3xl border border-cream-bg/20">
                 <Image
-                  src="/images/data-recovery-hdd.jpg"
+                  src="/images/products/lenovo-thinkpad.jpg"
                   alt="Data recovery hardware lab"
                   fill
                   className="object-cover"
