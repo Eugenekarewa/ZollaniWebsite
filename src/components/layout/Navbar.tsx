@@ -20,6 +20,7 @@ import {
   Search,
   Calculator,
   ShieldCheck,
+  Briefcase,
 } from "lucide-react";
 import { RepairTrackerModal } from "@/components/interactive/RepairTrackerModal";
 
@@ -48,6 +49,7 @@ export const Navbar = () => {
     { name: "Shop Computers", href: "/shop", icon: ShoppingBag, badge: "In Stock" },
     { name: "Business IT", href: "/business-it", icon: Building2 },
     { name: "About & Lab", href: "/about", icon: Info },
+    { name: "Careers", href: "/careers", icon: Briefcase },
     { name: "Contact", href: "/contact", icon: Send },
   ];
 

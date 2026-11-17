@@ -16,7 +16,7 @@ export function PageHero({ eyebrow, title, description, image, imageAlt, action,
   return (
     <section className="relative isolate overflow-hidden bg-teal-deep text-cream-bg">
       <div className="absolute inset-0 -z-10">
-        <Image src={image} alt={imageAlt} fill priority className="animate-gentle-drift object-cover object-center opacity-35 mix-blend-luminosity" />
+        <Image src={image} alt={imageAlt} fill priority sizes="100vw" className="animate-gentle-drift object-cover object-center opacity-35 mix-blend-luminosity" />
         <div className="absolute inset-0 bg-gradient-to-r from-teal-deep via-teal-deep/95 to-teal-deep/60" />
         <div className="absolute bottom-0 left-0 h-1.5 w-40 bg-coral-brand" />
       </div>

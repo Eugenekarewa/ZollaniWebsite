@@ -71,7 +71,12 @@ export const Footer = () => {
               </li>
               <li>
                 <Link href="/shop" className="hover:text-white transition-colors">
-                  Refurbished Laptops & PC Builds
+                  Ex-UK Grade A Laptops & PC Builds
+                </Link>
+              </li>
+              <li>
+                <Link href="/careers" className="hover:text-white transition-colors">
+                  Careers & Internships
                 </Link>
               </li>
             </ul>

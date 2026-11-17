@@ -119,6 +119,7 @@ export default function ServicesPage() {
               src="/images/hardware-motherboard.jpg"
               alt="Technician repairing a motherboard under a microscope"
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
               priority
             />

@@ -24,7 +24,7 @@ export const FloatingWhatsApp = () => {
     },
     {
       title: "Buy Tested Laptop or Custom PC",
-      text: "Hello Zollani Tech, I am looking to buy a bench-tested refurbished laptop or custom PC. What models are in stock?",
+      text: "Hello Zollani Tech, I am looking to buy a bench-tested Ex-UK Grade A laptop or custom PC. What models are in stock?",
       icon: ShoppingBag,
     },
     {

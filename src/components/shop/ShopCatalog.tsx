@@ -30,6 +30,8 @@ function ProductCardImage({ src, images = [], alt }: { src?: string; images?: st
       <img
         src={imageSrc}
         alt={alt}
+        loading="lazy"
+        decoding="async"
         onError={() => setImageSrc(FALLBACK_PRODUCT_IMAGE)}
         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
       />
@@ -48,7 +50,7 @@ function ProductCardImage({ src, images = [], alt }: { src?: string; images?: st
               }`}
               aria-label={`View photo ${index + 1}`}
             >
-              <img src={image} alt="" className="h-full w-full object-cover" />
+              <img src={image} alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" />
             </button>
           ))}
         </div>
@@ -63,7 +65,7 @@ export default function ShopCatalog({ products = [] }: { products?: ProductItem[
 
   const categories = [
     { id: "all", label: "All Hardware" },
-    { id: "refurbished-laptop", label: "Refurbished Laptops" },
+    { id: "refurbished-laptop", label: "Ex-UK Grade A Laptops" },
     { id: "gaming-pc", label: "Custom Gaming PCs" },
     { id: "workstation", label: "CAD & Workstations" },
     { id: "upgrade-kit", label: "SSD & RAM Upgrades" },
@@ -90,7 +92,7 @@ export default function ShopCatalog({ products = [] }: { products?: ProductItem[
         title="Bench-Tested Computers. Guaranteed to Perform."
         description="Every laptop and custom rig is thoroughly inspected, stress-tested, and repasted in our Nairobi repair lab. Certified Grade A condition, genuine chargers, licensed OS, and a solid 6-month warranty."
         image="/images/pc-repair-workbench.jpg"
-        imageAlt="Refurbished laptops and tested computers at Zollani Tech"
+        imageAlt="Ex-UK Grade A laptops and tested computers at Zollani Tech"
         action={{
           label: "Inquire via WhatsApp",
           href: "https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20am%20looking%20to%20buy%20a%20laptop%20or%20computer.",
@@ -198,7 +200,7 @@ export default function ShopCatalog({ products = [] }: { products?: ProductItem[
                       <ProductCardImage src={prod.image} images={prod.images} alt={prod.name} />
                       <div className="absolute top-3 left-3 flex flex-col gap-1.5">
                         <span className="rounded-lg bg-teal-deep/85 px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-white backdrop-blur-xs">
-                          {prod.condition || "Certified Refurbished"}
+                          {prod.condition || "Ex-UK Grade A"}
                         </span>
                       </div>
                       <div className="absolute top-3 right-3">

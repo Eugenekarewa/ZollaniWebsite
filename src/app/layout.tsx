@@ -59,7 +59,7 @@ export default function RootLayout({
     name: "Zollani Tech Limited",
     image: "https://zollani.co.ke/images/logo-badge.png",
     telephone: "+254768551914",
-    email: "info@zollanitech.co.ke",
+    email: "eugene.karewa@zollanitech.co.ke",
     address: {
       "@type": "PostalAddress",
       addressLocality: "Nairobi",

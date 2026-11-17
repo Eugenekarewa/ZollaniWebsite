@@ -13,7 +13,7 @@ export function MediaPanel({ image, alt, eyebrow, title, body, reverse = false }
   return (
     <div className={`grid items-center gap-10 lg:grid-cols-2 lg:gap-16 ${reverse ? "lg:[&>div:first-child]:order-2" : ""}`}>
       <div className="image-frame relative min-h-[320px] sm:min-h-[440px]">
-        <Image src={image} alt={alt} fill className="object-cover transition-transform duration-700 hover:scale-105" />
+        <Image src={image} alt={alt} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover transition-transform duration-700 hover:scale-105" />
       </div>
       <div className="max-w-xl">
         <p className="section-kicker mb-4">{eyebrow}</p>

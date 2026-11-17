@@ -18,6 +18,8 @@ import {
   CreditCard,
   CheckCircle2,
   Navigation,
+  CalendarClock,
+  Boxes,
 } from "lucide-react";
 
 export default function ContactPage() {
@@ -109,6 +111,73 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
+
+              {/* Direct Email to Founder */}
+              <a
+                href="mailto:eugene.karewa@zollani.co.ke"
+                className="flex items-center gap-4 p-4 rounded-2xl bg-cream-bg border border-cream-border hover:border-teal-brand/40 transition-colors group"
+              >
+                <div className="w-12 h-12 rounded-xl bg-teal-deep text-white flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-transform">
+                  <Mail className="w-6 h-6" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold uppercase tracking-wider text-brand-muted">
+                    Direct Email (Founder)
+                  </div>
+                  <div className="text-sm font-black text-brand-dark">
+                    eugene.karewa@zollani.co.ke
+                  </div>
+                  <div className="text-xs text-brand-muted">
+                    For bulk supply inquiries, partnerships &amp; urgent matters
+                  </div>
+                </div>
+              </a>
+
+              {/* Schedule a Call */}
+              <a
+                href="https://cal.com/eugene-karewa-sqhijq/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 p-4 rounded-2xl bg-coral-light/60 border border-coral-brand/30 hover:bg-coral-light transition-colors group"
+              >
+                <div className="w-12 h-12 rounded-xl bg-coral-brand text-white flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-transform">
+                  <CalendarClock className="w-6 h-6" />
+                </div>
+                <div>
+                  <div className="text-xs font-extrabold uppercase tracking-wider text-coral-dark">
+                    Prefer to Talk It Through?
+                  </div>
+                  <div className="text-base font-black text-brand-dark">
+                    Schedule a 30-Min Call
+                  </div>
+                  <div className="text-xs text-brand-muted">
+                    Book a slot directly on our calendar for inquiries &amp; consultations
+                  </div>
+                </div>
+              </a>
+
+              {/* Bulk / Corporate Supply */}
+              <a
+                href="https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20our%20company%20would%20like%20to%20place%20a%20bulk%20order%20for%20computers%2Felectronics%2Faccessories.%20Please%20send%20pricing%20and%20lead%20times."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 p-4 rounded-2xl bg-teal-subtle/70 border border-teal-brand/30 hover:bg-teal-subtle transition-colors group"
+              >
+                <div className="w-12 h-12 rounded-xl bg-teal-brand text-white flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-transform">
+                  <Boxes className="w-6 h-6" />
+                </div>
+                <div>
+                  <div className="text-xs font-extrabold uppercase tracking-wider text-teal-brand">
+                    Bulk &amp; Corporate Orders
+                  </div>
+                  <div className="text-base font-black text-brand-dark">
+                    Supply for Companies &amp; Institutions
+                  </div>
+                  <div className="text-xs text-brand-muted">
+                    Larger orders of Ex-UK Grade A computers, electronics &amp; accessories
+                  </div>
+                </div>
+              </a>
             </div>
 
             {/* Operating Hours & Location Map Card */}

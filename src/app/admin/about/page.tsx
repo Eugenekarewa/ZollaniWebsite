@@ -14,7 +14,11 @@ export default async function AdminAboutPage() {
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div><p className="font-mono text-xs uppercase tracking-[0.2em] text-teal-brand">Zollani / Admin</p><h1 className="mt-2 text-4xl font-black text-brand-dark">About profiles</h1><p className="mt-2 text-sm text-brand-muted">Manage the owner and people customers see on the About page.</p></div>
-          <a href="/about" className="rounded-xl border border-cream-border bg-white px-4 py-3 text-sm font-bold text-brand-dark">View About page</a>
+          <div className="flex flex-wrap gap-3">
+            <a href="/admin/careers" className="rounded-xl border border-cream-border bg-white px-4 py-3 text-sm font-bold text-brand-dark">Manage careers</a>
+            <a href="/admin/testimonials" className="rounded-xl border border-cream-border bg-white px-4 py-3 text-sm font-bold text-brand-dark">Review testimonials</a>
+            <a href="/about" className="rounded-xl border border-cream-border bg-white px-4 py-3 text-sm font-bold text-brand-dark">View About page</a>
+          </div>
         </div>
         <form action={saveCompanyContent} className="mt-8 grid gap-4 rounded-3xl border border-coral-brand/30 bg-white p-6 shadow-sm md:grid-cols-2">
           <div className="md:col-span-2"><p className="font-mono text-xs uppercase tracking-[0.2em] text-coral-dark">Company story and history</p><h2 className="mt-2 text-xl font-black text-brand-dark">Edit what visitors should know about Zollani</h2><p className="mt-2 text-sm text-brand-muted">These fields appear on the public About page. Add your origin story, key milestones, and the current team introduction here.</p></div>

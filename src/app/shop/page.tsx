@@ -7,11 +7,11 @@ import { and, asc, eq, isNull, or } from "drizzle-orm";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Tested Refurbished Laptops & Custom Computers for Sale in Nairobi",
+  title: "Ex-UK Grade A Laptops & Custom Computers for Sale in Nairobi",
   description:
-    "Browse bench-tested refurbished laptops, custom gaming PCs, workstations, storage upgrades, and genuine computer accessories from Zollani Tech in Nairobi. Backed by a 6-month warranty.",
+    "Browse bench-tested Ex-UK Grade A laptops, custom gaming PCs, workstations, storage upgrades, and genuine computer accessories from Zollani Tech in Nairobi. Backed by a 6-month warranty.",
   keywords: [
-    "refurbished laptops Nairobi",
+    "ex-uk grade a laptops Nairobi",
     "used laptops Kenya",
     "custom PC Nairobi",
     "computer upgrades Kenya",
@@ -76,7 +76,7 @@ export default async function ShopPage() {
           category: product.category as ProductItem["category"],
           image: primaryImage,
           images: galleryImages,
-          condition: (product.condition as any) || "Certified Refurbished",
+          condition: (product.condition as any) || "Ex-UK Grade A",
           warranty: product.warranty || "6 Months Warranty",
           popular: false,
           specs: parsedSpecs.length > 0 ? parsedSpecs : ["Bench-Tested by Zollani Tech", "Original Charger Included"],
@@ -103,7 +103,7 @@ export default async function ShopPage() {
             category: item.category,
             image: item.imageUrl || "/images/pc-repair-workbench.jpg",
             images: item.galleryImages || [item.imageUrl],
-            condition: (item.condition as any) || "Certified Refurbished",
+            condition: (item.condition as any) || "Ex-UK Grade A",
             warranty: item.warranty || "6 Months Warranty",
             specs: item.specs || [],
             popular: false,

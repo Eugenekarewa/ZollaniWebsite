@@ -24,11 +24,20 @@ import {
   Zap,
 } from "lucide-react";
 import { QuoteCalculator } from "@/components/interactive/QuoteCalculator";
+import { TestimonialSubmitModal } from "@/components/interactive/TestimonialSubmitModal";
 import { TESTIMONIALS } from "@/data/testimonialsData";
 import { PRODUCTS } from "@/data/productsData";
 import { getPublishedPartners } from "@/app/admin/about/partner-actions";
+import { getPublishedTestimonials } from "@/app/admin/testimonials/actions";
 
-export const dynamic = "force-dynamic";
+function initialsOf(name: string) {
+  return name
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join("");
+}
 
 export const metadata: Metadata = {
   title: "Computer Repairs, Electronics Diagnostics & Certified Computer Sales in Nairobi | Zollani Tech",
@@ -39,7 +48,7 @@ export const metadata: Metadata = {
     "laptop repair Nairobi",
     "electronics repair Kenya",
     "motherboard repair Nairobi",
-    "refurbished laptops Nairobi",
+    "ex-uk grade a laptops Nairobi",
     "custom gaming PC Kenya",
     "screen replacement Nairobi",
     "data recovery Nairobi",
@@ -92,7 +101,6 @@ const pillars = [
 
 export default async function HomePage() {
   const featuredProducts = PRODUCTS.slice(0, 3);
-  const testimonials = TESTIMONIALS.slice(0, 3);
 
   let partners: Awaited<ReturnType<typeof getPublishedPartners>> = [];
   try {
@@ -100,6 +108,28 @@ export default async function HomePage() {
   } catch {
     partners = [];
   }
+
+  let approvedTestimonials: Awaited<ReturnType<typeof getPublishedTestimonials>> = [];
+  try {
+    approvedTestimonials = await getPublishedTestimonials();
+  } catch {
+    approvedTestimonials = [];
+  }
+
+  // Admin-approved real customer testimonials are shown first, topped up with
+  // curated examples so the section never looks empty while reviews come in.
+  const testimonials = [
+    ...approvedTestimonials.map((t) => ({
+      id: t.id,
+      name: t.name,
+      role: t.role || "Customer",
+      companyOrLocation: t.companyOrLocation || "Kenya",
+      avatarText: initialsOf(t.name) || "ZT",
+      rating: t.rating,
+      quote: t.quote,
+    })),
+    ...TESTIMONIALS,
+  ].slice(0, 6);
 
   return (
     <div className="bg-cream-bg text-brand-dark">
@@ -111,6 +141,7 @@ export default async function HomePage() {
             alt="Zollani Tech precision computer repair workbench in Nairobi"
             fill
             priority
+            sizes="100vw"
             className="animate-gentle-drift object-cover object-center opacity-35"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-teal-deep/90 via-teal-deep/75 to-teal-deep/95" />
@@ -313,6 +344,7 @@ export default async function HomePage() {
                     src={prod.image}
                     alt={prod.name}
                     fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <span className="absolute top-3 left-3 rounded-lg bg-teal-deep/85 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-xs">
@@ -418,6 +450,7 @@ export default async function HomePage() {
                   src="/images/products/ssd-upgrade-kit.jpg"
                   alt="Micro-soldering inspection under digital microscope"
                   fill
+                  sizes="(max-width: 640px) 50vw, 25vw"
                   className="object-cover"
                 />
                 <span className="absolute bottom-3 left-3 rounded-lg bg-black/75 px-3 py-1 text-[11px] font-bold text-white">
@@ -429,6 +462,7 @@ export default async function HomePage() {
                   src="/images/products/lenovo-thinkpad.jpg"
                   alt="Data recovery hardware lab"
                   fill
+                  sizes="(max-width: 640px) 50vw, 25vw"
                   className="object-cover"
                 />
                 <span className="absolute bottom-3 left-3 rounded-lg bg-black/75 px-3 py-1 text-[11px] font-bold text-white">
@@ -482,6 +516,10 @@ export default async function HomePage() {
               </figcaption>
             </figure>
           ))}
+        </div>
+
+        <div className="text-center">
+          <TestimonialSubmitModal />
         </div>
       </section>
 

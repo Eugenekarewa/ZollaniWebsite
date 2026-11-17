@@ -212,7 +212,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 <option value="Data Recovery & Storage">Data Recovery & Storage</option>
                 <option value="Business IT Support Contract">Business IT Support Contract (SLA)</option>
                 <option value="Youth & School Training Program">Youth / School Training Program</option>
-                <option value="Refurbished PC / Custom Rig">Refurbished PC / Custom Rig</option>
+                <option value="Ex-UK Grade A PC / Custom Rig">Ex-UK Grade A PC / Custom Rig</option>
+                <option value="Bulk / Corporate Supply Order">Bulk / Corporate Supply Order</option>
                 <option value="On-Site Emergency Visit">On-Site Emergency Visit</option>
               </select>
             </div>

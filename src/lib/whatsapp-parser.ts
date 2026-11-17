@@ -52,7 +52,7 @@ export function parseWhatsAppProductMessage(rawText: string): Omit<ParsedWhatsAp
   let detectedName = "";
   let detectedPrice = "KES 0";
   let detectedCategory: ParsedWhatsAppProduct["category"] = "refurbished-laptop";
-  let detectedCondition = "Certified Refurbished";
+  let detectedCondition = "Ex-UK Grade A";
   let detectedWarranty = "6 Months Warranty";
   const detectedSpecs: string[] = [];
   const descriptionLines: string[] = [];
@@ -127,7 +127,7 @@ export function parseWhatsAppProductMessage(rawText: string): Omit<ParsedWhatsAp
   if (lower.includes("brand new") || lower.includes("sealed box")) {
     detectedCondition = "Brand New Custom Build";
   } else if (lower.includes("ex-uk") || lower.includes("ex uk") || lower.includes("grade a")) {
-    detectedCondition = "Certified Refurbished";
+    detectedCondition = "Ex-UK Grade A";
   }
 
   // 5. Specs & Name Line Extraction
@@ -176,7 +176,7 @@ export function parseWhatsAppProductMessage(rawText: string): Omit<ParsedWhatsAp
 
   // Fallback name if none found
   if (!detectedName) {
-    if (detectedCategory === "refurbished-laptop") detectedName = "HP / Dell Refurbished Laptop";
+    if (detectedCategory === "refurbished-laptop") detectedName = "HP / Dell Ex-UK Grade A Laptop";
     else if (detectedCategory === "gaming-pc") detectedName = "Custom High-Performance PC Rig";
     else detectedName = "Zollani Tech Certified Hardware";
   }
@@ -328,7 +328,7 @@ export async function getAllDrafts(): Promise<ParsedWhatsAppProduct[]> {
           category: row.category as ParsedWhatsAppProduct["category"],
           description: row.description,
           specs: parsedSpecs,
-          condition: row.condition || "Certified Refurbished",
+          condition: row.condition || "Ex-UK Grade A",
           warranty: row.warranty || "6 Months Warranty",
           imageUrl: row.imageUrl,
           senderPhone: row.senderPhone || undefined,

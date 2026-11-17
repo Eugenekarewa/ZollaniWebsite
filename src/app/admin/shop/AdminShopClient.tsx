@@ -52,7 +52,7 @@ export default function AdminShopClient({
 
   // Simulator State
   const [simMessage, setSimMessage] = useState(
-    "HP EliteBook 840 G7\nPrice: KES 48,000\nCategory: Refurbished Laptop\nSpecs: Core i5 10th Gen, 16GB DDR4 RAM, 512GB NVMe SSD, 14.0\" FHD Anti-Glare\nCondition: Certified Refurbished Grade A\nWarranty: 6 Months Warranty\nDescription: Clean business ultrabook with original 65W HP charger and licensed Windows 11 Pro."
+    "HP EliteBook 840 G7\nPrice: KES 48,000\nCategory: Refurbished Laptop\nSpecs: Core i5 10th Gen, 16GB DDR4 RAM, 512GB NVMe SSD, 14.0\" FHD Anti-Glare\nCondition: Ex-UK Grade A\nWarranty: 6 Months Warranty\nDescription: Clean business ultrabook with original 65W HP charger and licensed Windows 11 Pro."
   );
   const [simSender, setSimSender] = useState("+254768551914");
   const [simImageFile, setSimImageFile] = useState<File | null>(null);
@@ -70,7 +70,7 @@ export default function AdminShopClient({
     category: "refurbished-laptop",
     description: "",
     specs: "",
-    condition: "Certified Refurbished",
+    condition: "Ex-UK Grade A",
     warranty: "6 Months Warranty",
     imageUrl: "",
   };
@@ -138,7 +138,7 @@ export default function AdminShopClient({
   const loadSimSample = (sampleNum: number) => {
     if (sampleNum === 1) {
       setSimMessage(
-        "Lenovo ThinkPad T480s Business Ultrabook\nKES 36,500\nCore i7 8th Gen vPro, 16GB RAM, 512GB SSD, Backlit Keyboard, Dual Battery\nCondition: Certified Refurbished Ex-UK\n6 Months Warranty\nSuper fast, durable magnesium casing, includes original charger."
+        "Lenovo ThinkPad T480s Business Ultrabook\nKES 36,500\nCore i7 8th Gen vPro, 16GB RAM, 512GB SSD, Backlit Keyboard, Dual Battery\nCondition: Ex-UK Grade A\n6 Months Warranty\nSuper fast, durable magnesium casing, includes original charger."
       );
       setSimImageUrl("/images/hardware-motherboard.jpg");
     } else if (sampleNum === 2) {
@@ -1102,7 +1102,7 @@ WHATSAPP_APP_SECRET=abc...`}
                     defaultValue={editingDraft.condition}
                     className="rounded-xl border border-cream-border bg-cream-surface px-3 py-2 text-xs"
                   >
-                    <option value="Certified Refurbished">Certified Refurbished</option>
+                    <option value="Ex-UK Grade A">Ex-UK Grade A</option>
                     <option value="Brand New Custom Build">Brand New Custom Build</option>
                     <option value="Hardware Bundle">Hardware Bundle</option>
                   </select>

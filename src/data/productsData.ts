@@ -3,7 +3,7 @@ export interface ProductItem {
   name: string;
   category: "refurbished-laptop" | "gaming-pc" | "workstation" | "upgrade-kit" | "monitor" | "smart-home-camera" | "mouse" | "desktop-cpu" | "mini-pc";
   priceKes: number;
-  condition: "Certified Refurbished" | "Brand New Custom Build" | "Hardware Bundle";
+  condition: "Ex-UK Grade A" | "Brand New Custom Build" | "Hardware Bundle";
   warranty: string;
   specs: string[];
   popular?: boolean;
@@ -18,7 +18,7 @@ export const PRODUCTS: ProductItem[] = [
     name: "Lenovo ThinkPad T480 (Tough Business Ultrabook)",
     category: "refurbished-laptop",
     priceKes: 32000,
-    condition: "Certified Refurbished",
+    condition: "Ex-UK Grade A",
     warranty: "6 Months Warranty",
     specs: [
       "Intel Core i5 8th Gen (Quad-Core 3.4GHz)",
@@ -37,7 +37,7 @@ export const PRODUCTS: ProductItem[] = [
     name: "Dell Latitude 7490 Ultrabook (Core i7 Edition)",
     category: "refurbished-laptop",
     priceKes: 34500,
-    condition: "Certified Refurbished",
+    condition: "Ex-UK Grade A",
     warranty: "6 Months Warranty",
     specs: [
       "Intel Core i7 8th Gen vPro",
@@ -56,7 +56,7 @@ export const PRODUCTS: ProductItem[] = [
     name: "HP EliteBook 840 G6 Aluminum Ultrabook",
     category: "refurbished-laptop",
     priceKes: 39000,
-    condition: "Certified Refurbished",
+    condition: "Ex-UK Grade A",
     warranty: "6 Months Warranty",
     specs: [
       "Intel Core i5 8th Gen",

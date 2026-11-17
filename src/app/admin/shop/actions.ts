@@ -38,7 +38,7 @@ export async function publishDraftAction(formData: FormData) {
   const category = String(formData.get("category") || "refurbished-laptop").trim() as any;
   const description = String(formData.get("description") || "").trim();
   const imageUrl = String(formData.get("imageUrl") || "").trim();
-  const condition = String(formData.get("condition") || "Certified Refurbished").trim();
+  const condition = String(formData.get("condition") || "Ex-UK Grade A").trim();
   const warranty = String(formData.get("warranty") || "6 Months Warranty").trim();
   const rawSpecs = String(formData.get("specs") || "").trim();
 
@@ -98,7 +98,7 @@ export async function saveProduct(formData: FormData) {
     imageUrl: String(formData.get("imageUrl") || "/images/pc-repair-workbench.jpg").trim(),
     isActive: formData.get("isActive") !== "off" && formData.get("isActive") !== "false",
     status: "published",
-    condition: String(formData.get("condition") || "Certified Refurbished").trim(),
+    condition: String(formData.get("condition") || "Ex-UK Grade A").trim(),
     warranty: String(formData.get("warranty") || "6 Months Warranty").trim(),
     updatedAt: new Date(),
   };
