@@ -9,7 +9,6 @@ import {
   ShieldCheck,
   FileDown,
   CheckCircle2,
-  CreditCard,
 } from "lucide-react";
 
 export const Footer = () => {
@@ -82,34 +81,48 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Column 3: M-Pesa & Payment Methods */}
+          {/* Column 3: Shop & Quick Actions */}
           <div className="space-y-5">
             <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-coral-brand">
-              Verified Payment Methods
+              Shop & Quick Links
             </h3>
-            <div className="space-y-4 rounded-2xl border border-teal-brand/40 bg-teal-brand/30 p-5">
-              <div className="flex items-center gap-2 text-white font-bold text-sm">
-                <CreditCard className="w-4 h-4 text-coral-brand" />
-                <span>M-PESA Lipa Na M-Pesa</span>
-              </div>
-              <div className="text-xs space-y-1 text-cream-bg/90">
-                <div className="flex justify-between border-b border-teal-brand/30 pb-1">
-                  <span className="text-cream-bg/70">Paybill No:</span>
-                  <span className="font-mono font-bold text-coral-brand">714888</span>
-                </div>
-                <div className="flex justify-between border-b border-teal-brand/30 pb-1">
-                  <span className="text-cream-bg/70">Account No:</span>
-                  <span className="font-mono font-bold text-white">480939</span>
-                </div>
-                <div className="flex justify-between pt-1">
-                  <span className="text-cream-bg/70">Account Name:</span>
-                  <span className="font-semibold text-white">Zollani Tech Ltd</span>
-                </div>
-              </div>
+            <ul className="space-y-3 text-sm leading-6 text-cream-bg/80">
+              <li>
+                <Link href="/shop" className="hover:text-white transition-colors">
+                  Browse Laptops & Computers
+                </Link>
+              </li>
+              <li>
+                <Link href="/shop?category=gaming-pc" className="hover:text-white transition-colors">
+                  Custom Gaming PCs
+                </Link>
+              </li>
+              <li>
+                <Link href="/shop?category=upgrade-kit" className="hover:text-white transition-colors">
+                  SSD & RAM Upgrade Kits
+                </Link>
+              </li>
+              <li>
+                <Link href="/checkout" className="hover:text-white transition-colors">
+                  View Cart & Checkout
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-white transition-colors">
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="hover:text-white transition-colors">
+                  About Zollani Tech
+                </Link>
+              </li>
+            </ul>
+            <div className="pt-1">
+              <p className="text-xs text-cream-bg/70 leading-relaxed">
+                Accepting M-Pesa, Cash, and Bank Transfer. Payment instructions sent after order confirmation.
+              </p>
             </div>
-            <p className="text-xs text-cream-bg/70">
-              Also accepting Cash, Direct Bank Transfer, and Corporate Invoicing with 30-day terms for contracted businesses.
-            </p>
           </div>
 
           {/* Column 4: Contact & Locations */}

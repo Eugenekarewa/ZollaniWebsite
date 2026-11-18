@@ -23,6 +23,7 @@ import {
   Briefcase,
 } from "lucide-react";
 import { RepairTrackerModal } from "@/components/interactive/RepairTrackerModal";
+import { CartButton } from "@/components/shop/CartButton";
 
 export const Navbar = () => {
   const pathname = usePathname();
@@ -136,6 +137,7 @@ export const Navbar = () => {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center gap-3">
+            <CartButton />
             <Link
               href="/services#estimator"
               className="inline-flex items-center gap-1.5 rounded-xl border border-cream-border bg-white px-3.5 py-2.5 text-xs font-bold text-brand-dark hover:border-teal-brand transition-colors"
@@ -157,6 +159,7 @@ export const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 md:hidden">
+            <CartButton />
             <a
               href="https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20need%20quick%20assistance."
               target="_blank"

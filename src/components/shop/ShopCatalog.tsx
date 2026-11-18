@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import type { ProductItem } from "@/data/productsData";
 import { PageHero } from "@/components/ui/PageHero";
 import { ProductInquiryForm } from "@/components/shop/ProductInquiryForm";
-import { WhatsAppProductBadge } from "@/components/shop/WhatsAppProductBadge";
+import { useCart } from "@/context/CartContext";
 import {
   ShoppingBag,
   ShieldCheck,
@@ -16,9 +16,46 @@ import {
   RotateCcw,
   Cpu,
   BadgeCheck,
+  ShoppingCart,
+  Plus,
+  Check,
 } from "lucide-react";
 
 const FALLBACK_PRODUCT_IMAGE = "/images/pc-repair-workbench.jpg";
+
+function AddToCartButton({ product }: { product: ProductItem }) {
+  const { addItem } = useCart();
+  const [added, setAdded] = useState(false);
+
+  function handleAdd() {
+    addItem(product);
+    setAdded(true);
+    setTimeout(() => setAdded(false), 2000);
+  }
+
+  return (
+    <button
+      onClick={handleAdd}
+      className={`flex w-full items-center justify-center gap-2 rounded-2xl py-3.5 text-xs font-black shadow-sm transition-all active:scale-98 ${
+        added
+          ? "bg-teal-brand text-white"
+          : "bg-brand-dark text-white hover:bg-teal-deep"
+      }`}
+    >
+      {added ? (
+        <>
+          <Check className="h-4 w-4" />
+          <span>Added to Cart!</span>
+        </>
+      ) : (
+        <>
+          <ShoppingCart className="h-4 w-4" />
+          <span>Add to Cart</span>
+        </>
+      )}
+    </button>
+  );
+}
 
 function ProductCardImage({ src, images = [], alt }: { src?: string; images?: string[]; alt: string }) {
   const gallery = Array.from(new Set([src, ...images].filter(Boolean))) as string[];
@@ -251,18 +288,17 @@ export default function ShopCatalog({ products = [] }: { products?: ProductItem[
                       )}
                     </div>
                   </div>
-
-
                     {/* Actions */}
                   <div className="p-6 pt-0 space-y-2">
+                    <AddToCartButton product={prod} />
                     <a
                       href={`https://wa.me/254768551914?text=${waText}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#25D366] py-3.5 text-xs font-black text-white shadow-sm transition-all hover:bg-[#20bd5a] transform active:scale-98 text-center"
+                      className="flex w-full items-center justify-center gap-2 rounded-2xl border border-[#25D366] py-3 text-xs font-bold text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all text-center"
                     >
-                      <MessageCircle className="h-4 w-4 fill-white" />
-                      <span>Order / Inquire on WhatsApp</span>
+                      <MessageCircle className="h-4 w-4" />
+                      <span>Ask a Question on WhatsApp</span>
                     </a>
                   </div>
                 </div>

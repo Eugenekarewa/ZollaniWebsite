@@ -5,6 +5,8 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
+import { CartProvider } from "@/context/CartContext";
+import { CartDrawer } from "@/components/shop/CartDrawer";
 
 const siteUrl = "https://zollani.co.ke";
 
@@ -130,10 +132,13 @@ window._linkedin_data_partner_ids.push(_linkedin_partner_id);
         className="flex flex-col min-h-screen bg-cream-bg text-brand-dark antialiased"
         suppressHydrationWarning
       >
-        <Navbar />
-        <main className="flex-1 pb-16 md:pb-0">{children}</main>
-        <Footer />
-        <FloatingWhatsApp />
+        <CartProvider>
+          <Navbar />
+          <CartDrawer />
+          <main className="flex-1 pb-16 md:pb-0">{children}</main>
+          <Footer />
+          <FloatingWhatsApp />
+        </CartProvider>
         <Analytics />
       </body>
     </html>
