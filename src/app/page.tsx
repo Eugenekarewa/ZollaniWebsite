@@ -259,7 +259,8 @@ export default async function HomePage() {
             src="/images/hero-datacenter.jpg"
             alt="Zollani Tech precision computer repair workbench in Nairobi"
             fill
-            priority
+            fetchPriority="high"
+            loading="eager"
             sizes="100vw"
             className="object-cover object-center opacity-35"
           />
