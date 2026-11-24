@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
   ArrowUpRight,
   BadgeCheck,
+  Building2,
   CheckCircle2,
   Clock,
   Cpu,
@@ -16,6 +17,7 @@ import {
   MapPin,
   MessageCircle,
   MoveRight,
+  PackageSearch,
   Phone,
   ShieldCheck,
   Sparkles,
@@ -256,7 +258,7 @@ export default async function HomePage() {
           <div className="absolute inset-0 bg-gradient-to-b from-teal-deep/90 via-teal-deep/75 to-teal-deep/95" />
         </div>
 
-        <div className="relative mx-auto flex min-h-[640px] max-w-7xl flex-col justify-between px-5 pt-16 pb-10 sm:px-8 lg:px-12">
+        <div className="relative mx-auto flex min-h-[520px] max-w-7xl flex-col justify-between px-5 pt-10 pb-8 sm:px-8 lg:px-12">
           <div className="mx-auto w-full max-w-4xl text-center">
             {/* Live Status Pill */}
             <div className="inline-flex items-center gap-2 rounded-full border border-coral-brand/40 bg-teal-dark/60 px-4 py-1.5 backdrop-blur-md">
@@ -266,67 +268,109 @@ export default async function HomePage() {
               </span>
             </div>
 
-            <h1 className="mt-6 text-balance text-4xl font-black leading-[1.05] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
+            <h1 className="mt-5 text-balance text-4xl font-black leading-[1.05] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
               Precision Computer Repairs. <br />
               <span className="font-serif font-normal italic text-coral-brand">
                 Guaranteed Hardware Sales.
               </span>
             </h1>
 
-            <p className="mx-auto mt-6 max-w-2xl text-balance text-base leading-relaxed text-cream-bg/85 sm:text-lg">
+            <p className="mx-auto mt-5 max-w-2xl text-balance text-base leading-relaxed text-cream-bg/85 sm:text-lg">
               We diagnose, micro-solder, and revive laptops, MacBooks, gaming consoles, and complex electronics that other shops write off — and supply bench-tested computers backed by a real 6-month warranty.
             </p>
 
-            {/* CTAs */}
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:justify-center">
+            {/* Primary On-Site CTAs */}
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:justify-center">
               <a
-                href={whatsappHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-coral-brand px-7 py-4 text-sm font-black text-white shadow-lg transition-transform hover:-translate-y-1 hover:bg-coral-hover active:translate-y-0"
+                href="#estimator"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-coral-brand px-7 py-4 text-sm font-black text-white shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-coral-hover active:translate-y-0"
               >
-                <MessageCircle className="h-4 w-4 fill-current" />
-                Book a Fast Repair via WhatsApp
+                <Wrench className="h-4 w-4" />
+                Get Instant Repair Estimate
               </a>
 
               <Link
                 href="/shop"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-cream-bg/30 bg-white/10 px-7 py-4 text-sm font-bold text-cream-bg backdrop-blur-sm transition-all hover:bg-cream-bg hover:text-teal-deep"
               >
-                Browse Tested Computers for Sale
+                Browse Tested Computers &amp; Parts
                 <ArrowUpRight className="h-4 w-4" />
               </Link>
             </div>
 
-            {/* Micro Guarantees */}
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-semibold text-cream-bg/70">
+            {/* Secondary Track / WhatsApp + Micro Guarantees */}
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-xs font-semibold text-cream-bg/75">
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-3.5 w-3.5 text-coral-brand" />
                 No Fix, No Fee Policy
               </span>
               <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-3.5 w-3.5 text-coral-brand" />
-                Free Quick Diagnostics
-              </span>
-              <span className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-3.5 w-3.5 text-coral-brand" />
                 6-Month Written Warranty
               </span>
+              <Link
+                href="/track?tab=pickup"
+                className="inline-flex items-center gap-1 text-coral-brand underline underline-offset-4 hover:text-white transition-colors"
+              >
+                <Truck className="h-3.5 w-3.5" />
+                Book Rider Pickup / Track Order
+              </Link>
             </div>
           </div>
 
-          {/* Quick Metrics Bar */}
-          <div className="mt-12 grid grid-cols-2 gap-4 border-t border-cream-bg/15 pt-6 text-center sm:grid-cols-4">
-            {trustBadges.map((badge, idx) => {
-              const Icon = badge.icon;
-              return (
-                <div key={idx} className="flex flex-col items-center">
-                  <Icon className="h-5 w-5 text-coral-brand mb-1" />
-                  <p className="text-xs font-black text-cream-bg">{badge.label}</p>
-                  <p className="text-[11px] text-cream-bg/65">{badge.sub}</p>
-                </div>
-              );
-            })}
+          {/* Interactive Above-the-Fold Intent Router */}
+          <div className="mt-8 grid grid-cols-2 gap-3 border-t border-cream-bg/15 pt-6 sm:grid-cols-4">
+            <a
+              href="#estimator"
+              className="group flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 p-3.5 text-left backdrop-blur-xs transition-all hover:border-coral-brand hover:bg-white/15"
+            >
+              <div className="rounded-xl bg-coral-brand/20 p-2 text-coral-brand shrink-0">
+                <Wrench className="h-4 w-4" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs font-black text-cream-bg group-hover:text-white truncate">Repair Estimator</p>
+                <p className="text-[11px] text-cream-bg/70 truncate">KES price &amp; turnaround</p>
+              </div>
+            </a>
+
+            <Link
+              href="/shop"
+              className="group flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 p-3.5 text-left backdrop-blur-xs transition-all hover:border-coral-brand hover:bg-white/15"
+            >
+              <div className="rounded-xl bg-coral-brand/20 p-2 text-coral-brand shrink-0">
+                <Laptop className="h-4 w-4" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs font-black text-cream-bg group-hover:text-white truncate">Shop Hardware</p>
+                <p className="text-[11px] text-cream-bg/70 truncate">Laptops, SSDs &amp; gear</p>
+              </div>
+            </Link>
+
+            <Link
+              href="/track"
+              className="group flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 p-3.5 text-left backdrop-blur-xs transition-all hover:border-coral-brand hover:bg-white/15"
+            >
+              <div className="rounded-xl bg-coral-brand/20 p-2 text-coral-brand shrink-0">
+                <PackageSearch className="h-4 w-4" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs font-black text-cream-bg group-hover:text-white truncate">Track / Pickup</p>
+                <p className="text-[11px] text-cream-bg/70 truncate">Live status &amp; rider</p>
+              </div>
+            </Link>
+
+            <Link
+              href="/business-it"
+              className="group flex items-center gap-3 rounded-2xl border border-white/15 bg-white/10 p-3.5 text-left backdrop-blur-xs transition-all hover:border-coral-brand hover:bg-white/15"
+            >
+              <div className="rounded-xl bg-coral-brand/20 p-2 text-coral-brand shrink-0">
+                <Building2 className="h-4 w-4" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs font-black text-cream-bg group-hover:text-white truncate">Business IT SLA</p>
+                <p className="text-[11px] text-cream-bg/70 truncate">Managed office support</p>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -493,17 +537,24 @@ export default async function HomePage() {
                 </div>
               </div>
 
-              <div className="p-6 pt-0">
+              <div className="p-6 pt-0 flex items-center gap-2">
+                <Link
+                  href={`/shop?q=${encodeURIComponent(prod.name)}`}
+                  className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-brand-dark py-3 text-xs font-black text-white shadow-xs hover:bg-teal-deep transition-colors"
+                >
+                  <span>View Specs &amp; Buy</span>
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
                 <a
                   href={`https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20am%20interested%20in%20purchasing%20the%20"${encodeURIComponent(
                     prod.name
                   )}"%20priced%20at%20KES%20${prod.priceKes.toLocaleString()}.`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex w-full items-center justify-center gap-2 rounded-2xl bg-[#25D366] py-3 text-xs font-bold text-white shadow-xs hover:bg-[#20bd5a] transition-colors"
+                  aria-label={`Ask about ${prod.name} on WhatsApp`}
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#25D366] text-[#25D366] hover:bg-[#25D366] hover:text-white transition-colors"
                 >
-                  <MessageCircle className="h-4 w-4 fill-white" />
-                  Order on WhatsApp
+                  <MessageCircle className="h-4 w-4" />
                 </a>
               </div>
             </div>
@@ -540,16 +591,21 @@ export default async function HomePage() {
                 </div>
               </div>
 
-              <div className="mt-8">
-                <a
-                  href="https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20have%20a%20dead%20laptop%20or%20logic%20board%20that%20needs%20diagnostics."
-                  target="_blank"
-                  rel="noopener noreferrer"
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link
+                  href="/track?tab=pickup"
                   className="inline-flex items-center gap-2 rounded-full bg-coral-brand px-6 py-3.5 text-xs font-bold text-white hover:bg-coral-hover transition-colors"
                 >
-                  <MessageCircle className="h-4 w-4 fill-white" />
-                  Bring Your Device for Board Diagnostics
-                </a>
+                  <Truck className="h-4 w-4" />
+                  Book Diagnostics &amp; Rider Pickup
+                </Link>
+                <Link
+                  href="/services#motherboard"
+                  className="inline-flex items-center gap-2 rounded-full border border-cream-bg/30 px-6 py-3.5 text-xs font-bold text-cream-bg hover:bg-white hover:text-brand-dark transition-colors"
+                >
+                  Explore Board-Level Services
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
               </div>
             </div>
 
@@ -677,23 +733,31 @@ export default async function HomePage() {
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+            <Link
+              href="/track?tab=pickup"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-teal-deep px-7 py-4 text-xs font-black text-white shadow-md transition-transform hover:-translate-y-0.5 hover:bg-teal-dark active:translate-y-0 text-center"
+            >
+              <Truck className="h-4 w-4" />
+              <span>Book Rider Pickup Online</span>
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+
             <a
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-teal-deep px-7 py-4 text-xs font-black text-white shadow-md transition-transform hover:-translate-y-1 hover:bg-teal-dark active:translate-y-0 text-center"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/60 px-6 py-4 text-xs font-black text-white transition-colors hover:bg-white hover:text-coral-dark text-center"
             >
-              <MessageCircle className="h-4 w-4 fill-white" />
-              <span>Chat on WhatsApp</span>
-              <ArrowUpRight className="h-4 w-4" />
+              <MessageCircle className="h-4 w-4" />
+              <span>WhatsApp</span>
             </a>
 
             <a
               href="tel:+254768551914"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/60 px-7 py-4 text-xs font-black text-white transition-colors hover:bg-white hover:text-coral-dark text-center"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-white/60 px-6 py-4 text-xs font-black text-white transition-colors hover:bg-white hover:text-coral-dark text-center"
             >
               <Phone className="h-4 w-4" />
-              <span>Call +254 768 551914</span>
+              <span>Call Lab</span>
             </a>
           </div>
         </div>

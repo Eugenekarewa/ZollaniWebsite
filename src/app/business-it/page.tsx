@@ -279,20 +279,28 @@ export default function BusinessITPage() {
                   </ul>
                 </div>
 
-                <a
-                  href={`https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20am%20interested%20in%20the%20${encodeURIComponent(
-                    tier.name
-                  )}%20plan%20for%20our%20office.`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`w-full text-center py-3.5 px-4 rounded-xl font-bold text-xs shadow-xs transition-all ${
-                    tier.popular
-                      ? "bg-coral-brand hover:bg-coral-hover text-white"
-                      : "bg-teal-subtle hover:bg-teal-brand hover:text-white text-teal-brand"
-                  }`}
-                >
-                  Inquire About This Plan
-                </a>
+                <div className="flex flex-col gap-2">
+                  <a
+                    href="#quote-form"
+                    className={`w-full text-center py-3.5 px-4 rounded-xl font-bold text-xs shadow-xs transition-all ${
+                      tier.popular
+                        ? "bg-coral-brand hover:bg-coral-hover text-white"
+                        : "bg-teal-deep hover:bg-teal-brand text-white"
+                    }`}
+                  >
+                    Request This Plan Proposal
+                  </a>
+                  <a
+                    href={`https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20am%20interested%20in%20the%20${encodeURIComponent(
+                      tier.name
+                    )}%20plan%20for%20our%20office.`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full text-center py-2.5 px-4 rounded-xl font-bold text-[11px] text-teal-brand bg-teal-subtle hover:bg-teal-brand hover:text-white transition-colors"
+                  >
+                    Or Chat on WhatsApp
+                  </a>
+                </div>
               </div>
             ))}
           </div>

@@ -76,16 +76,16 @@ export default function ServicesPage() {
     <div className="surface-grid bg-cream-bg min-h-screen pb-12 sm:pb-20">
       {/* Hero */}
       <section className="relative overflow-hidden bg-teal-deep text-cream-bg">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:px-8 sm:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:px-12 lg:py-28">
+        <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 sm:px-8 sm:py-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:px-12 lg:py-20">
           <div>
             <p className="section-kicker text-coral-brand">Zollani Repair &amp; Electronics Lab</p>
-            <h1 className="mt-5 max-w-3xl text-balance text-4xl font-black leading-[1.02] tracking-[-0.05em] sm:text-6xl lg:text-7xl">
+            <h1 className="mt-4 max-w-3xl text-balance text-4xl font-black leading-[1.02] tracking-[-0.05em] sm:text-5xl lg:text-6xl">
               Precision Repairs for Computers &amp; Electronics.
             </h1>
-            <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-cream-bg/80 sm:text-lg">
+            <p className="mt-4 max-w-xl text-pretty text-base leading-relaxed text-cream-bg/80 sm:text-lg">
               From cracked laptop screens and swollen batteries to component-level micro-soldering, gaming console HDMI repairs, and hard drive data recovery. Honest diagnostics with quotes given before any work begins.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap gap-3">
               <a
                 href="#estimator"
                 className="rounded-full bg-coral-brand px-6 py-3.5 text-xs font-black text-white hover:bg-coral-hover transition-transform hover:-translate-y-0.5"
@@ -98,6 +98,12 @@ export default function ServicesPage() {
               >
                 Browse All Services
               </a>
+              <Link
+                href="/track?tab=pickup"
+                className="rounded-full border border-cream-bg/30 bg-white/10 px-5 py-3.5 text-xs font-bold text-cream-bg hover:bg-cream-bg hover:text-teal-deep transition-colors"
+              >
+                Book Rider Pickup
+              </Link>
             </div>
             <div className="mt-10 grid max-w-xl grid-cols-3 gap-4 border-t border-cream-bg/15 pt-5 text-xs sm:text-sm">
               <div>
@@ -219,6 +225,23 @@ export default function ServicesPage() {
               );
             })}
           </div>
+
+          <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-cream-border/70">
+            <span className="text-[11px] font-bold text-brand-muted">Common fixes:</span>
+            {["Cracked Screen", "Motherboard", "Data Recovery", "HDMI", "SSD", "Liquid"].map((tag) => (
+              <button
+                key={tag}
+                type="button"
+                onClick={() => {
+                  setSelectedCategory("all");
+                  setSearchQuery(tag);
+                }}
+                className="rounded-lg bg-white px-2.5 py-1 text-[11px] font-semibold text-brand-slate border border-cream-border hover:border-teal-brand hover:text-teal-brand transition-colors cursor-pointer"
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Services List */}
@@ -273,8 +296,14 @@ export default function ServicesPage() {
 
         {/* Detail Modal */}
         {activeModalItem && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs">
-            <div className="max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl sm:p-8 space-y-5">
+          <div
+            onClick={() => setActiveModalItem(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-xs"
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="max-h-[90vh] w-full max-w-xl overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl sm:p-8 space-y-5"
+            >
               <div className="flex items-start justify-between border-b border-cream-border pb-4">
                 <div>
                   <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-teal-brand bg-teal-subtle px-2.5 py-1 rounded-lg">
@@ -320,25 +349,34 @@ export default function ServicesPage() {
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-cream-border flex flex-col sm:flex-row gap-3">
+              <div className="pt-3 border-t border-cream-border flex flex-col sm:flex-row gap-2.5">
+                <Link
+                  href="/track?tab=pickup"
+                  onClick={() => setActiveModalItem(null)}
+                  className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-coral-brand hover:bg-coral-hover text-white py-3.5 text-xs font-black shadow-sm transition-colors"
+                >
+                  <span>Book Rider Pickup Online</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+
                 <a
                   href={`https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20need%20assistance%20with%20${encodeURIComponent(
                     activeModalItem.name
                   )}.`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white py-3.5 text-xs font-black shadow-sm"
+                  className="flex items-center justify-center gap-2 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white px-4 py-3.5 text-xs font-black shadow-sm"
                 >
                   <MessageCircle className="w-4 h-4 fill-white" />
-                  <span>Book This Repair on WhatsApp</span>
+                  <span>WhatsApp</span>
                 </a>
 
                 <a
                   href="tel:+254768551914"
-                  className="flex items-center justify-center gap-2 rounded-2xl border border-cream-border bg-cream-surface hover:bg-cream-border px-5 py-3.5 text-xs font-bold text-brand-dark"
+                  className="flex items-center justify-center gap-2 rounded-2xl border border-cream-border bg-cream-surface hover:bg-cream-border px-4 py-3.5 text-xs font-bold text-brand-dark"
                 >
                   <Phone className="w-4 h-4 text-teal-brand" />
-                  <span>Call Us Directly</span>
+                  <span>Call</span>
                 </a>
               </div>
             </div>

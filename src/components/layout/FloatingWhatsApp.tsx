@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { MessageCircle, Phone, X, ShieldAlert, Wrench, Sparkles, ShoppingBag } from "lucide-react";
+import Link from "next/link";
+import { MessageCircle, Phone, X, ShieldAlert, Wrench, Sparkles, ShoppingBag, PackageSearch } from "lucide-react";
 
 export const FloatingWhatsApp = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -100,7 +101,15 @@ export const FloatingWhatsApp = () => {
                   </a>
                 );
               })}
-              <div className="pt-2 border-t border-cream-border">
+              <div className="pt-2 border-t border-cream-border space-y-2">
+                <Link
+                  href="/track?tab=pickup"
+                  onClick={() => setShowPopup(false)}
+                  className="w-full flex items-center justify-center gap-2 bg-teal-subtle hover:bg-teal-brand hover:text-white text-teal-brand py-2 rounded-xl text-xs font-bold transition-colors"
+                >
+                  <PackageSearch className="w-4 h-4" />
+                  <span>Book Pickup or Track Repair Online</span>
+                </Link>
                 <a
                   href={`https://wa.me/254768551914?text=${defaultMessage}`}
                   target="_blank"
@@ -118,8 +127,14 @@ export const FloatingWhatsApp = () => {
         {/* Floating Trigger Button */}
         <div className="flex items-center gap-2">
           {!showPopup && !dismissed && (
-            <div className="bg-white px-3.5 py-2 rounded-2xl shadow-md border border-cream-border text-xs font-bold text-brand-slate flex items-center gap-2 animate-bounce">
-              <span>Need a fast repair or computer? Chat with us!</span>
+            <div className="bg-white px-3.5 py-2 rounded-2xl shadow-md border border-cream-border text-xs font-bold text-brand-slate flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setShowPopup(true)}
+                className="text-left hover:text-teal-brand transition-colors cursor-pointer"
+              >
+                Need a fast repair or computer? Chat with us!
+              </button>
               <button
                 onClick={() => setDismissed(true)}
                 className="text-brand-muted hover:text-brand-slate"

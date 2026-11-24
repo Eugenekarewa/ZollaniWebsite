@@ -109,8 +109,8 @@ export default async function CareersPage() {
         description="Zollani Tech is growing — join a hands-on team of technicians, engineers, and educators in Nairobi who repair, support, and teach technology with honesty and precision."
         image="/images/pc-repair-workbench.jpg"
         imageAlt="Zollani Tech technicians working together in the Nairobi workshop"
-        action={{ label: "Chat with HR on WhatsApp", href: "https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%27m%20interested%20in%20joining%20your%20team." }}
-        secondaryAction={{ label: "See open roles below", href: "#openings" }}
+        action={{ label: "See Open Roles & Internships", href: "#openings" }}
+        secondaryAction={{ label: "Meet Our Team", href: "/about" }}
       />
 
       {/* WHY WORK WITH US */}

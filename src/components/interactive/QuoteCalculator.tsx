@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import {
   Laptop,
   Smartphone,
@@ -14,6 +15,7 @@ import {
   MessageCircle,
   HelpCircle,
   Calculator,
+  Truck,
 } from "lucide-react";
 
 interface IssueOption {
@@ -413,13 +415,21 @@ export const QuoteCalculator: React.FC = () => {
             </div>
           </div>
 
-          {/* Column 2: Immediate WhatsApp Action */}
+          {/* Column 2: On-Site Booking & Direct Contact */}
           <div className="flex flex-col gap-2.5">
+            <Link
+              href="/track?tab=pickup"
+              className="w-full flex items-center justify-center gap-2 bg-coral-brand hover:bg-coral-hover text-white py-3.5 px-4 rounded-xl font-bold text-sm shadow-md transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-center"
+            >
+              <Truck className="w-4 h-4" />
+              <span>Book Nairobi Rider Pickup</span>
+            </Link>
+
             <a
               href={`https://wa.me/254768551914?text=${waText}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2.5 bg-coral-brand hover:bg-coral-hover text-white py-3.5 px-4 rounded-xl font-bold text-sm shadow-md transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-center"
+              className="w-full flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white py-2.5 px-4 rounded-xl font-bold text-xs shadow-xs transition-colors text-center"
             >
               <MessageCircle className="w-4 h-4 fill-white" />
               <span>Lock In Quote on WhatsApp</span>

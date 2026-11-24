@@ -86,14 +86,14 @@ export default function ContactPage() {
         description="Drop off your laptop or computer, request an on-site IT visit, or get an instant quote for electronics repair, data recovery, or technical support from a real technician."
         image="/images/pc-repair-workbench.jpg"
         imageAlt="Technician working in the Zollani Tech workshop"
-        action={{ label: "Chat on WhatsApp", href: "https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20need%20help." }}
-        secondaryAction={{ label: "Call +254 768 551914", href: "tel:+254768551914" }}
+        action={{ label: "Send Repair or IT Inquiry", href: "#contact-form" }}
+        secondaryAction={{ label: "Book Rider Pickup", href: "/track?tab=pickup" }}
       />
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 sm:py-20 lg:px-8">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left Column: Form */}
-          <div className="lg:col-span-7">
+          <div id="contact-form" className="lg:col-span-7">
             <ContactForm source="contact-page" />
           </div>
 
