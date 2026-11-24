@@ -38,7 +38,6 @@ export const Logo: React.FC<LogoProps> = ({
           width={badge}
           height={badge}
           className="object-contain p-1"
-          priority
         />
       </div>
 

@@ -180,7 +180,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Script id="linkedin-insight-tag" strategy="afterInteractive">
+        <Script id="linkedin-insight-tag" strategy="lazyOnload">
           {`_linkedin_partner_id = "11091649";
 window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
 window._linkedin_data_partner_ids.push(_linkedin_partner_id);

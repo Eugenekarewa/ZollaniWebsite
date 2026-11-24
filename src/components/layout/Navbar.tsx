@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/ui/Logo";
@@ -23,8 +24,12 @@ import {
   Briefcase,
   PackageSearch,
 } from "lucide-react";
-import { RepairTrackerModal } from "@/components/interactive/RepairTrackerModal";
 import { CartButton } from "@/components/shop/CartButton";
+
+const RepairTrackerModal = dynamic(
+  () => import("@/components/interactive/RepairTrackerModal").then((mod) => mod.RepairTrackerModal),
+  { ssr: false },
+);
 
 export const Navbar = () => {
   const pathname = usePathname();
@@ -36,7 +41,7 @@ export const Navbar = () => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -249,10 +254,12 @@ export const Navbar = () => {
       </nav>
 
       {/* Repair Tracker Modal */}
-      <RepairTrackerModal
-        isOpen={isTrackerOpen}
-        onClose={() => setIsTrackerOpen(false)}
-      />
+      {isTrackerOpen ? (
+        <RepairTrackerModal
+          isOpen={isTrackerOpen}
+          onClose={() => setIsTrackerOpen(false)}
+        />
+      ) : null}
     </header>
   );
 };

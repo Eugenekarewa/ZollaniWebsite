@@ -187,7 +187,11 @@ select {
 
 .animate-gentle-drift {
   animation: gentle-drift 18s ease-in-out infinite;
-  will-change: transform;
+}
+
+main > section + section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
 }
 
 .animate-rise-in {

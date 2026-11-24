@@ -6,6 +6,7 @@ import {
   PRODUCT_CATEGORIES,
   type ProductItem,
 } from "@/data/productsData";
+import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { PageHero } from "@/components/ui/PageHero";
 import { ProductInquiryForm } from "@/components/shop/ProductInquiryForm";
 import { useCart } from "@/context/CartContext";
@@ -88,13 +89,12 @@ function ProductCardImage({
 
   return (
     <div className="relative h-full w-full">
-      <img
+      <OptimizedImage
         src={imageSrc}
         alt={alt}
-        loading="lazy"
-        decoding="async"
+        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         onError={() => setImageSrc(FALLBACK_PRODUCT_IMAGE)}
-        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        className="transition-transform duration-500 group-hover:scale-105"
       />
       {gallery.length > 1 ? (
         <div className="absolute inset-x-3 bottom-3 flex gap-2 overflow-x-auto rounded-xl bg-black/40 p-1.5 backdrop-blur-xs">
@@ -106,18 +106,12 @@ function ProductCardImage({
                 setSelected(image);
                 setImageSrc(image);
               }}
-              className={`h-9 w-9 shrink-0 overflow-hidden rounded-lg border-2 transition-all ${
+              className={`relative h-9 w-9 shrink-0 overflow-hidden rounded-lg border-2 transition-all ${
                 selected === image ? "border-coral-brand scale-105" : "border-white/60 opacity-80"
               }`}
               aria-label={`View photo ${index + 1}`}
             >
-              <img
-                src={image}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                className="h-full w-full object-cover"
-              />
+              <OptimizedImage src={image} alt="" sizes="36px" />
             </button>
           ))}
         </div>

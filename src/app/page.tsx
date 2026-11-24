@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -23,8 +24,13 @@ import {
   Wrench,
   Zap,
 } from "lucide-react";
-import { QuoteCalculator } from "@/components/interactive/QuoteCalculator";
-import { TestimonialSubmitModal } from "@/components/interactive/TestimonialSubmitModal";
+const QuoteCalculator = dynamic(() =>
+  import("@/components/interactive/QuoteCalculator").then((mod) => mod.QuoteCalculator),
+);
+
+const TestimonialSubmitModal = dynamic(() =>
+  import("@/components/interactive/TestimonialSubmitModal").then((mod) => mod.TestimonialSubmitModal),
+);
 import { TESTIMONIALS } from "@/data/testimonialsData";
 import { PRODUCTS } from "@/data/productsData";
 import { getPublishedPartners } from "@/app/admin/about/partner-actions";
@@ -137,19 +143,10 @@ const pillars = [
 export default async function HomePage() {
   const featuredProducts = PRODUCTS.slice(0, 3);
 
-  let partners: Awaited<ReturnType<typeof getPublishedPartners>> = [];
-  try {
-    partners = await getPublishedPartners();
-  } catch {
-    partners = [];
-  }
-
-  let approvedTestimonials: Awaited<ReturnType<typeof getPublishedTestimonials>> = [];
-  try {
-    approvedTestimonials = await getPublishedTestimonials();
-  } catch {
-    approvedTestimonials = [];
-  }
+  const [partners, approvedTestimonials] = await Promise.all([
+    getPublishedPartners().catch(() => []),
+    getPublishedTestimonials().catch(() => []),
+  ]);
 
   // Admin-approved real customer testimonials are shown first, topped up with
   // curated examples so the section never looks empty while reviews come in.
@@ -254,7 +251,7 @@ export default async function HomePage() {
             fill
             priority
             sizes="100vw"
-            className="animate-gentle-drift object-cover object-center opacity-35"
+            className="object-cover object-center opacity-35"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-teal-deep/90 via-teal-deep/75 to-teal-deep/95" />
         </div>
