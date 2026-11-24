@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
+import { ProductPhoto } from "@/components/shop/ProductPhoto";
 import { X, Plus, Minus, Trash2, ShoppingCart, ArrowRight } from "lucide-react";
 
 export function CartDrawer() {
@@ -87,10 +88,10 @@ export function CartDrawer() {
                 <li key={item.id} className="flex gap-4 rounded-2xl border border-cream-border bg-cream-surface p-4">
                   {/* Thumbnail */}
                   <div className="h-20 w-20 shrink-0 overflow-hidden rounded-xl border border-cream-border bg-white">
-                    <img
-                      src={item.image || "/images/pc-repair-workbench.jpg"}
+                    <ProductPhoto
+                      src={item.image}
                       alt={item.name}
-                      className="h-full w-full object-cover"
+                      compact
                     />
                   </div>
                   {/* Details */}

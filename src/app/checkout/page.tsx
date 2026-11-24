@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/context/CartContext";
+import { ProductPhoto } from "@/components/shop/ProductPhoto";
 import type { ShopOrder } from "@/lib/commerce-store";
 import {
   ShoppingCart,
@@ -633,10 +634,10 @@ export default function CheckoutPage() {
                 {items.map((item) => (
                   <li key={item.id} className="flex items-center gap-3">
                     <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-cream-border bg-cream-surface">
-                      <img
-                        src={item.image || "/images/pc-repair-workbench.jpg"}
+                      <ProductPhoto
+                        src={item.image}
                         alt={item.name}
-                        className="h-full w-full object-cover"
+                        compact
                       />
                     </div>
                     <div className="flex-1 min-w-0">

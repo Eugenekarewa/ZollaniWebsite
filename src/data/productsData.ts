@@ -26,7 +26,7 @@ export interface ProductItem {
   inStock?: boolean;
   specs: string[];
   popular?: boolean;
-  image: string;
+  image?: string;
   images?: string[];
   description: string;
 }
@@ -69,7 +69,6 @@ export const PRODUCTS: ProductItem[] = [
       "Backlit Keyboard + Thunderbolt 3 / USB-C",
     ],
     popular: true,
-    image: "/images/products/thinkpad-t480.jpg",
     description:
       "Legendary ThinkPad reliability. Thoroughly inspected, thermal repasted, and running licensed Windows 11 Pro with genuine charger.",
   },
@@ -91,7 +90,6 @@ export const PRODUCTS: ProductItem[] = [
       "Windows 11 Pro Licensed",
     ],
     popular: true,
-    image: "/images/products/dell-latitude.jpg",
     description:
       "Premium executive ultrabook built for heavy productivity, spreadsheets, and seamless video conferencing. Pristine Grade A condition.",
   },
@@ -113,7 +111,6 @@ export const PRODUCTS: ProductItem[] = [
       "Full Aluminum Silver Chassis",
     ],
     popular: true,
-    image: "/images/products/hp-elitebook.jpg",
     description:
       "Sleek all-aluminum business ultrabook with stellar battery health, crystal-clear audio, and ultra-fast boot time.",
   },
@@ -133,8 +130,6 @@ export const PRODUCTS: ProductItem[] = [
       "Backlit Keyboard + Fingerprint Reader",
       "360° Hinge Tablet Mode",
     ],
-    image: "/images/products/hp-envy-x360.jpg",
-    images: ["/images/products/hp-envy-x360.jpg", "/images/products/hp-envy-x360-keyboard.jpg"],
     description:
       "Versatile 2-in-1 touchscreen convertible laptop ideal for creatives, executives, and university presentations.",
   },
@@ -154,7 +149,6 @@ export const PRODUCTS: ProductItem[] = [
       "13.3\" True Tone Retina Display",
       "Thunderbolt 3 USB-C Ports + Original MagSafe/USB-C Charger",
     ],
-    image: "/images/products/macbook-pro.jpg",
     description:
       "Clean Ex-UK MacBook Pro checked in our Apple logic-board lab with healthy battery cycle count and fresh macOS installation.",
   },
@@ -178,7 +172,6 @@ export const PRODUCTS: ProductItem[] = [
       "Tempered Glass Case + 4x ARGB PWM Fans",
     ],
     popular: true,
-    image: "/images/products/gaming-pc-tower.jpg",
     description:
       "Built and bench-tested in our Nairobi workshop for 1440p gaming, Premiere Pro video editing, and Blender 3D rendering.",
   },
@@ -199,7 +192,6 @@ export const PRODUCTS: ProductItem[] = [
       "Gold Rated High-Efficiency Power Supply",
       "Quiet Noise-Dampened Chassis",
     ],
-    image: "/images/products/laptop-desk.jpg",
     description:
       "Optimized for ArchiCAD, AutoCAD, Revit, and structural analysis without thermal throttling.",
   },
@@ -219,7 +211,6 @@ export const PRODUCTS: ProductItem[] = [
       "Dual DisplayPort + HDMI + USB-C",
       "Ultra-Compact Desk Footprint + VESA Mount Ready",
     ],
-    image: "/images/products/lenovo-thinkpad.jpg",
     description:
       "Space-saving desktop powerhouse ideal for POS counters, office workstations, home media centers, and reception desks.",
   },
@@ -242,7 +233,6 @@ export const PRODUCTS: ProductItem[] = [
       "Free Internal Deep Dust Cleaning & Thermal Repaste",
     ],
     popular: true,
-    image: "/images/products/ssd-nvme.jpg",
     description:
       "Transform your slow, 5-minute boot laptop into a 15-second lightning machine without replacing your computer.",
   },
@@ -261,7 +251,6 @@ export const PRODUCTS: ProductItem[] = [
       "Compatible with Laptops, Desktops & PS5",
       "5-Year Endurance Rating",
     ],
-    image: "/images/products/ssd-upgrade-kit.jpg",
     description:
       "High-speed NVMe solid-state drive for ultra-fast OS booting, 4K video scrubbing, and PlayStation 5 storage expansion.",
   },
@@ -280,7 +269,6 @@ export const PRODUCTS: ProductItem[] = [
       "Plug-and-Play for Windows, macOS & Linux",
       "Shock-Resistant Slim Aluminum Enclosure",
     ],
-    image: "/images/data-recovery-hdd.jpg",
     description:
       "Reliable portable drive for automated Time Machine / Windows backups, photo archives, and office file transport.",
   },
@@ -299,7 +287,6 @@ export const PRODUCTS: ProductItem[] = [
       "Available in SO-DIMM (Laptop) & UDIMM (Desktop)",
       "Free Compatibility Check at Zollani Lab",
     ],
-    image: "/images/hardware-motherboard.jpg",
     description:
       "Eliminate browser tab lag, Docker slowdowns, and video rendering stutters with genuine Micron/Crucial memory.",
   },
@@ -321,7 +308,6 @@ export const PRODUCTS: ProductItem[] = [
       "USB-C Rechargeable (Up to 60 Days Battery)",
     ],
     popular: true,
-    image: "/images/products/laptop-desk.jpg",
     description:
       "Ergonomic dual-mode wireless mouse that switches seamlessly between your laptop, tablet, and office desktop.",
   },
@@ -340,7 +326,6 @@ export const PRODUCTS: ProductItem[] = [
       "Braided Drag-Free Paracord Cable",
       "Customizable RGB Lighting Zones",
     ],
-    image: "/images/gaming-pc-build.jpg",
     description:
       "Precision gaming mouse engineered for fast FPS tracking, low click latency, and marathon comfort.",
   },
@@ -359,7 +344,6 @@ export const PRODUCTS: ProductItem[] = [
       "Thumb Forward/Back Navigation Buttons",
       "2400 DPI Optical Tracking",
     ],
-    image: "/images/products/laptop-desk.jpg",
     description:
       "Designed for developers, accountants, and designers working 8+ hours a day to keep wrist posture natural.",
   },
@@ -381,7 +365,6 @@ export const PRODUCTS: ProductItem[] = [
       "White / RGB Backlit Legends",
     ],
     popular: true,
-    image: "/images/products/hp-envy-x360-keyboard.jpg",
     description:
       "Built for coders, writers, and gamers who want satisfying mechanical feedback and multi-device wireless pairing.",
   },
@@ -400,7 +383,6 @@ export const PRODUCTS: ProductItem[] = [
       "Single Nano USB Receiver for Both Devices",
       "Up to 18-Month Battery Endurance",
     ],
-    image: "/images/business-support-desk.jpg",
     description:
       "Clutter-free desk bundle ideal for office workstations, accountants, and home study setups.",
   },
@@ -422,7 +404,6 @@ export const PRODUCTS: ProductItem[] = [
       "Includes 1.5m 100W Braided USB-C Cable",
     ],
     popular: true,
-    image: "/images/pc-repair-workbench.jpg",
     description:
       "Compact Gallium Nitride fast charger replacing bulky laptop bricks—powers your laptop and smartphone simultaneously.",
   },
@@ -441,7 +422,6 @@ export const PRODUCTS: ProductItem[] = [
       "UK 3-Pin Fused Power Cord Included",
       "Bench-Tested for Zero Ripple & Safe Charging",
     ],
-    image: "/images/pc-repair-workbench.jpg",
     description:
       "Protect your motherboard charging IC from cheap counterfeit adapters with a genuine voltage-stable laptop charger.",
   },
@@ -461,7 +441,6 @@ export const PRODUCTS: ProductItem[] = [
       "3.5mm Audio Jack in Brushed Aluminum Shell",
     ],
     popular: true,
-    image: "/images/products/laptop-desk.jpg",
     description:
       "Turn one USB-C port on your MacBook or ultrabook into a complete multi-monitor office workstation.",
   },
@@ -479,7 +458,6 @@ export const PRODUCTS: ProductItem[] = [
       "Gold-Plated Connectors + Nylon Braided Jacket",
       "Ideal for PS5, Xbox Series X, Gaming Monitors & Projectors",
     ],
-    image: "/images/network-rack-wiring.jpg",
     description:
       "Zero-flicker display cable engineered for 120Hz console gaming, boardroom projectors, and external monitors.",
   },
@@ -500,7 +478,6 @@ export const PRODUCTS: ProductItem[] = [
       "HDMI, DisplayPort & Height-Adjustable Ergonomic Stand",
       "Zero Dead Pixels Bench-Verified",
     ],
-    image: "/images/products/laptop-desk.jpg",
     description:
       "Crisp color-accurate IPS monitor with height/tilt/pivot adjustment for comfortable dual-screen office productivity.",
   },
@@ -519,7 +496,6 @@ export const PRODUCTS: ProductItem[] = [
       "99% sRGB Color Coverage + FreeSync / G-Sync",
       "Dual HDMI 2.0 + DisplayPort 1.4",
     ],
-    image: "/images/gaming-pc-build.jpg",
     description:
       "Ultra-smooth high-refresh display built for competitive gaming, color grading, and razor-sharp multi-window coding.",
   },
@@ -540,7 +516,6 @@ export const PRODUCTS: ProductItem[] = [
       "4x High-Gain Beamforming Antennas",
       "Compatible with Safaricom, Zuku & Jamii Fiber",
     ],
-    image: "/images/network-rack-wiring.jpg",
     description:
       "Eliminate Zoom call drops and dead zones across apartments and small offices with next-gen WiFi 6 coverage.",
   },
@@ -558,7 +533,6 @@ export const PRODUCTS: ProductItem[] = [
       "Factory-Crimped Snagless RJ45 Boots",
       "Fluke-Tested Signal Integrity",
     ],
-    image: "/images/network-rack-wiring.jpg",
     description:
       "Rock-solid wired connection for gaming consoles, Smart TVs, POS terminals, and office desks.",
   },
@@ -580,7 +554,6 @@ export const PRODUCTS: ProductItem[] = [
       "3x UK 3-Pin Output Sockets",
     ],
     popular: true,
-    image: "/images/hero-datacenter.jpg",
     description:
       "Prevent motherboard fryouts and unsaved work loss during sudden power blackouts and brownouts.",
   },
@@ -599,7 +572,6 @@ export const PRODUCTS: ProductItem[] = [
       "2x USB-A + 1x USB-C Charging Ports",
       "2-Meter Heavy-Gauge Copper Cable",
     ],
-    image: "/images/pc-repair-workbench.jpg",
     description:
       "Essential desk surge protection for laptops, monitors, printers, and home entertainment electronics.",
   },
@@ -620,7 +592,6 @@ export const PRODUCTS: ProductItem[] = [
       "Built-In Physical Privacy Cover + Tripod Thread",
       "Plug-and-Play USB for Zoom, Teams & Meet",
     ],
-    image: "/images/business-support-desk.jpg",
     description:
       "Look sharp on client calls, remote interviews, and online classes with automatic low-light correction.",
   },
@@ -639,7 +610,6 @@ export const PRODUCTS: ProductItem[] = [
       "Up to 30 Hours Talk Time",
       "Memory Foam All-Day Ear Cushions",
     ],
-    image: "/images/business-support-desk.jpg",
     description:
       "Crystal-clear voice pickup for call centers, remote engineers, and busy open-plan Nairobi offices.",
   },
@@ -660,7 +630,6 @@ export const PRODUCTS: ProductItem[] = [
       "Open-Back Airflow Improves Cooling by up to 8°C",
       "Anti-Slip Silicone Pads + Travel Pouch",
     ],
-    image: "/images/products/laptop-desk.jpg",
     description:
       "Raise your laptop screen to eye level to eliminate neck strain while improving bottom intake airflow.",
   },
@@ -679,7 +648,6 @@ export const PRODUCTS: ProductItem[] = [
       "Adjustable Height Stands + Fan Speed Dial",
       "Fits up to 17.3\" Gaming & Workstation Laptops",
     ],
-    image: "/images/gaming-pc-build.jpg",
     description:
       "Keep CPU and GPU temperatures low during long gaming sessions, rendering, and hot afternoons.",
   },
@@ -698,7 +666,6 @@ export const PRODUCTS: ProductItem[] = [
       "External USB Charging Pass-Through Port",
       "Luggage Strap & Breathable Mesh Back",
     ],
-    image: "/images/classroom-workshop.jpg",
     description:
       "Commuter-ready laptop backpack protecting your machine from Nairobi rain, bumps, and crowded transit.",
   },
@@ -719,7 +686,6 @@ export const PRODUCTS: ProductItem[] = [
       "Two-Way Audio + MicroSD / Cloud Recording",
       "Instant Smartphone App View Anywhere",
     ],
-    image: "/images/cybersecurity-training-room.jpg",
     description:
       "Monitor your shop, reception, server room, or home remotely from your phone with instant motion notifications.",
   },

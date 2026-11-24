@@ -11,23 +11,32 @@ import {
   getSiteUrl,
 } from "@/lib/seo";
 
-export const metadata: Metadata = createPageMetadata({
-  title: "Laptop Repair & Electronics Diagnostics Nairobi",
-  description:
-    "Same-day screen replacement, motherboard micro-soldering, PS5 HDMI repairs, data recovery, and IT support in Nairobi with a 6-month warranty.",
-  path: "/services",
-  ogImage: "/images/hardware-motherboard.jpg",
-  keywords: [
-    "computer repair Nairobi",
-    "laptop repair Nairobi",
-    "screen replacement Nairobi",
-    "motherboard micro-soldering Kenya",
-    "data recovery Nairobi",
-    "electronics repair Nairobi",
-    "PS5 HDMI repair Nairobi",
-    "MacBook repair Kenya",
-  ],
-});
+export const metadata: Metadata = {
+  ...createPageMetadata({
+    title: "Electronics Repair & IT Support Services in Nairobi | Zollani Tech",
+    description:
+      "Laptop and computer repair, MacBook services, PS5 and Xbox HDMI repair, data recovery, and business IT support in Nairobi. Ask us about phone and tablet repair availability.",
+    path: "/services",
+    ogImage: "/images/hardware-motherboard.jpg",
+    keywords: [
+      "electronics repair Nairobi",
+      "IT support services Nairobi",
+      "computer repair Nairobi",
+      "laptop repair Nairobi",
+      "MacBook repair Nairobi",
+      "phone repair Nairobi",
+      "tablet repair Nairobi",
+      "gaming console repair Nairobi",
+      "PS5 HDMI port repair Nairobi",
+      "screen replacement Nairobi",
+      "data recovery Nairobi",
+      "business IT support Nairobi",
+    ],
+  }),
+  title: {
+    absolute: "Electronics Repair & IT Support Services in Nairobi | Zollani Tech",
+  },
+};
 
 const SERVICES_FAQS: FaqItem[] = [
   {
@@ -38,7 +47,7 @@ const SERVICES_FAQS: FaqItem[] = [
   {
     question: "What happens if my laptop or motherboard cannot be repaired?",
     answer:
-      "We follow a strict No Fix, No Fee policy for standard diagnostics. We evaluate the board first and give you a firm quote before any repair begins—if we cannot restore it, you do not pay the repair fee.",
+      "For standard diagnostics, our No Fix, No Fee policy means you do not pay a repair fee if we cannot fix the device. Diagnostic eligibility and any applicable charges are confirmed before work begins.",
   },
   {
     question: "Can you recover data from a clicking or unallocated external hard drive?",
@@ -46,9 +55,19 @@ const SERVICES_FAQS: FaqItem[] = [
       "Yes. Our data recovery bench handles dropped or clicking hard drives, RAW/unallocated partitions, accidentally formatted flash disks, and failing SSDs in 3 to 72 hours depending on drive health.",
   },
   {
-    question: "Do you repair gaming consoles, Smart TVs, and charging ports?",
+    question: "Do you repair gaming consoles and charging ports?",
     answer:
-      "Yes. Beyond laptops and desktops, we perform micro-soldering for PlayStation 5 and Xbox HDMI ports (2–4 hours), USB-C/Thunderbolt charging ports, and Smart TV backlight or power board repairs.",
+      "Yes. We perform micro-soldering for PlayStation 5 and Xbox HDMI ports, typically in 2–4 hours, and repair USB-C/Thunderbolt charging ports. Contact us with your model and symptoms for a quote.",
+  },
+  {
+    question: "Do you repair smartphones and tablets?",
+    answer:
+      "Dedicated smartphone and tablet repairs are not currently listed in our service catalog. Contact us with your device model and issue to confirm whether we can help.",
+  },
+  {
+    question: "Which repairs include a written warranty?",
+    answer:
+      "Eligible hardware repairs can include up to a 6-month written warranty. Coverage depends on the repair and is confirmed in your quote and warranty documentation.",
   },
 ];
 
@@ -64,7 +83,7 @@ export default function ServicesPage() {
       ]),
       {
         "@type": "Service",
-        name: "Computer Repair, Motherboard Micro-Soldering & Electronics Lab",
+        name: "Electronics Repair & IT Support Services in Nairobi",
         provider: getOrganizationRef(),
         areaServed: { "@type": "City", name: "Nairobi" },
         url: `${siteUrl}/services`,
@@ -97,7 +116,7 @@ export default function ServicesPage() {
       <FaqSection
         kicker="Repair & Lab FAQs"
         title="Questions About Our Repair Lab"
-        subtitle="Turnaround times, component-level motherboard repairs, data recovery, and warranty terms."
+        subtitle="Turnaround times, console HDMI repair, data recovery, phone repair availability, and warranty terms."
         faqs={SERVICES_FAQS}
         surface="white"
       />

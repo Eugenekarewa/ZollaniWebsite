@@ -237,13 +237,13 @@ export async function createWhatsAppProductDraft(params: {
 }): Promise<ParsedWhatsAppProduct> {
   const parsed = parseWhatsAppProductMessage(params.rawMessage);
   const id = `draft_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
-  const finalImage = params.imageUrl || "/images/pc-repair-workbench.jpg";
+  const finalImage = params.imageUrl || "";
 
   const newDraft: ParsedWhatsAppProduct = {
     ...parsed,
     id,
     imageUrl: finalImage,
-    galleryImages: params.galleryImages || [finalImage],
+    galleryImages: params.galleryImages || (finalImage ? [finalImage] : []),
     senderPhone: params.senderPhone || "WhatsApp Business Number",
     status: "draft",
     isActive: false, // Hidden until admin explicitly reviews and publishes!

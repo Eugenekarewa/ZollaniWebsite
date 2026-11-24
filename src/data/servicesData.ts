@@ -163,6 +163,16 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         typicalIssues: ["Loud roaring fan", "Shuts off after 20 minutes", "Sluggish system due to throttling"],
         popular: true,
       },
+      {
+        id: "console-hdmi",
+        name: "PS5 & Xbox HDMI Port Repair",
+        category: "hardware",
+        shortDesc: "Board-level HDMI port diagnostics and micro-soldering for PlayStation 5 and Xbox consoles.",
+        fullDesc: "Repair loose, bent, or damaged HDMI ports that cause no signal, flickering video, or an intermittent display. We inspect the console and provide a quote before repair.",
+        turnaround: "2 - 4 hours",
+        typicalIssues: ["No signal on TV", "Bent or broken HDMI port", "Intermittent display connection"],
+        popular: true,
+      },
     ],
   },
   {

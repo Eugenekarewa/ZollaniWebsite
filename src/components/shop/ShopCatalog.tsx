@@ -6,10 +6,11 @@ import {
   PRODUCT_CATEGORIES,
   type ProductItem,
 } from "@/data/productsData";
-import { OptimizedImage } from "@/components/ui/OptimizedImage";
 import { PageHero } from "@/components/ui/PageHero";
 import { ProductInquiryForm } from "@/components/shop/ProductInquiryForm";
+import { ProductPhoto } from "@/components/shop/ProductPhoto";
 import { useCart } from "@/context/CartContext";
+import { getProductImageUrl } from "@/lib/product-images";
 import {
   ShoppingBag,
   ShieldCheck,
@@ -28,8 +29,6 @@ import {
   PackageSearch,
   Phone,
 } from "lucide-react";
-
-const FALLBACK_PRODUCT_IMAGE = "/images/pc-repair-workbench.jpg";
 
 function AddToCartButton({
   product,
@@ -83,18 +82,21 @@ function ProductCardImage({
   images?: string[];
   alt: string;
 }) {
-  const gallery = Array.from(new Set([src, ...images].filter(Boolean))) as string[];
-  const [selected, setSelected] = useState(gallery[0] || FALLBACK_PRODUCT_IMAGE);
-  const [imageSrc, setImageSrc] = useState(selected);
+  const gallery = Array.from(
+    new Set(
+      [src, ...images]
+        .map(getProductImageUrl)
+        .filter((image): image is string => Boolean(image))
+    )
+  );
+  const [selected, setSelected] = useState(gallery[0] ?? "");
 
   return (
     <div className="relative h-full w-full">
-      <OptimizedImage
-        src={imageSrc}
+      <ProductPhoto
+        src={selected}
         alt={alt}
         sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        onError={() => setImageSrc(FALLBACK_PRODUCT_IMAGE)}
-        className="transition-transform duration-500 group-hover:scale-105"
       />
       {gallery.length > 1 ? (
         <div className="absolute inset-x-3 bottom-3 flex gap-2 overflow-x-auto rounded-xl bg-black/40 p-1.5 backdrop-blur-xs">
@@ -102,16 +104,13 @@ function ProductCardImage({
             <button
               key={`${image}-${index}`}
               type="button"
-              onClick={() => {
-                setSelected(image);
-                setImageSrc(image);
-              }}
+              onClick={() => setSelected(image)}
               className={`relative h-9 w-9 shrink-0 overflow-hidden rounded-lg border-2 transition-all ${
                 selected === image ? "border-coral-brand scale-105" : "border-white/60 opacity-80"
               }`}
               aria-label={`View photo ${index + 1}`}
             >
-              <OptimizedImage src={image} alt="" sizes="36px" />
+              <ProductPhoto src={image} alt="" sizes="36px" compact />
             </button>
           ))}
         </div>
@@ -585,10 +584,9 @@ export default function ShopCatalog({ products = [] }: { products?: ProductItem[
 
             <div className="grid gap-6 sm:grid-cols-[240px_1fr]">
               <div className="overflow-hidden rounded-2xl border border-cream-border bg-cream-surface h-56 sm:h-full">
-                <img
-                  src={quickViewProduct.image || FALLBACK_PRODUCT_IMAGE}
+                <ProductPhoto
+                  src={quickViewProduct.image}
                   alt={quickViewProduct.name}
-                  className="h-full w-full object-cover"
                 />
               </div>
 

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import {
   MessageSquare,
@@ -27,6 +26,7 @@ import {
   X,
 } from "lucide-react";
 import type { ParsedWhatsAppProduct } from "@/lib/whatsapp-parser";
+import { ProductPhoto } from "@/components/shop/ProductPhoto";
 import {
   publishDraftAction,
   deleteDraftAction,
@@ -56,7 +56,7 @@ export default function AdminShopClient({
   );
   const [simSender, setSimSender] = useState("+254768551914");
   const [simImageFile, setSimImageFile] = useState<File | null>(null);
-  const [simImageUrl, setSimImageUrl] = useState("/images/pc-repair-workbench.jpg");
+  const [simImageUrl, setSimImageUrl] = useState("");
   const [simLoading, setSimLoading] = useState(false);
   const [simAlert, setSimAlert] = useState<{ type: "success" | "error"; text: string } | null>(null);
 
@@ -150,7 +150,7 @@ export default function AdminShopClient({
       setSimMessage(
         "Crucial 1TB NVMe M.2 SSD + 16GB DDR4 RAM Upgrade Bundle\nKES 14,000\nUpgrade kit for laptops and desktops. 3500MB/s read speed.\nCondition: Hardware Bundle\n1 Year Warranty\nIncludes free system clone, data migration, and internal thermal dust cleanout."
       );
-      setSimImageUrl("/images/pc-repair-workbench.jpg");
+      setSimImageUrl("");
     }
   };
 
@@ -443,13 +443,9 @@ export default function AdminShopClient({
                     <div className="grid gap-8 lg:grid-cols-[260px_1fr_auto] lg:items-start">
                       {/* Photo preview */}
                       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-cream-bg border border-cream-border lg:w-[260px]">
-                        <img
-                          src={draft.imageUrl || "/images/pc-repair-workbench.jpg"}
+                        <ProductPhoto
+                          src={draft.imageUrl}
                           alt={draft.name}
-                          className="h-full w-full object-cover"
-                          onError={(e) => {
-                            (e.currentTarget as HTMLImageElement).src = "/images/pc-repair-workbench.jpg";
-                          }}
                         />
                         <div className="absolute top-2 left-2 rounded-lg bg-black/75 px-2.5 py-1 text-[11px] font-bold text-amber-300 backdrop-blur-xs">
                           Pending Review
@@ -674,7 +670,7 @@ export default function AdminShopClient({
                       type="text"
                       value={manualForm.imageUrl}
                       onChange={(e) => handleManualChange("imageUrl", e.target.value)}
-                      placeholder="/images/pc-repair-workbench.jpg"
+                      placeholder="Optional image URL"
                       className="rounded-xl border border-cream-border px-3 py-2 text-xs focus:outline-teal-brand"
                     />
                   </div>
@@ -747,14 +743,13 @@ export default function AdminShopClient({
                     className="flex flex-col justify-between gap-4 rounded-2xl border border-cream-border bg-white p-5 shadow-xs md:flex-row md:items-center"
                   >
                     <div className="flex items-center gap-4">
-                      <img
-                        src={prod.imageUrl || "/images/pc-repair-workbench.jpg"}
+                      <div className="h-16 w-20 shrink-0 overflow-hidden rounded-xl border border-cream-border bg-cream-surface">
+                      <ProductPhoto
+                        src={prod.imageUrl}
                         alt={prod.name}
-                        className="h-16 w-20 rounded-xl object-cover border border-cream-border"
-                        onError={(e) => {
-                          (e.currentTarget as HTMLImageElement).src = "/images/pc-repair-workbench.jpg";
-                        }}
+                        compact
                       />
+                      </div>
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="rounded bg-teal-subtle px-2 py-0.5 text-[10px] font-bold text-teal-brand uppercase">
@@ -897,7 +892,7 @@ export default function AdminShopClient({
                     type="text"
                     value={simImageUrl}
                     onChange={(e) => setSimImageUrl(e.target.value)}
-                    placeholder="Image URL or fallback"
+                    placeholder="Optional image URL"
                     className="rounded-xl border border-cream-border bg-cream-surface px-3 py-2 text-xs"
                   />
                 </label>

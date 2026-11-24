@@ -299,7 +299,7 @@ export async function getAuthoritativeCatalog(): Promise<ProductItem[]> {
           condition: (item.condition as ProductItem["condition"]) || "Ex-UK Grade A",
           warranty: item.warranty || "6 Months Warranty",
           specs: item.specs || [],
-          image: item.imageUrl || "/images/pc-repair-workbench.jpg",
+          image: item.imageUrl || "",
           images: item.galleryImages,
           description: item.description,
           inStock: true,
@@ -329,7 +329,7 @@ export async function getAuthoritativeCatalog(): Promise<ProductItem[]> {
           condition: (row.condition as ProductItem["condition"]) || "Ex-UK Grade A",
           warranty: row.warranty || "6 Months Warranty",
           specs: [],
-          image: row.imageUrl || "/images/pc-repair-workbench.jpg",
+          image: row.imageUrl || "",
           description: row.description,
           inStock: true,
         });

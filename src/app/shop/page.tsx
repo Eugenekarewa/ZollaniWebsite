@@ -2,6 +2,7 @@ import ShopCatalog from "@/components/shop/ShopCatalog";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { FaqSection, type FaqItem } from "@/components/seo/FaqSection";
 import { getAuthoritativeCatalog } from "@/lib/commerce-store";
+import { getProductImageUrl } from "@/lib/product-images";
 import {
   createPageMetadata,
   getBreadcrumbSchema,
@@ -16,7 +17,7 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Shop Ex-UK Grade A laptops, custom RTX gaming PCs, NVMe SSDs, RAM, mice, keyboards, USB-C hubs, monitors, routers, UPS backups, and webcams in Nairobi with instant website checkout and printable receipts.",
   path: "/shop",
-  ogImage: "/images/products/thinkpad-t480.jpg",
+  ogImage: "/images/hero-datacenter.jpg",
   keywords: [
     "computer accessories Nairobi",
     "laptop shop Kenya",
@@ -68,30 +69,37 @@ export default async function ShopPage() {
       {
         "@type": "ItemList",
         name: "Available Computers and Accessories in Nairobi",
-        itemListElement: catalogProducts.map((product, index) => ({
-          "@type": "ListItem",
-          position: index + 1,
-          item: {
-            "@type": "Product",
-            name: product.name,
-            description: product.description,
-            category: product.category,
-            image: product.image.startsWith("http")
-              ? product.image
-              : `${siteUrl}${product.image}`,
-            itemCondition:
-              product.condition === "Brand New Custom Build" || product.condition === "Brand New"
-                ? "https://schema.org/NewCondition"
-                : "https://schema.org/RefurbishedCondition",
-            offers: {
-              "@type": "Offer",
-              priceCurrency: "KES",
-              price: product.priceKes,
-              availability: "https://schema.org/InStock",
-              seller: getOrganizationRef(),
+        itemListElement: catalogProducts.map((product, index) => {
+          const image = getProductImageUrl(product.image);
+          return {
+            "@type": "ListItem",
+            position: index + 1,
+            item: {
+              "@type": "Product",
+              name: product.name,
+              description: product.description,
+              category: product.category,
+              ...(image
+                ? {
+                    image: image.startsWith("http")
+                      ? image
+                      : `${siteUrl}${image}`,
+                  }
+                : {}),
+              itemCondition:
+                product.condition === "Brand New Custom Build" || product.condition === "Brand New"
+                  ? "https://schema.org/NewCondition"
+                  : "https://schema.org/RefurbishedCondition",
+              offers: {
+                "@type": "Offer",
+                priceCurrency: "KES",
+                price: product.priceKes,
+                availability: "https://schema.org/InStock",
+                seller: getOrganizationRef(),
+              },
             },
-          },
-        })),
+          };
+        }),
       },
       getFaqSchema(SHOP_FAQS),
     ],

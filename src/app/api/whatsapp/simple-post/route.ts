@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
     const formData = await request.formData();
     const message = formData.get("message") as string;
     const senderPhone = formData.get("senderPhone") as string;
-    const imageUrl = (formData.get("imageUrl") as string) || "/images/pc-repair-workbench.jpg";
+    const imageUrl = (formData.get("imageUrl") as string) || "";
 
     if (!message) {
       return NextResponse.json(

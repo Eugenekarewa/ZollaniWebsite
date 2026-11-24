@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
     const contentType = request.headers.get("content-type") || "";
     let rawMessage = "";
     let senderPhone = "+254768551914";
-    let imageUrl = "/images/pc-repair-workbench.jpg";
+    let imageUrl = "";
 
     if (contentType.includes("multipart/form-data")) {
       const formData = await request.formData();
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
       const json = await request.json();
       rawMessage = json.message || json.text || "";
       senderPhone = json.senderPhone || "+254768551914";
-      imageUrl = json.imageUrl || "/images/pc-repair-workbench.jpg";
+      imageUrl = json.imageUrl || "";
     }
 
     if (!rawMessage.trim()) {

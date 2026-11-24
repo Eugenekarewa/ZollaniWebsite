@@ -32,7 +32,7 @@ export async function GET() {
 
 ## Main Pages
 - [Home](${siteUrl}/): Precision computer repairs, instant repair cost estimator, featured Ex-UK laptops & custom PCs, client reviews, and lab capabilities.
-- [Repair & Electronics Services](${siteUrl}/services): Searchable directory of ${SERVICE_CATEGORIES.reduce((sum, c) => sum + c.items.length, 0)} repair, micro-soldering, data recovery, networking, and on-site IT services across ${SERVICE_CATEGORIES.length} categories.
+- [Repair & Electronics Services](${siteUrl}/services): Searchable directory of ${SERVICE_CATEGORIES.reduce((sum, c) => sum + c.items.length, 0)} repair, micro-soldering, data recovery, networking, and on-site IT services grouped into customer-facing device and service categories.
 - [Computer & Accessories Shop](${siteUrl}/shop): Full computer store stocking Ex-UK Grade A laptops, custom RTX gaming towers, CAD workstations, NVMe SSDs, RAM, mice, keyboards, USB-C hubs/chargers, monitors, routers, UPS units, webcams, headsets, and laptop stands with direct website payment (M-Pesa, Card, Bank, Cash) and instant printable VAT-inclusive receipts.
 - [Track Orders, Repairs & Device Pickup](${siteUrl}/track): Live tracking portal for hardware orders, receipt reprints, repair ticket milestones, online rider pickup scheduling, and call-in pickup dispatch (+254 768 551914).
 - [Business IT Support](${siteUrl}/business-it): Managed IT SLA retainers (Starter SME 5–15 seats, Professional Growth 15–35 seats, Enterprise 35+ seats), Cat6 cabling, MikroTik/UniFi networking, 3-2-1 backups, and cybersecurity hardening.

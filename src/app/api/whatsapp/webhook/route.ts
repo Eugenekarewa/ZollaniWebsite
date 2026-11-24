@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
       const draft = await createWhatsAppProductDraft({
         rawMessage: payload.text || payload.rawMessage || "New product received",
         senderPhone: payload.senderPhone || "+254768551914",
-        imageUrl: payload.imageUrl || "/images/pc-repair-workbench.jpg",
+        imageUrl: payload.imageUrl || "",
       });
       return NextResponse.json({
         success: true,
@@ -135,7 +135,7 @@ export async function POST(request: NextRequest) {
     const senderName = value?.contacts?.[0]?.profile?.name || "";
 
     let textContent = "";
-    let imageUrl = "/images/pc-repair-workbench.jpg";
+    let imageUrl = "";
 
     if (message.type === "image") {
       textContent = message.image?.caption || "";

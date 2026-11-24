@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
+import { ProductPhoto } from "@/components/shop/ProductPhoto";
 import {
   ArrowUpRight,
   BadgeCheck,
@@ -47,6 +48,7 @@ import {
   getOrganizationRef,
   getSiteUrl,
 } from "@/lib/seo";
+import { getProductImageUrl } from "@/lib/product-images";
 
 function initialsOf(name: string) {
   return name
@@ -118,7 +120,6 @@ const pillars = [
     icon: Laptop,
     href: "/services#hardware",
     cta: "Find your repair",
-    image: "/images/products/thinkpad-t480.jpg",
   },
   {
     title: "Advanced Electronic Repairs",
@@ -128,7 +129,6 @@ const pillars = [
     icon: Wrench,
     href: "/services#electronics",
     cta: "Explore electronics lab",
-    image: "/images/products/ssd-nvme.jpg",
   },
   {
     title: "Certified Computer Sales",
@@ -138,7 +138,6 @@ const pillars = [
     icon: Sparkles,
     href: "/shop",
     cta: "Browse available stock",
-    image: "/images/products/gaming-pc-tower.jpg",
   },
 ];
 
@@ -197,23 +196,32 @@ export default async function HomePage() {
       {
         "@type": "ItemList",
         name: "Featured Tested Computers in Nairobi",
-        itemListElement: featuredProducts.map((prod, index) => ({
-          "@type": "ListItem",
-          position: index + 1,
-          item: {
-            "@type": "Product",
-            name: prod.name,
-            description: prod.description,
-            image: `${siteUrl}${prod.image}`,
-            offers: {
-              "@type": "Offer",
-              priceCurrency: "KES",
-              price: prod.priceKes,
-              availability: "https://schema.org/InStock",
-              seller: getOrganizationRef(),
+        itemListElement: featuredProducts.map((prod, index) => {
+          const image = getProductImageUrl(prod.image);
+          return {
+            "@type": "ListItem",
+            position: index + 1,
+            item: {
+              "@type": "Product",
+              name: prod.name,
+              description: prod.description,
+              ...(image
+                ? {
+                    image: image.startsWith("http")
+                      ? image
+                      : `${siteUrl}${image}`,
+                  }
+                : {}),
+              offers: {
+                "@type": "Offer",
+                priceCurrency: "KES",
+                price: prod.priceKes,
+                availability: "https://schema.org/InStock",
+                seller: getOrganizationRef(),
+              },
             },
-          },
-        })),
+          };
+        }),
       },
       {
         "@type": "LocalBusiness",
@@ -398,13 +406,10 @@ export default async function HomePage() {
                 className="group flex flex-col justify-between rounded-3xl border border-cream-border bg-white shadow-xs transition-all duration-300 hover:-translate-y-2 hover:shadow-xl overflow-hidden"
               >
                 <div>
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-cream-surface">
-                    <Image
-                      src={pillar.image}
-                      alt={pillar.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 1024px) 100vw, 33vw"
+                  <div className="relative flex aspect-[16/10] w-full items-center justify-center overflow-hidden bg-cream-surface">
+                    <Icon
+                      aria-hidden="true"
+                      className="h-16 w-16 text-teal-brand/40"
                     />
                     <div className="absolute top-4 left-4 rounded-xl bg-teal-deep/85 p-2 text-white backdrop-blur-xs">
                       <Icon className="h-5 w-5 text-coral-brand" />
@@ -493,12 +498,10 @@ export default async function HomePage() {
             >
               <div>
                 <div className="relative aspect-[16/10] w-full overflow-hidden bg-cream-surface border-b border-cream-border">
-                  <Image
+                  <ProductPhoto
                     src={prod.image}
                     alt={prod.name}
-                    fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <span className="absolute top-3 left-3 rounded-lg bg-teal-deep/85 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-xs">
                     {prod.condition}
@@ -610,26 +613,14 @@ export default async function HomePage() {
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-3xl border border-cream-bg/20">
-                <Image
-                  src="/images/products/ssd-upgrade-kit.jpg"
-                  alt="Micro-soldering inspection under digital microscope"
-                  fill
-                  sizes="(max-width: 640px) 50vw, 25vw"
-                  className="object-cover"
-                />
+              <div className="relative flex aspect-[3/4] w-full items-center justify-center overflow-hidden rounded-3xl border border-cream-bg/20 bg-teal-deep">
+                <Cpu aria-hidden="true" className="h-16 w-16 text-coral-brand/60" />
                 <span className="absolute bottom-3 left-3 rounded-lg bg-black/75 px-3 py-1 text-[11px] font-bold text-white">
                   Micro-soldering Bench
                 </span>
               </div>
-              <div className="relative aspect-[3/4] w-full overflow-hidden rounded-3xl border border-cream-bg/20">
-                <Image
-                  src="/images/products/lenovo-thinkpad.jpg"
-                  alt="Data recovery hardware lab"
-                  fill
-                  sizes="(max-width: 640px) 50vw, 25vw"
-                  className="object-cover"
-                />
+              <div className="relative flex aspect-[3/4] w-full items-center justify-center overflow-hidden rounded-3xl border border-cream-bg/20 bg-teal-deep">
+                <HardDrive aria-hidden="true" className="h-16 w-16 text-coral-brand/60" />
                 <span className="absolute bottom-3 left-3 rounded-lg bg-black/75 px-3 py-1 text-[11px] font-bold text-white">
                   Storage &amp; Data Recovery
                 </span>
