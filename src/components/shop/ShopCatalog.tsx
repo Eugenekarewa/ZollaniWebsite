@@ -260,8 +260,9 @@ export default function ShopCatalog({ products = [] }: { products?: ProductItem[
           </div>
         </div>
 
-        {/* Search, Condition & Sort Bar */}
-        <div className="mb-5 rounded-3xl border border-cream-border bg-white p-4 shadow-sm sm:p-5 space-y-4">
+        <div className={products.length > 0 ? "block" : "hidden"}>
+            {/* Search, Condition & Sort Bar */}
+            <div className="mb-5 rounded-3xl border border-cream-border bg-white p-4 shadow-sm sm:p-5 space-y-4">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-center">
             <div className="relative flex-1">
               <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-muted" />
@@ -347,10 +348,10 @@ export default function ShopCatalog({ products = [] }: { products?: ProductItem[
               </button>
             )}
           </div>
-        </div>
+            </div>
 
-        {/* Category Filter Tabs */}
-        <div className="mb-8 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+            {/* Category Filter Tabs */}
+            <div className="mb-8 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
           {PRODUCT_CATEGORIES.map((cat) => {
             const count =
               cat.id === "mini-pc"
@@ -381,28 +382,36 @@ export default function ShopCatalog({ products = [] }: { products?: ProductItem[
               </button>
             );
           })}
+            </div>
         </div>
 
         {/* Products Grid */}
         {filteredProducts.length === 0 ? (
           <div className="rounded-3xl border border-cream-border bg-white p-12 text-center shadow-xs">
             <ShoppingBag className="mx-auto h-12 w-12 text-teal-brand" />
-            <h3 className="mt-4 text-xl font-black text-brand-dark">No matching products found</h3>
+            <h3 className="mt-4 text-xl font-black text-brand-dark">
+              {products.length === 0
+                ? "No products listed yet"
+                : "No matching products found"}
+            </h3>
             <p className="mx-auto mt-2 max-w-md text-xs leading-relaxed text-brand-muted">
-              Try clearing your filters or message our sourcing desk — we stock and source thousands of laptop parts, chargers, and accessories daily in Nairobi.
+              {products.length === 0
+                ? "Products will appear here as you add them to the shop."
+                : "Try clearing your filters or message our sourcing desk — we stock and source thousands of laptop parts, chargers, and accessories daily in Nairobi."}
             </p>
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
-              <button
-                type="button"
-                onClick={() => {
-                  setSelectedFilter("all");
-                  setConditionFilter("all");
-                  setSearchQuery("");
-                }}
-                className="rounded-2xl border border-cream-border bg-cream-surface px-6 py-3 text-xs font-bold text-brand-dark hover:border-teal-brand"
-              >
-                Show All {products.length} Products
-              </button>
+            {products.length > 0 && (
+              <div className="mt-6 flex flex-wrap justify-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSelectedFilter("all");
+                    setConditionFilter("all");
+                    setSearchQuery("");
+                  }}
+                  className="rounded-2xl border border-cream-border bg-cream-surface px-6 py-3 text-xs font-bold text-brand-dark hover:border-teal-brand"
+                >
+                  Show All {products.length} Products
+                </button>
               <a
                 href="https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20am%20looking%20for%20a%20specific%20computer%20or%20accessory."
                 target="_blank"
@@ -412,7 +421,8 @@ export default function ShopCatalog({ products = [] }: { products?: ProductItem[
                 <MessageCircle className="h-4 w-4 fill-white" />
                 Ask Technicians to Source It
               </a>
-            </div>
+              </div>
+            )}
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">

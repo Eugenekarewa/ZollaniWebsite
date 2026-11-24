@@ -467,7 +467,8 @@ export default async function HomePage() {
       </section>
 
       {/* FEATURED HARDWARE SALES SPOTLIGHT */}
-      <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
+      {featuredProducts.length > 0 && (
+        <section className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:px-12 lg:py-28">
         <div className="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-end">
           <div>
             <div className="flex items-center gap-2">
@@ -563,7 +564,8 @@ export default async function HomePage() {
             </div>
           ))}
         </div>
-      </section>
+        </section>
+      )}
 
       {/* INSIDE THE ZOLLANI LAB: WHY WE FIX WHAT OTHERS CANNOT */}
       <section className="bg-brand-dark text-cream-bg py-20 sm:py-28">
