@@ -13,12 +13,28 @@ import { PageHero } from "@/components/ui/PageHero";
 import { JobApplicationModal } from "@/components/interactive/JobApplicationModal";
 import { getPublishedJobPostings } from "@/app/admin/careers/actions";
 
-export const metadata: Metadata = {
-  title: "Careers at Zollani Tech | Jobs & Internships in Nairobi",
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  createPageMetadata,
+  getBreadcrumbSchema,
+  getOrganizationRef,
+  getSiteUrl,
+} from "@/lib/seo";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Careers & Internships in Nairobi | Zollani Tech",
   description:
-    "Become a part of Zollani Tech. Explore open positions and internships in electronics repair, IT support, and technical training in Nairobi, Kenya.",
-  keywords: ["Zollani Tech careers", "jobs Nairobi", "electronics repair jobs Kenya", "IT internship Nairobi", "become part of Zollani Tech"],
-};
+    "Explore open technician roles, IT support careers, apprenticeships, and internships at Zollani Tech in Nairobi, Kenya.",
+  path: "/careers",
+  ogImage: "/images/pc-repair-workbench.jpg",
+  keywords: [
+    "Zollani Tech careers",
+    "jobs Nairobi",
+    "electronics repair jobs Kenya",
+    "IT internship Nairobi",
+    "become part of Zollani Tech",
+  ],
+});
 
 const perks = [
   {
@@ -51,8 +67,42 @@ export default async function CareersPage() {
     jobs = [];
   }
 
+  const siteUrl = getSiteUrl();
+  const careersJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      getBreadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: "Careers", path: "/careers" },
+      ]),
+      {
+        "@type": "WebPage",
+        url: `${siteUrl}/careers`,
+        name: "Careers & Internships at Zollani Tech",
+        about: getOrganizationRef(),
+      },
+      ...jobs.map((job) => ({
+        "@type": "JobPosting",
+        title: job.title,
+        description: `${job.summary ? `${job.summary}\n\n` : ""}${job.description}${job.requirements ? `\n\nRequirements:\n${job.requirements}` : ""}`,
+        employmentType: job.employmentType.toUpperCase().replace(/[^A-Z]+/g, "_"),
+        datePosted: new Date(job.createdAt).toISOString().split("T")[0],
+        hiringOrganization: getOrganizationRef(),
+        jobLocation: {
+          "@type": "Place",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: job.location || "Nairobi",
+            addressCountry: "KE",
+          },
+        },
+      })),
+    ],
+  };
+
   return (
     <div className="bg-cream-bg min-h-screen">
+      <JsonLd data={careersJsonLd} />
       <PageHero
         eyebrow="Careers / Become Part of Us"
         title="Build your career fixing what others give up on."

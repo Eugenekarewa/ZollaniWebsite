@@ -1,11 +1,30 @@
 import React from "react";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  BUSINESS_PHONE,
+  CORPORATE_EMAIL,
+  FOUNDER_EMAIL,
+  NAIROBI_AREAS,
+  createPageMetadata,
+  getBreadcrumbSchema,
+  getOrganizationRef,
+  getSiteUrl,
+} from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact Computer Repair & IT Support in Nairobi",
-  description: "Contact Zollani Tech for laptop repair, electronics diagnostics, data recovery, business IT support, networking, and technical training in Nairobi.",
-  keywords: ["contact computer repair Nairobi", "IT support Nairobi", "laptop repair quote", "electronics repair contact Kenya"],
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "Contact Computer Repair & IT Support Nairobi",
+  description:
+    "Book laptop repair, on-site IT support, data recovery, or bulk hardware quotes in Nairobi. Call or WhatsApp +254 768 551914.",
+  path: "/contact",
+  ogImage: "/images/pc-repair-workbench.jpg",
+  keywords: [
+    "contact computer repair Nairobi",
+    "IT support Nairobi",
+    "laptop repair quote Nairobi",
+    "electronics repair contact Kenya",
+  ],
+});
 import { ContactForm } from "@/components/forms/ContactForm";
 import { PageHero } from "@/components/ui/PageHero";
 import {
@@ -23,8 +42,44 @@ import {
 } from "lucide-react";
 
 export default function ContactPage() {
+  const siteUrl = getSiteUrl();
+  const contactJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      getBreadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: "Contact", path: "/contact" },
+      ]),
+      {
+        "@type": "ContactPage",
+        url: `${siteUrl}/contact`,
+        name: "Contact Zollani Tech in Nairobi",
+        mainEntity: {
+          ...getOrganizationRef(),
+          telephone: BUSINESS_PHONE,
+          email: CORPORATE_EMAIL,
+          areaServed: NAIROBI_AREAS,
+          contactPoint: [
+            {
+              "@type": "ContactPoint",
+              telephone: BUSINESS_PHONE,
+              contactType: "customer support",
+              availableLanguage: ["English", "Swahili"],
+            },
+            {
+              "@type": "ContactPoint",
+              email: FOUNDER_EMAIL,
+              contactType: "corporate sales",
+            },
+          ],
+        },
+      },
+    ],
+  };
+
   return (
     <div className="bg-cream-bg min-h-screen">
+      <JsonLd data={contactJsonLd} />
       <PageHero
         eyebrow="Contact / Nairobi"
         title="Tell us what’s wrong."

@@ -1,11 +1,48 @@
 import React from "react";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { FaqSection, type FaqItem } from "@/components/seo/FaqSection";
+import {
+  createPageMetadata,
+  getBreadcrumbSchema,
+  getFaqSchema,
+  getOrganizationRef,
+  getSiteUrl,
+} from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Technology & Electronics Training in Kenya",
-  description: "Practical AI, electronics repair, software, Linux, networking, and cybersecurity training for learners, colleges, TVETs, and teams across Kenya.",
-  keywords: ["electronics repair training Kenya", "cybersecurity training Nairobi", "AI training Kenya", "Linux training", "IT skills training", "TVET technology training"],
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "AI, Cybersecurity & Electronics Training Kenya",
+  description:
+    "Hands-on AI Msingi, electronics repair, Linux, networking, and cybersecurity training for Kenyan youth, TVET colleges, and corporate teams.",
+  path: "/training",
+  ogImage: "/images/youth-empowerment-students.jpg",
+  keywords: [
+    "electronics repair training Kenya",
+    "cybersecurity training Nairobi",
+    "AI training Kenya",
+    "Linux training Nairobi",
+    "IT skills training Kenya",
+    "TVET technology training",
+  ],
+});
+
+const TRAINING_FAQS: FaqItem[] = [
+  {
+    question: "How does the zero-cost College & TVET partnership work?",
+    answer:
+      "Zollani Tech delivers hands-on electronics repair, software engineering, and digital literacy training directly to college and TVET students at no cost to the institution, in exchange for classroom time and cohort access.",
+  },
+  {
+    question: "What ages is the AI Msingi curriculum designed for?",
+    answer:
+      "AI Msingi is a 10-week CBC-aligned program structured in three tiers for learners aged 9 to 18: Explorers (9–11), Navigators (12–14), and Builders (15–18), using local Kenyan examples and an unplugged-first approach.",
+  },
+  {
+    question: "Do you offer corporate cybersecurity awareness training in Nairobi?",
+    answer:
+      "Yes. Led by Cisco Certified Ethical Hacker and ISACA CSX certified trainers, our corporate workshops cover phishing simulation drills, MFA and password hygiene, and rapid ransomware incident reporting.",
+  },
+];
 import Image from "next/image";
 import Link from "next/link";
 import { ContactForm } from "@/components/forms/ContactForm";
@@ -83,8 +120,41 @@ export default function TrainingPage() {
     },
   ];
 
+  const siteUrl = getSiteUrl();
+  const trainingJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      getBreadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: "Training", path: "/training" },
+      ]),
+      {
+        "@type": "ItemList",
+        name: "Zollani Tech Training Programs",
+        url: `${siteUrl}/training`,
+        itemListElement: tracks.map((track, idx) => ({
+          "@type": "ListItem",
+          position: idx + 1,
+          item: {
+            "@type": "Course",
+            name: track.title,
+            description: track.description,
+            provider: getOrganizationRef(),
+            coursePrerequisites: track.badge,
+            syllabusSections: track.levels.map((level) => ({
+              "@type": "Syllabus",
+              name: level,
+            })),
+          },
+        })),
+      },
+      getFaqSchema(TRAINING_FAQS),
+    ],
+  };
+
   return (
     <div className="bg-cream-bg min-h-screen">
+      <JsonLd data={trainingJsonLd} />
       <PageHero
         eyebrow="Training / Community"
         title="Build real technical skills."
@@ -253,6 +323,14 @@ export default function TrainingPage() {
           </div>
         </div>
       </section>
+
+      <FaqSection
+        kicker="Program FAQs"
+        title="Training & Partnership Questions"
+        subtitle="How schools, TVETs, parents, and Nairobi companies partner with Zollani Tech."
+        faqs={TRAINING_FAQS}
+        surface="white"
+      />
 
       {/* Partnership Inquiry Form */}
       <section id="partner-form" className="py-16 sm:py-24 bg-cream-bg">

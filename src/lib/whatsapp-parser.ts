@@ -4,12 +4,13 @@ import { db, ensureProductDraftColumns } from "@/lib/db";
 import { shopProducts, productImages } from "@/lib/db/schema";
 import { desc, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
+import type { ProductCategory } from "@/data/productsData";
 
 export interface ParsedWhatsAppProduct {
   id: string;
   name: string;
   price: string;
-  category: "refurbished-laptop" | "gaming-pc" | "workstation" | "upgrade-kit" | "monitor" | "smart-home-camera" | "mouse" | "desktop-cpu" | "mini-pc";
+  category: ProductCategory;
   description: string;
   specs: string[];
   condition: string;

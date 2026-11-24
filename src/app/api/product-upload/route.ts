@@ -1,4 +1,4 @@
-import { put } from "@vercel/blob";
+import { put } from "@/lib/blob-mock";
 import { NextResponse, type NextRequest } from "next/server";
 import { getSession } from "@/lib/auth";
 

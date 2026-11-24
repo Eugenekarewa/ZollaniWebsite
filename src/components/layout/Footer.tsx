@@ -13,7 +13,7 @@ import {
 
 export const Footer = () => {
   return (
-    <footer className="bg-brand-dark text-cream-bg border-t-2 border-coral-brand relative">
+    <footer className="bg-brand-dark text-cream-bg border-t-2 border-coral-brand relative print:hidden">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
         <div className="grid grid-cols-1 gap-12 border-b border-teal-brand/30 pb-14 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.1fr] lg:gap-14">
           {/* Column 1: Brand & Promise */}
@@ -89,22 +89,32 @@ export const Footer = () => {
             <ul className="space-y-3 text-sm leading-6 text-cream-bg/80">
               <li>
                 <Link href="/shop" className="hover:text-white transition-colors">
-                  Browse Laptops & Computers
+                  Laptops &amp; Computer Accessories
                 </Link>
               </li>
               <li>
-                <Link href="/shop?category=gaming-pc" className="hover:text-white transition-colors">
-                  Custom Gaming PCs
+                <Link href="/shop?category=cables-hubs" className="hover:text-white transition-colors">
+                  Chargers, USB-C Hubs &amp; Cables
                 </Link>
               </li>
               <li>
                 <Link href="/shop?category=upgrade-kit" className="hover:text-white transition-colors">
-                  SSD & RAM Upgrade Kits
+                  NVMe SSDs &amp; RAM Upgrades
+                </Link>
+              </li>
+              <li>
+                <Link href="/track" className="hover:text-white transition-colors">
+                  Track Product Order or Repair
+                </Link>
+              </li>
+              <li>
+                <Link href="/track?tab=pickup" className="hover:text-white transition-colors">
+                  Schedule Nairobi Device Pickup
                 </Link>
               </li>
               <li>
                 <Link href="/checkout" className="hover:text-white transition-colors">
-                  View Cart & Checkout
+                  View Cart &amp; Online Checkout
                 </Link>
               </li>
               <li>
@@ -120,7 +130,7 @@ export const Footer = () => {
             </ul>
             <div className="pt-1">
               <p className="text-xs text-cream-bg/70 leading-relaxed">
-                Accepting M-Pesa, Cash, and Bank Transfer. Payment instructions sent after order confirmation.
+                Pay online via M-Pesa, Visa/Mastercard, Bank Transfer, or Cash with instant printable receipts.
               </p>
             </div>
           </div>

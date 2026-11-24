@@ -37,7 +37,7 @@ export const FloatingWhatsApp = () => {
   return (
     <>
       {/* Mobile Sticky Bottom Conversion Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-cream-surface/95 backdrop-blur-md border-t border-cream-border p-2.5 flex items-center justify-between gap-2 md:hidden shadow-lg">
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-cream-surface/95 backdrop-blur-md border-t border-cream-border p-2.5 flex items-center justify-between gap-2 md:hidden shadow-lg print:hidden">
         <a
           href="tel:+254768551914"
           className="flex-1 flex items-center justify-center gap-2 bg-teal-brand text-white py-2.5 px-3 rounded-xl text-xs font-bold shadow-xs active:scale-95 transition-transform"
@@ -58,7 +58,7 @@ export const FloatingWhatsApp = () => {
       </div>
 
       {/* Desktop Floating WhatsApp Widget */}
-      <div className="hidden md:block fixed bottom-6 right-6 z-40">
+      <div className="hidden md:block fixed bottom-6 right-6 z-40 print:hidden">
         {/* Expandable Quick Actions Bubble */}
         {showPopup && (
           <div className="mb-3 w-80 bg-white rounded-3xl shadow-2xl border border-cream-border overflow-hidden animate-in fade-in slide-in-from-bottom-5 duration-200">

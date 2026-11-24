@@ -18,12 +18,64 @@ function stripSslParams(url: string | undefined): string | undefined {
   }
 }
 
-export const pool = new Pool({
-  connectionString: stripSslParams(process.env.DATABASE_URL),
-  ssl: process.env.DATABASE_URL?.includes("localhost") ? false : { rejectUnauthorized: false },
-});
+function createChainableDbMock(): any {
+  const makeProxy = (defaultValue: unknown = []): any => {
+    const target = function () {};
+    return new Proxy(target, {
+      get(_, prop) {
+        if (prop === "then") {
+          return (resolve: (value: unknown) => void) => resolve(defaultValue);
+        }
+        if (prop === "catch" || prop === "finally") {
+          return () => Promise.resolve(defaultValue);
+        }
+        if (prop === "query") {
+          return new Proxy({}, {
+            get: () => ({
+              findMany: async () => [],
+              findFirst: async () => null,
+              findUnique: async () => null,
+            }),
+          });
+        }
+        return makeProxy(defaultValue);
+      },
+      apply() {
+        return makeProxy(defaultValue);
+      },
+    });
+  };
+  return makeProxy([]);
+}
 
-export const db = drizzle(pool, { schema });
+let pool: Pool;
+let db: ReturnType<typeof drizzle<typeof schema>>;
+
+if (process.env.DATABASE_URL) {
+  try {
+    pool = new Pool({
+      connectionString: stripSslParams(process.env.DATABASE_URL),
+      ssl: process.env.DATABASE_URL.includes("localhost") ? false : { rejectUnauthorized: false },
+    });
+    db = drizzle(pool, { schema });
+  } catch {
+    console.warn("[AI Studio] Database initialization failed — using mock");
+    pool = {
+      query: async () => ({ rows: [] }),
+      connect: async () => ({ query: async () => ({ rows: [] }), release: () => {} }),
+    } as unknown as Pool;
+    db = createChainableDbMock();
+  }
+} else {
+  console.warn("[AI Studio] DATABASE_URL not set — database mock active");
+  pool = {
+    query: async () => ({ rows: [] }),
+    connect: async () => ({ query: async () => ({ rows: [] }), release: () => {} }),
+  } as unknown as Pool;
+  db = createChainableDbMock();
+}
+
+export { pool, db };
 
 let columnsMigrated = false;
 

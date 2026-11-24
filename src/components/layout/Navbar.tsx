@@ -21,6 +21,7 @@ import {
   Calculator,
   ShieldCheck,
   Briefcase,
+  PackageSearch,
 } from "lucide-react";
 import { RepairTrackerModal } from "@/components/interactive/RepairTrackerModal";
 import { CartButton } from "@/components/shop/CartButton";
@@ -47,15 +48,16 @@ export const Navbar = () => {
   const navLinks = [
     { name: "Home", href: "/", icon: null },
     { name: "Services", href: "/services", icon: Wrench },
-    { name: "Shop Computers", href: "/shop", icon: ShoppingBag, badge: "In Stock" },
+    { name: "Shop & Accessories", href: "/shop", icon: ShoppingBag, badge: "Store" },
+    { name: "Track & Pickup", href: "/track", icon: PackageSearch },
     { name: "Business IT", href: "/business-it", icon: Building2 },
-    { name: "About & Lab", href: "/about", icon: Info },
+    { name: "About", href: "/about", icon: Info },
     { name: "Careers", href: "/careers", icon: Briefcase },
     { name: "Contact", href: "/contact", icon: Send },
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full transition-all duration-300">
+    <header className="sticky top-0 z-50 w-full transition-all duration-300 print:hidden">
       {/* Top Notification Bar */}
       <div className="bg-brand-dark text-cream-bg text-xs py-2 px-4 hidden md:block border-b border-coral-brand/40">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -83,7 +85,7 @@ export const Navbar = () => {
               className="flex items-center gap-1.5 text-cream-bg hover:text-coral-brand transition-colors bg-white/10 hover:bg-white/20 px-2.5 py-0.5 rounded-full text-[11px] font-bold cursor-pointer"
             >
               <Search className="w-3 h-3 text-coral-brand" />
-              <span>Track Repair Status</span>
+              <span>Track Order / Repair</span>
             </button>
             <span className="text-white/20">|</span>
             <a
@@ -221,7 +223,7 @@ export const Navbar = () => {
                 className="w-full flex items-center justify-center gap-2 rounded-xl border border-cream-border bg-white py-2.5 text-xs font-bold text-brand-dark"
               >
                 <Search className="w-3.5 h-3.5 text-coral-brand" />
-                <span>Track Repair Status</span>
+                <span>Track Order or Repair</span>
               </button>
 
               <a

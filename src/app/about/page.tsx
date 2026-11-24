@@ -1,11 +1,47 @@
 import React from "react";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { FaqSection, type FaqItem } from "@/components/seo/FaqSection";
+import {
+  createPageMetadata,
+  getBreadcrumbSchema,
+  getFaqSchema,
+  getOrganizationRef,
+  getSiteUrl,
+} from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About Zollani Tech | Trusted Technology Company in Kenya",
-  description: "Learn about Zollani Tech, our electronics repair expertise, business IT support, technical training, company history, and growing team in Kenya.",
-  keywords: ["about Zollani Tech", "technology company Kenya", "electronics repair team Nairobi", "IT company Nairobi"],
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "About Zollani Tech | Nairobi Electronics Lab",
+  description:
+    "Meet the Nairobi engineering team behind Zollani Tech—board-level laptop repair, business IT support, and youth tech empowerment in Kenya.",
+  path: "/about",
+  ogImage: "/images/classroom-workshop.jpg",
+  keywords: [
+    "about Zollani Tech",
+    "technology company Kenya",
+    "electronics repair team Nairobi",
+    "IT company Nairobi",
+    "Eugene Otieno Karewa",
+  ],
+});
+
+const ABOUT_FAQS: FaqItem[] = [
+  {
+    question: "Who founded Zollani Tech Limited?",
+    answer:
+      "Zollani Tech Limited is led by Eugene Otieno Karewa, a full-stack engineer and certified cybersecurity practitioner holding a BSc in Applied Science (Physics) from Pwani University, Cisco Certified Ethical Hacker, and ISACA CSX Fundamentals certifications.",
+  },
+  {
+    question: "What makes Zollani Tech different from ordinary computer repair shops?",
+    answer:
+      "Instead of guessing or replacing entire motherboards at high cost, we apply physics-grounded, board-level diagnostics—tracing circuit schematics with multimeters and micro-soldering damaged IC chips, saving clients money and reducing e-waste.",
+  },
+  {
+    question: "What are Zollani Tech's official M-Pesa payment details?",
+    answer:
+      "Verified payments go through Lipa Na M-Pesa Paybill 714888, Account Number 480939 (Registered Name: Zollani Tech Limited).",
+  },
+];
 import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
@@ -71,8 +107,49 @@ export default async function AboutPage() {
     },
   ];
 
+  const siteUrl = getSiteUrl();
+  const aboutJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      getBreadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: "About", path: "/about" },
+      ]),
+      {
+        "@type": "AboutPage",
+        url: `${siteUrl}/about`,
+        name: "About Zollani Tech Limited",
+        mainEntity: {
+          ...getOrganizationRef(),
+          founder: {
+            "@type": "Person",
+            name: owner?.name || "Eugene Otieno Karewa",
+            jobTitle: owner?.role || "Founder & Chief Technology Officer",
+            hasCredential: [
+              "BSc Applied Science (Physics) — Pwani University",
+              "Cisco Certified Ethical Hacker",
+              "ISACA CSX Fundamentals",
+            ],
+          },
+          ...(team.length > 0
+            ? {
+                employee: team.map((member) => ({
+                  "@type": "Person",
+                  name: member.name,
+                  jobTitle: member.role,
+                  description: member.bio,
+                })),
+              }
+            : {}),
+        },
+      },
+      getFaqSchema(ABOUT_FAQS),
+    ],
+  };
+
   return (
     <div className="bg-cream-bg min-h-screen">
+      <JsonLd data={aboutJsonLd} />
       <PageHero
         eyebrow="Our story / Nairobi"
         title="Honest engineering. Lasting solutions."
@@ -328,6 +405,13 @@ export default async function AboutPage() {
           </div>
         </div>
       </section>
+      <FaqSection
+        kicker="About Zollani Tech"
+        title="Leadership, Standards & Payment FAQs"
+        subtitle="Verified company credentials, repair philosophy, and official Lipa Na M-Pesa payment channels."
+        faqs={ABOUT_FAQS}
+        surface="cream"
+      />
     </div>
   );
 }

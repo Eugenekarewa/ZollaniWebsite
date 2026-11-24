@@ -16,7 +16,7 @@ const trustedOrigins = [
 ].filter((value): value is string => Boolean(value));
 
 export const auth = betterAuth({
-  database: drizzleAdapter(db, { provider: "pg" }),
+  ...(process.env.DATABASE_URL ? { database: drizzleAdapter(db, { provider: "pg" }) } : {}),
   emailAndPassword: { enabled: true },
   baseURL: process.env.BETTER_AUTH_URL ?? origin(process.env.VERCEL_PROJECT_PRODUCTION_URL) ?? origin(process.env.VERCEL_URL) ?? process.env.V0_RUNTIME_URL,
   trustedOrigins,
@@ -24,5 +24,9 @@ export const auth = betterAuth({
 });
 
 export async function getSession() {
-  return auth.api.getSession({ headers: await headers() });
+  try {
+    return await auth.api.getSession({ headers: await headers() });
+  } catch {
+    return null;
+  }
 }

@@ -1,11 +1,48 @@
 import React from "react";
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { FaqSection, type FaqItem } from "@/components/seo/FaqSection";
+import {
+  createPageMetadata,
+  getBreadcrumbSchema,
+  getFaqSchema,
+  getOrganizationRef,
+  getSiteUrl,
+} from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Managed IT Support for Businesses in Kenya",
-  description: "Keep your business connected with managed IT support, network installation, cloud backups, cybersecurity, server support, and on-site technicians in Nairobi.",
-  keywords: ["managed IT services Kenya", "business IT support Nairobi", "network installation", "cybersecurity services Kenya", "cloud backup", "server support"],
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "Managed IT Support for Businesses in Nairobi",
+  description:
+    "SLA managed IT support, Cat6 network cabling, cloud backups, cybersecurity hardening, and rapid on-site engineers for Nairobi offices.",
+  path: "/business-it",
+  ogImage: "/images/corporate-team-server.jpg",
+  keywords: [
+    "managed IT services Kenya",
+    "business IT support Nairobi",
+    "network installation Nairobi",
+    "cybersecurity services Kenya",
+    "cloud backup Nairobi",
+    "server support Kenya",
+  ],
+});
+
+const BUSINESS_IT_FAQS: FaqItem[] = [
+  {
+    question: "What response times do Zollani Tech business IT retainers include?",
+    answer:
+      "Our Starter SME Retainer (5–15 seats) guarantees a 4-hour on-site response SLA, Professional Growth (15–35 seats) includes a 2-hour emergency SLA with bi-weekly engineer visits, and Enterprise Dedicated (35+ seats) offers 1-hour priority dispatch.",
+  },
+  {
+    question: "Do you handle office WiFi, Cat6 cabling, and firewall setup in Nairobi?",
+    answer:
+      "Yes. We design and install structured Cat6/Cat6A cabling, server rack patch panels, Ubiquiti UniFi mesh WiFi, and MikroTik/Cisco firewalls with VLAN segmentation and guest portals.",
+  },
+  {
+    question: "How do you protect company data against ransomware or drive failure?",
+    answer:
+      "We deploy a 3-2-1 hybrid backup architecture combining local NAS snapshots and encrypted cloud backups, paired with endpoint antivirus, MFA rollouts, and employee phishing audits.",
+  },
+];
 import Image from "next/image";
 import Link from "next/link";
 import { ContactForm } from "@/components/forms/ContactForm";
@@ -73,8 +110,42 @@ export default function BusinessITPage() {
     },
   ];
 
+  const siteUrl = getSiteUrl();
+  const businessItJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      getBreadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: "Business IT", path: "/business-it" },
+      ]),
+      {
+        "@type": "Service",
+        name: "Managed Business IT Support & Infrastructure",
+        provider: getOrganizationRef(),
+        areaServed: { "@type": "City", name: "Nairobi" },
+        url: `${siteUrl}/business-it`,
+        description:
+          "Managed IT support contracts, structured Cat6 networking, 3-2-1 disaster recovery backups, and cybersecurity hardening for offices in Nairobi.",
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Business IT SLA Retainer Tiers",
+          itemListElement: slaTiers.map((tier) => ({
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: tier.name,
+              description: `${tier.idealFor}. Includes: ${tier.features.join("; ")}`,
+            },
+          })),
+        },
+      },
+      getFaqSchema(BUSINESS_IT_FAQS),
+    ],
+  };
+
   return (
     <div className="bg-cream-bg min-h-screen">
+      <JsonLd data={businessItJsonLd} />
       <PageHero
         eyebrow="Business IT / Nairobi"
         title="Keep work moving."
@@ -227,6 +298,14 @@ export default function BusinessITPage() {
           </div>
         </div>
       </section>
+
+      <FaqSection
+        kicker="Enterprise & SME FAQs"
+        title="Business IT Support Questions"
+        subtitle="Details on SLA response times, office network rollouts, and cybersecurity compliance."
+        faqs={BUSINESS_IT_FAQS}
+        surface="cream"
+      />
 
       {/* Lead Form Section */}
       <section id="quote-form" className="py-16 sm:py-24 bg-cream-bg">

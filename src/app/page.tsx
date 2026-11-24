@@ -30,6 +30,16 @@ import { PRODUCTS } from "@/data/productsData";
 import { getPublishedPartners } from "@/app/admin/about/partner-actions";
 import { getPublishedTestimonials } from "@/app/admin/testimonials/actions";
 
+import { JsonLd } from "@/components/seo/JsonLd";
+import { FaqSection, type FaqItem } from "@/components/seo/FaqSection";
+import {
+  createPageMetadata,
+  getBreadcrumbSchema,
+  getFaqSchema,
+  getOrganizationRef,
+  getSiteUrl,
+} from "@/lib/seo";
+
 function initialsOf(name: string) {
   return name
     .split(" ")
@@ -39,10 +49,12 @@ function initialsOf(name: string) {
     .join("");
 }
 
-export const metadata: Metadata = {
-  title: "Computer Repairs, Electronics Diagnostics & Certified Computer Sales in Nairobi | Zollani Tech",
+export const metadata: Metadata = createPageMetadata({
+  title: "Computer Repair & Ex-UK Laptops in Nairobi",
   description:
-    "Nairobi's trusted electronics lab for same-day laptop repair, motherboard micro-soldering, gaming console fixes, and bench-tested refurbished computers with a 6-month warranty.",
+    "Same-day laptop repair, motherboard micro-soldering, PS5 HDMI fixes, and tested Ex-UK laptops in Nairobi with a 6-month warranty.",
+  path: "/",
+  ogImage: "/images/hero-datacenter.jpg",
   keywords: [
     "computer repair Nairobi",
     "laptop repair Nairobi",
@@ -54,7 +66,30 @@ export const metadata: Metadata = {
     "data recovery Nairobi",
     "PS5 HDMI repair Nairobi",
   ],
-};
+});
+
+const HOME_FAQS: FaqItem[] = [
+  {
+    question: "How much does laptop repair cost in Nairobi at Zollani Tech?",
+    answer:
+      "Standard laptop repairs in Nairobi start from KES 1,000–2,500 for OS recovery and virus removal, KES 1,500–3,000 for overheating/thermal repaste, KES 2,500–6,500 for batteries, KES 3,500–9,500 for motherboard micro-soldering, and KES 4,500–12,000 for screen replacements depending on model and panel type.",
+  },
+  {
+    question: "Can Zollani Tech repair a dead motherboard instead of replacing it?",
+    answer:
+      "Yes. Using thermal imaging, schematic tracing, and micro-soldering, we diagnose and replace individual shorted capacitors, MOSFETs, and power ICs on laptops, MacBooks, and consoles—saving up to 70% compared to full motherboard replacement while keeping your data intact.",
+  },
+  {
+    question: "Do repairs and Ex-UK laptops come with a warranty?",
+    answer:
+      "Yes. All hardware repairs and bench-tested Ex-UK Grade A laptops include up to a 6-month written warranty, and custom-built desktops carry a 1-year hardware warranty. We also operate a No Fix, No Fee policy for diagnostics.",
+  },
+  {
+    question: "Do you offer same-day pickup and repair across Nairobi?",
+    answer:
+      "Yes. Most screen, battery, keyboard, and SSD/RAM upgrades are completed in 30 minutes to 4 hours. We provide workshop drop-off and pickup/on-site technician visits across Westlands, Kilimani, Kileleshwa, CBD, Upper Hill, Karen, Parklands, and Thika Road.",
+  },
+];
 
 const whatsappHref =
   "https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20need%20assistance%20with%20a%20computer%20repair%20or%20buying%20a%20laptop.";
@@ -131,8 +166,85 @@ export default async function HomePage() {
     ...TESTIMONIALS,
   ].slice(0, 6);
 
+  const siteUrl = getSiteUrl();
+  const homeJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      getBreadcrumbSchema([{ name: "Home", path: "/" }]),
+      {
+        "@type": "WebPage",
+        "@id": `${siteUrl}/#webpage`,
+        url: `${siteUrl}/`,
+        name: "Computer Repair & Ex-UK Laptops in Nairobi | Zollani Tech",
+        description:
+          "Same-day laptop repair, motherboard micro-soldering, PS5 HDMI fixes, and tested Ex-UK laptops in Nairobi with a 6-month warranty.",
+        isPartOf: { "@id": `${siteUrl}/#website` },
+        about: getOrganizationRef(),
+      },
+      {
+        "@type": "OfferCatalog",
+        name: "Zollani Tech Core Services & Hardware",
+        provider: getOrganizationRef(),
+        itemListElement: pillars.map((pillar) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: pillar.title,
+            description: pillar.desc,
+            url: `${siteUrl}${pillar.href}`,
+          },
+        })),
+      },
+      {
+        "@type": "ItemList",
+        name: "Featured Tested Computers in Nairobi",
+        itemListElement: featuredProducts.map((prod, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          item: {
+            "@type": "Product",
+            name: prod.name,
+            description: prod.description,
+            image: `${siteUrl}${prod.image}`,
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "KES",
+              price: prod.priceKes,
+              availability: "https://schema.org/InStock",
+              seller: getOrganizationRef(),
+            },
+          },
+        })),
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": `${siteUrl}/#organization`,
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "5.0",
+          reviewCount: String(testimonials.length),
+          bestRating: "5",
+          worstRating: "1",
+        },
+        review: testimonials.map((t) => ({
+          "@type": "Review",
+          author: { "@type": "Person", name: t.name },
+          reviewRating: {
+            "@type": "Rating",
+            ratingValue: String(t.rating),
+            bestRating: "5",
+            worstRating: "1",
+          },
+          reviewBody: t.quote,
+        })),
+      },
+      getFaqSchema(HOME_FAQS),
+    ],
+  };
+
   return (
     <div className="bg-cream-bg text-brand-dark">
+      <JsonLd data={homeJsonLd} />
       {/* HERO SECTION */}
       <section className="relative overflow-hidden bg-teal-deep text-cream-bg">
         <div className="absolute inset-0">
@@ -543,8 +655,17 @@ export default async function HomePage() {
         </section>
       )}
 
+      {/* FREQUENTLY ASKED QUESTIONS FOR AI & SEARCH DISCOVERY */}
+      <FaqSection
+        kicker="Answers at a Glance"
+        title="Computer Repair & Laptop Sales FAQs"
+        subtitle="Clear answers on turnaround times, motherboard micro-soldering, Ex-UK laptop warranties, and Nairobi pickup coverage."
+        faqs={HOME_FAQS}
+        surface="white"
+      />
+
       {/* CLOSING HIGH-CONVERSION CTA */}
-      <section className="mx-auto max-w-7xl px-5 pb-20 sm:px-8 lg:px-12 lg:pb-28">
+      <section className="mx-auto max-w-7xl px-5 pb-20 pt-12 sm:px-8 lg:px-12 lg:pb-28">
         <div className="grid items-center gap-8 rounded-3xl bg-coral-brand p-8 text-white shadow-xl sm:p-12 lg:grid-cols-[1fr_auto]">
           <div className="space-y-3">
             <span className="font-mono text-xs uppercase tracking-widest text-white/80">

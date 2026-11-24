@@ -653,9 +653,18 @@ export default function AdminShopClient({
                     >
                       <option value="refurbished-laptop">Refurbished Laptop</option>
                       <option value="gaming-pc">Gaming PC</option>
-                      <option value="desktop">Desktop</option>
-                      <option value="hardware">Hardware</option>
-                      <option value="accessory">Accessory</option>
+                      <option value="workstation">Workstation</option>
+                      <option value="mini-pc">Mini PCs &amp; CPUs</option>
+                      <option value="upgrade-kit">SSD, RAM &amp; Storage</option>
+                      <option value="mouse">Mice</option>
+                      <option value="keyboard">Keyboards &amp; Combos</option>
+                      <option value="cables-hubs">Chargers, Hubs &amp; Cables</option>
+                      <option value="monitor">Monitors &amp; Displays</option>
+                      <option value="networking">Routers &amp; Networking</option>
+                      <option value="power-ups">UPS &amp; Surge Protection</option>
+                      <option value="audio-webcam">Headsets &amp; Webcams</option>
+                      <option value="bags-stands">Bags, Stands &amp; Coolers</option>
+                      <option value="smart-home-camera">Smart Cameras</option>
                     </select>
                   </div>
 
@@ -1086,10 +1095,16 @@ WHATSAPP_APP_SECRET=abc...`}
                     <option value="refurbished-laptop">Refurbished Laptops</option>
                     <option value="gaming-pc">Gaming PCs</option>
                     <option value="workstation">Workstations</option>
-                    <option value="upgrade-kit">Upgrade Kits</option>
+                    <option value="upgrade-kit">SSD, RAM &amp; Storage</option>
                     <option value="monitor">Monitors</option>
                     <option value="smart-home-camera">Smart Home Cameras</option>
-                    <option value="mouse">Mice &amp; Peripherals</option>
+                    <option value="mouse">Mice</option>
+                    <option value="keyboard">Keyboards &amp; Combos</option>
+                    <option value="cables-hubs">Chargers, Hubs &amp; Cables</option>
+                    <option value="networking">Routers &amp; Networking</option>
+                    <option value="power-ups">UPS &amp; Surge Protection</option>
+                    <option value="audio-webcam">Headsets &amp; Webcams</option>
+                    <option value="bags-stands">Bags, Stands &amp; Coolers</option>
                     <option value="desktop-cpu">Desktop CPUs</option>
                     <option value="mini-pc">Mini PCs</option>
                   </select>
