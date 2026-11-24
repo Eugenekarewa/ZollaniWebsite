@@ -11,7 +11,7 @@ export function CartButton() {
     <button
       onClick={openCart}
       aria-label={`Open cart — ${totalItems} item${totalItems !== 1 ? "s" : ""}`}
-      className="relative flex items-center gap-1.5 rounded-xl border border-cream-border bg-white px-3 py-2 text-xs font-bold text-brand-dark shadow-xs hover:border-teal-brand hover:text-teal-brand transition-all"
+      className="relative flex items-center gap-1.5 rounded-xl border border-cream-border bg-white px-2 py-2 text-xs font-bold text-brand-dark shadow-xs hover:border-teal-brand hover:text-teal-brand transition-all sm:px-3"
     >
       <ShoppingCart className="h-4 w-4" />
       <span className="hidden sm:inline">Cart</span>

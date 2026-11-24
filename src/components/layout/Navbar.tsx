@@ -113,12 +113,12 @@ export const Navbar = () => {
             : "bg-cream-bg/95 backdrop-blur-sm py-4 border-b border-cream-border/70"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Brand Logo */}
           <Logo size="md" />
 
           {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center gap-1 xl:gap-2">
+          <div className="hidden xl:flex items-center gap-1 xl:gap-2">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -143,7 +143,7 @@ export const Navbar = () => {
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden xl:flex items-center gap-3">
             <CartButton />
             <Link
               href="/services#estimator"
@@ -165,13 +165,13 @@ export const Navbar = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-1 sm:gap-2 xl:hidden">
             <CartButton />
             <a
               href="https://wa.me/254768551914?text=Hello%20Zollani%20Tech%2C%20I%20need%20quick%20assistance."
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-coral-brand text-white p-2 rounded-lg text-xs font-bold flex items-center gap-1"
+              className="hidden sm:flex bg-coral-brand text-white p-2 rounded-lg text-xs font-bold items-center gap-1"
               aria-label="WhatsApp"
             >
               <MessageCircle className="w-4 h-4 fill-white" />
@@ -190,7 +190,7 @@ export const Navbar = () => {
 
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-cream-surface border-b border-cream-border px-4 pt-3 pb-6 space-y-2 animate-in fade-in slide-in-from-top-4 duration-200">
+          <div className="xl:hidden bg-cream-surface border-b border-cream-border px-4 pt-3 pb-6 space-y-2 animate-in fade-in slide-in-from-top-4 duration-200">
             <div className="grid grid-cols-1 gap-1">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
