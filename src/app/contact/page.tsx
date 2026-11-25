@@ -159,7 +159,7 @@ export default function ContactPage() {
                     Corporate Email
                   </div>
                   <div className="text-sm font-black text-brand-dark">
-                    info@zollanitech.co.ke
+                    {CORPORATE_EMAIL}
                   </div>
                   <div className="text-xs text-brand-muted">
                     For corporate proposals &amp; tenders

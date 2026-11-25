@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getOrderByCode } from "@/lib/commerce-store";
-import { createPageMetadata } from "@/lib/seo";
+import { CORPORATE_EMAIL, createPageMetadata } from "@/lib/seo";
 import { PrintReceiptButton } from "@/components/shop/PrintReceiptButton";
 import {
   ArrowLeft,
@@ -116,7 +116,7 @@ export default async function ReceiptPage({
                 Precision Electronics Repair &amp; Certified Computer Hardware Store · Nairobi, Kenya
               </p>
               <p className="mt-1 text-xs text-cream-bg/80 print:text-brand-muted">
-                Tel: +254 768 551914 · Email: info@zollanitech.co.ke · Paybill: 714888 (Acc: 480939)
+                Tel: +254 768 551914 · Email: {CORPORATE_EMAIL} · Paybill: 714888 (Acc: 480939)
               </p>
             </div>
 
