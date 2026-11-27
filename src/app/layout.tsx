@@ -15,6 +15,9 @@ const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  other: {
+    "facebook-domain-verification": "04qwy5cbcpjvbb5202zxxwoh8w9q1o",
+  },
   title: {
     default: "Zollani Tech | Computer Repair & IT Services in Nairobi, Kenya",
     template: "%s | Zollani Tech",
